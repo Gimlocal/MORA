@@ -6,9 +6,9 @@ namespace Player
     {
         public static Player Instance { get; private set; }
 
-        [SerializeField] private PlayerMovement playerMovement;
-        [SerializeField] private PlayerAction playerAction;
-        [SerializeField] private PlayerSorting playerSorting;
+        public PlayerMovement playerMovement;
+        public PlayerAction playerAction;
+        public PlayerSorting playerSorting;
 
         private void Awake()
         {

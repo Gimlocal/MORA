@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -9,7 +10,7 @@ namespace Player
         private SpriteRenderer _playerSr;
         private Animator _playerAnim;
         private Vector2 _movement;
-        private float _lastMovementX = 1;
+        public float lastMovementX = 1;
         [SerializeField] private float moveSpeed;
         [SerializeField] private float moveAcceleration;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
@@ -31,8 +32,8 @@ namespace Player
         {
             _movement.x = 0; _movement.y = 0;
             
-            if (Input.GetKey(KeyCode.LeftArrow)) _movement.x = _lastMovementX = -1;
-            if (Input.GetKey(KeyCode.RightArrow)) _movement.x = _lastMovementX = 1;
+            if (Input.GetKey(KeyCode.LeftArrow)) _movement.x = lastMovementX = -1;
+            if (Input.GetKey(KeyCode.RightArrow)) _movement.x = lastMovementX = 1;
             if (Input.GetKey(KeyCode.UpArrow)) _movement.y = 1;
             if (Input.GetKey(KeyCode.DownArrow)) _movement.y = -1;
 
@@ -46,7 +47,7 @@ namespace Player
 
         private void FacingDirection()
         {
-            _playerSr.flipX = _lastMovementX < 0;
+            _playerSr.flipX = lastMovementX < 0;
         }
     }
 }
