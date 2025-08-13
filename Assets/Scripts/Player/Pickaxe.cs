@@ -1,42 +1,78 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Player
 {
     public class Pickaxe : MonoBehaviour
     {
         private Coroutine _miningCoroutine;
+        private Tween _miningTween;
+        
         private Vector2 _startPos;
         private float _startAngle;
         private float _endAngle;
         
-        public void Mining()
+        private Collider2D _collider;
+
+        private void Awake()
         {
-            _miningCoroutine = StartCoroutine(MiningCoroutine());
+            _collider = GetComponent<Collider2D>();
+        }
+
+        public void Mining(float speed)
+        {
+            StopMining();
+            _miningCoroutine = StartCoroutine(MiningCoroutine(speed));
         }
         
-        private IEnumerator MiningCoroutine()
+        private IEnumerator MiningCoroutine(float speed)
         {
             if (Player.Instance.playerMovement.lastMovementX > 0)
             {
-                _startPos = new Vector2(0.6f, 1.1f);
+                transform.localScale = new Vector3(1, 1, 1);
+                _startPos = (Vector2)Player.Instance.transform.position + new Vector2(0.1f, 1.2f) * Player.Instance.transform.localScale;
                 _startAngle = 70f;
                 _endAngle = -30f;
             }
             else
             {
-                _startPos = new Vector2(-0.6f, 1.1f);
+                transform.localScale = new Vector3(-1, 1, 1);
+                _startPos = (Vector2)Player.Instance.transform.position + new Vector2(-0.1f, 1.2f) * Player.Instance.transform.localScale;
                 _startAngle = -70f;
                 _endAngle = 30f;
             }
-            yield return null;
+            transform.position = _startPos;
+            transform.rotation = Quaternion.Euler(0, 0, _startAngle);
+            _miningTween = transform.DORotate(new Vector3(0f, 0, _endAngle), speed).SetEase(Ease.InOutCubic);
+            StartCoroutine(SetCollider(speed / 2));
+            yield return _miningTween.WaitForCompletion();
+            _collider.enabled = false;
+            gameObject.SetActive(false);
         }
 
-        public void StopMining()
+        private IEnumerator SetCollider(float delay)
         {
-            if (_miningCoroutine == null) return;
-            StopCoroutine(_miningCoroutine);
-            _miningCoroutine = null;
+            yield return new WaitForSeconds(delay);
+            _collider.enabled = true;
+        }
+
+        private void StopMining()
+        {
+            _collider.enabled = false;
+            
+            if (_miningCoroutine != null)
+            {
+                StopCoroutine(_miningCoroutine);
+                _miningCoroutine = null;
+            }
+            
+            if (_miningTween != null && _miningTween.IsActive())
+            {
+                _miningTween.Kill();
+                _miningTween = null;
+            }
         }
     }
 }
