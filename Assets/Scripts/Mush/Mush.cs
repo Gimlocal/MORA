@@ -11,11 +11,13 @@ namespace Mush
         [SerializeField] private MushId mushId;
         [SerializeField] private float hp;
         private SpriteRenderer _sR;
+        private Collider2D _col;
         private Coroutine _flickCoroutine;
 
         private void Awake()
         {
             _sR = GetComponent<SpriteRenderer>();
+            _col = GetComponent<Collider2D>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -80,7 +82,8 @@ namespace Mush
 
         private void OnDead()
         {
-            _sR.DOFade(0, 0.5f).OnComplete(() => { Destroy(gameObject); });
+            _col.enabled = false;
+            _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }
 }
