@@ -8,7 +8,6 @@ namespace Mush
     public class Mush : MonoBehaviour
     {
         [SerializeField] private float hp;
-        [SerializeField] private GameObject piece;
         private SpriteRenderer _sR;
         private Coroutine _flickCoroutine;
 
@@ -60,7 +59,18 @@ namespace Mush
         {
             Vector2 randomDir = Random.insideUnitCircle.normalized;
             Vector3 dropPos = transform.position + (Vector3)randomDir;
-            GameObject dropPiece = Instantiate(piece, transform.position, Quaternion.identity);
+            
+            // piece 생성
+            GameObject dropPiece = new GameObject("Piece");
+            dropPiece.transform.position = transform.position;
+            SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
+            sR.sprite = _sR.sprite;
+            sR.sortingOrder = _sR.sortingOrder;
+            CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
+            cd.radius = 0.12f;
+            cd.isTrigger = true;
+            dropPiece.AddComponent<Piece>();
+            
             dropPiece.transform.DOJump(dropPos, 0.5f, 1, 0.5f).
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});
         }
