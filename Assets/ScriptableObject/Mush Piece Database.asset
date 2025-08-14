@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f4d18f10aae564198d1837e6a3f9f9, type: 3}
+  m_Name: Mush Piece Database
+  m_EditorClassIdentifier: 
+  pieces:
+  - mushId: 0
+    itemName: "\uCD08\uB85D \uBC84\uC12F"
+    rarity: 0
+    description: "\uD480\uACFC\uAC19\uC740 \uD5A5\uC774 \uB098\uB294 \uBC84\uC12F\uC774\uB2E4.\n\uB053\uC5EC\uC11C
+      \uB3C5\uC131\uC744 \uC5C6\uC560 \uBA39\uC5B4\uC57C \uD55C\uB2E4."
+    sprite: {fileID: 21300000, guid: a15501f0e3f737b479b028c016150db8, type: 3}

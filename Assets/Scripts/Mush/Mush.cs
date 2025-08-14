@@ -7,6 +7,8 @@ namespace Mush
 {
     public class Mush : MonoBehaviour
     {
+        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private MushId mushId;
         [SerializeField] private float hp;
         private SpriteRenderer _sR;
         private Coroutine _flickCoroutine;
@@ -69,7 +71,8 @@ namespace Mush
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
             cd.radius = 0.12f;
             cd.isTrigger = true;
-            dropPiece.AddComponent<MushPiece>();
+            MushPiece mushPiece = dropPiece.AddComponent<MushPiece>();
+            mushPiece.mushInfo = mushDatabase.GetPieceById(mushId);
             
             dropPiece.transform.DOJump(dropPos, 0.5f, 1, 0.5f).
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});
