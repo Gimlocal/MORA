@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Mush
 {
-    public class Piece : MonoBehaviour
+    public class MushPiece : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
         {

@@ -69,7 +69,7 @@ namespace Mush
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
             cd.radius = 0.12f;
             cd.isTrigger = true;
-            dropPiece.AddComponent<Piece>();
+            dropPiece.AddComponent<MushPiece>();
             
             dropPiece.transform.DOJump(dropPos, 0.5f, 1, 0.5f).
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});
