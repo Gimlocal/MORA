@@ -25,6 +25,20 @@ namespace UI
 
         private void OnEnable()
         {
+            Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
+
+            LoadItemsFromPlayer();
+            DisplayItemList();
+            UpdateItemInfoUI();
+        }
+
+        private void OnDisable()
+        {
+            Player.Player.Instance.playerItem.OnItemChanged -= RefreshInventory;
+        }
+        
+        private void RefreshInventory()
+        {
             LoadItemsFromPlayer();
             DisplayItemList();
             UpdateItemInfoUI();

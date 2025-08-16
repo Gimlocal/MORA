@@ -8,6 +8,7 @@ namespace Player
     {
         [SerializeField] private MushDatabase mushDatabase;
         public Dictionary<MushId, int> OwnedItems = new();
+        public event System.Action OnItemChanged;
 
         public void AddItem(MushId id)
         {
@@ -15,6 +16,7 @@ namespace Player
             {
                 OwnedItems[id]++;
             }
+            OnItemChanged?.Invoke();
         }
 
         private List<MushInfo> GetAllItemsInfo()
@@ -39,6 +41,7 @@ namespace Player
             {
                 OwnedItems[id]--;
             }
+            OnItemChanged?.Invoke();
         }
     }
 }
