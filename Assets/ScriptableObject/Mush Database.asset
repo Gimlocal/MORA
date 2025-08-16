@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieces:
   - mushId: 0
-    itemName: Green Mush
+    itemName: "\uCD08\uB85D \uBC84\uC12F"
     rarity: 0
-    description: Grassy Mush
+    description: "\uD480 \uD5A5\uAE30\uAC00 \uB098\uB294 \uCD08\uB85D\uC0C9 \uBC84\uC12F\uC774\uB2E4.\n\uB3C5\uC131\uC774
+      \uC788\uC5B4 \uB053\uC5EC \uBA39\uC5B4\uC57C \uD55C\uB2E4."
     sprite: {fileID: 21300000, guid: a15501f0e3f737b479b028c016150db8, type: 3}
