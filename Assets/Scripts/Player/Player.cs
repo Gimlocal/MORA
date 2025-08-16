@@ -9,6 +9,7 @@ namespace Player
         public PlayerMovement playerMovement;
         public PlayerAction playerAction;
         public PlayerSorting playerSorting;
+        public PlayerItem playerItem;
 
         private void Awake()
         {

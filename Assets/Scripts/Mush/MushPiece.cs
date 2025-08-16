@@ -9,6 +9,7 @@ namespace Mush
         {
             if (other.CompareTag("Player"))
             {
+                Player.Player.Instance.playerItem.AddItem(mushInfo.mushId);
                 Destroy(gameObject);
             }
         }

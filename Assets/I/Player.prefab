@@ -15,11 +15,12 @@ GameObject:
   - component: {fileID: 1571620702980064631}
   - component: {fileID: 508325148312166649}
   - component: {fileID: 3715601310800711338}
+  - component: {fileID: 5697777076350935157}
   - component: {fileID: 6304260863168566705}
   - component: {fileID: 6993160099112762916}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
   playerMovement: {fileID: 1571620702980064631}
   playerAction: {fileID: 508325148312166649}
   playerSorting: {fileID: 3715601310800711338}
+  playerItem: {fileID: 5697777076350935157}
 --- !u!114 &1571620702980064631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +174,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da520c12cd984f4fb78fbdbb958e010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5697777076350935157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453306945592593676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efceefa6875a56438d4942f179116c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
 --- !u!50 &6304260863168566705
 Rigidbody2D:
   serializedVersion: 5
