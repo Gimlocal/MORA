@@ -31,6 +31,8 @@ namespace UI
             {
                 inventoryPanel.SetActive(!_inventoryOpened);
                 _inventoryOpened = !_inventoryOpened;
+                Player.Player.Instance.playerMovement.canMove = !_inventoryOpened;
+                if (_inventoryOpened) Player.Player.Instance.playerMovement.StopPlayer();
             }
         }
     }

@@ -1,35 +1,39 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mush;
-using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class Inventory : MonoBehaviour
+    public class SellingUI : MonoBehaviour
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
-        public Image itemImage;
-        public TextMeshProUGUI itemNameText;
-        public TextMeshProUGUI itemDescriptionText;
+        public TextMeshProUGUI goldAmount;
 
         private Dictionary<MushId, int> _ownedItems;
         private List<GameObject> _itemButtons = new();
         private int _selectedIndex = 0;
         private List<MushId> _itemKeys = new();
+        private Player.Player _player;
         
         [SerializeField] private MushDatabase mushDatabase;
+
+        private void Start()
+        {
+            _player = Player.Player.Instance;
+        }
 
         private void OnEnable()
         {
             Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
 
+            UpdateGoldAmount();
             LoadItemsFromPlayer();
             DisplayItemList();
-            UpdateItemInfoUI();
         }
 
         private void OnDisable()
@@ -39,9 +43,9 @@ namespace UI
         
         private void RefreshInventory()
         {
+            UpdateGoldAmount();
             LoadItemsFromPlayer();
             DisplayItemList();
-            UpdateItemInfoUI();
         }
 
         private void Update()
@@ -50,6 +54,20 @@ namespace UI
                 MoveSelection(1);
             else if (Input.GetKeyDown(KeyCode.UpArrow))
                 MoveSelection(-1);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (_itemKeys.Count <= 0) return;
+                if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
+                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
+                _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
+                RefreshInventory();
+            }
+        }
+
+        private void UpdateGoldAmount()
+        {
+            goldAmount.text = Player.Player.Instance.playerItem.gold.ToString();
         }
 
         private void LoadItemsFromPlayer()
@@ -68,23 +86,24 @@ namespace UI
             int index = 0;
             foreach (var id in _ownedItems.Keys)
             {
-                _itemKeys.Add(id); // 키 저장
+                if (_ownedItems[id] == 0) continue;
+                _itemKeys.Add(id);
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushDatabase.GetPieceById(id).itemName}  x{_ownedItems[id]}";
+                MushInfo mushInfo = mushDatabase.GetPieceById(id);
+                buttonObj.GetComponentsInChildren<Image>().FirstOrDefault(img => img.gameObject != buttonObj)!.sprite = mushInfo.sprite;
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushInfo.itemName}  x{_ownedItems[id]}\n판매가격 : {mushInfo.value}";
 
-                int capturedIndex = index; // 캡처한 인덱스
+                int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
                     _selectedIndex = capturedIndex;
                     HighlightSelectedItem();
-                    UpdateItemInfoUI();
                 });
 
                 index++;
                 _itemButtons.Add(buttonObj);
             }
-
-
+            
             HighlightSelectedItem();
         }
 
@@ -93,7 +112,6 @@ namespace UI
             _selectedIndex += dir;
             _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemKeys.Count - 1);
             HighlightSelectedItem();
-            UpdateItemInfoUI();
         }
 
         private void HighlightSelectedItem()
@@ -101,20 +119,8 @@ namespace UI
             for (int i = 0; i < _itemButtons.Count; i++)
             {
                 var image = _itemButtons[i].GetComponent<Image>();
-                image.color = (i == _selectedIndex) ? Color.gray : Color.white; // 하이라이트 색상
+                image.color = (i == _selectedIndex) ? Color.gray : Color.white;
             }
-        }
-
-        private void UpdateItemInfoUI()
-        {
-            if (_itemKeys.Count == 0) return;
-
-            MushId id = _itemKeys[_selectedIndex];
-            var itemData = mushDatabase.GetPieceById(id);
-
-            itemImage.sprite = itemData.sprite;
-            itemNameText.text = itemData.itemName;
-            itemDescriptionText.text = itemData.description;
         }
     }
 }

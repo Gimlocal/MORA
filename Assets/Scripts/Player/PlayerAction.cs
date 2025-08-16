@@ -8,6 +8,7 @@ namespace Player
     {
         private Pickaxe _pickaxe;
         public float axeSpeed;
+        public bool canMine = true;
 
         private void Awake()
         {
@@ -16,6 +17,7 @@ namespace Player
 
         private void Update()
         {
+            if (!canMine) return;
             Mining();
         }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mush
 {
@@ -7,7 +8,7 @@ namespace Mush
     {
         public MushId mushId;
         public string itemName;
-        public int rarity;
+        public int value;
         [TextArea] public string description;
         public Sprite sprite;
     }
@@ -17,7 +18,7 @@ namespace Mush
         GreenMush,
     }
 
-    [CreateAssetMenu(fileName = "Mush Piece Database", menuName = "Mush/Piece Database")]
+    [CreateAssetMenu(fileName = "Mush Piece Database", menuName = "Mush Piece Database")]
     public class MushDatabase : ScriptableObject
     {
         public MushInfo[] pieces;

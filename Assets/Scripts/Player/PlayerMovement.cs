@@ -10,8 +10,9 @@ namespace Player
         private SpriteRenderer _playerSr;
         private Animator _playerAnim;
         private Vector2 _movement;
+        public bool canMove = true;
         public float lastMovementX = 1;
-        [SerializeField] private float moveSpeed;
+        public float moveSpeed;
         [SerializeField] private float moveAcceleration;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
@@ -24,6 +25,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            if (!canMove) return;
             Move();
             FacingDirection();
         }
@@ -43,6 +45,12 @@ namespace Player
             Vector2 velocity = _playerRb.linearVelocity;
             velocity = Vector2.Lerp(velocity, _movement * moveSpeed, moveAcceleration * Time.fixedDeltaTime);
             _playerRb.linearVelocity = velocity;
+        }
+
+        public void StopPlayer()
+        {
+            _playerAnim.SetBool(IsWalking, false);
+            _playerRb.linearVelocity = Vector2.zero;
         }
 
         private void FacingDirection()

@@ -8,6 +8,7 @@ namespace Player
     {
         [SerializeField] private MushDatabase mushDatabase;
         public Dictionary<MushId, int> OwnedItems = new();
+        public int gold = 0;
         public event System.Action OnItemChanged;
 
         public void AddItem(MushId id)
