@@ -13,7 +13,10 @@ namespace Object
         {
             _camera = GetComponent<CinemachineCamera>();
             _confiner = GetComponent<CinemachineConfiner2D>();
-            
+        }
+
+        private void Start()
+        {
             _camera.Follow = Player.Player.Instance.transform;
             _confiner.BoundingShape2D = GetComponentInParent<PolygonCollider2D>();
         }
