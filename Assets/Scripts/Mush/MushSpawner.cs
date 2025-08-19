@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mush
 {
@@ -7,20 +8,21 @@ namespace Mush
     {
         [SerializeField] private GameObject normalMush;
         [SerializeField] private GameObject rareMush;
-
-        private Vector2 _boundaryStart;
-        private Vector2 _boundaryEnd;
+        [SerializeField] private Vector2 boundaryStart;
+        [SerializeField] private Vector2 boundaryEnd;
         private int _spawnCount;
         private float _rareSpawnRate;
         private float _mushDistance;
         
-        private List<Vector2> _spawnedPositions = new();
+        private readonly List<Vector2> _spawnedPositions = new();
 
         private void Awake()
         {
             _spawnCount = 15;
-            _rareSpawnRate = 0.1f;
+            _rareSpawnRate = 0.2f;
             _mushDistance = 1f;
+            
+            SpawnMush();
         }
 
         private void SpawnMush()
@@ -47,8 +49,8 @@ namespace Mush
         
         private Vector2 GetRandomPosition()
         {
-            float x = Random.Range(_boundaryStart.x, _boundaryEnd.x);
-            float y = Random.Range(_boundaryStart.y, _boundaryEnd.y);
+            float x = Random.Range(boundaryStart.x, boundaryEnd.x);
+            float y = Random.Range(boundaryStart.y, boundaryEnd.y);
             return new Vector2(x, y);
         }
         

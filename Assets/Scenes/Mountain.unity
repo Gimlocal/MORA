@@ -950,7 +950,7 @@ Transform:
   m_GameObject: {fileID: 1083405341}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -4, y: 0.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1117,11 +1117,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 329145722569773458, guid: badf642fde0207e4e8b33109934a1166, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.03
       objectReference: {fileID: 0}
     - target: {fileID: 329145722569773458, guid: badf642fde0207e4e8b33109934a1166, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 329145722569773458, guid: badf642fde0207e4e8b33109934a1166, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1155,10 +1155,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3314866095099555484, guid: badf642fde0207e4e8b33109934a1166, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 1328483548}
     - target: {fileID: 3930844016371409347, guid: badf642fde0207e4e8b33109934a1166, type: 3}
       propertyPath: m_Name
       value: CinemachineCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4150875979825158103, guid: badf642fde0207e4e8b33109934a1166, type: 3}
+      propertyPath: BoundingShape2D
+      value: 
+      objectReference: {fileID: 1819510561}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1168,6 +1176,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 329145722569773458, guid: badf642fde0207e4e8b33109934a1166, type: 3}
   m_PrefabInstance: {fileID: 1295752929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1328483548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1129144861557699786, guid: eaa8ff482a95b3a49a873a569044c2a9, type: 3}
+  m_PrefabInstance: {fileID: 1423623976778197378}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437065510
 GameObject:
@@ -1899,7 +1912,7 @@ Transform:
   m_GameObject: {fileID: 7858672563596724976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.624109, y: 0.6470195, z: 2.4981635}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1917,8 +1930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444076078224e3f4a9a9e3a589ade831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalMush: {fileID: 0}
-  rareMush: {fileID: 0}
+  normalMush: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
+  rareMush: {fileID: 7209594618945043361, guid: bc3ee848d08e5ac4f9a7a7e201eb9e0e, type: 3}
+  boundaryStart: {x: -9, y: 6}
+  boundaryEnd: {x: 9, y: -6}
 --- !u!1 &7858672563596724976
 GameObject:
   m_ObjectHideFlags: 0
