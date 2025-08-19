@@ -7,36 +7,31 @@ namespace Object
     {
         [SerializeField] private Canvas canvas;
         private Player.Player _player;
+        private bool _isPlayerInRange;
 
         private void Start()
         {
             _player = Player.Player.Instance;
         }
 
+        private void Update()
+        {
+            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
+            {
+                bool isActive = canvas.gameObject.activeSelf;
+                canvas.gameObject.SetActive(!isActive);
+                _player.playerMovement.canMove = isActive;
+                if (!isActive)
+                    _player.playerMovement.StopPlayer();
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                _player.playerAction.canMine = false;
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (Input.GetKey(KeyCode.Z) && !canvas.gameObject.activeSelf)
-                {
-                    canvas.gameObject.SetActive(true);
-                    _player.playerMovement.canMove = false;
-                    _player.playerMovement.StopPlayer();
-                }
-
-                if (canvas.gameObject.activeSelf && Input.GetKey(KeyCode.Z))
-                {
-                    canvas.gameObject.SetActive(false);
-                    _player.playerMovement.canMove = true;
-                }
+                _isPlayerInRange = true;
+                Player.Player.Instance.playerAction.canMine = false;
             }
         }
 
@@ -44,9 +39,13 @@ namespace Object
         {
             if (other.CompareTag("Player"))
             {
-                if (canvas.gameObject.activeSelf) canvas.gameObject.SetActive(false);
-                _player.playerAction.canMine = true;
-                _player.playerMovement.canMove = true;
+                _isPlayerInRange = false;
+                Player.Player.Instance.playerAction.canMine = true;
+                if (canvas.gameObject.activeSelf)
+                {
+                    canvas.gameObject.SetActive(false);
+                    _player.playerMovement.canMove = true;
+                }
             }
         }
     }

@@ -9,23 +9,33 @@ namespace Object
         [SerializeField] private PortalID portalID;
         [SerializeField] private PortalDatabase portalDatabase;
         private PortalData _portalData;
+        private bool _isPlayerInRange;
 
         private void Awake()
         {
             _portalData = portalDatabase.GetPortal(portalID);
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        private void Update()
         {
-            if (other.CompareTag("Player"))
+            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    Player.Player.Instance.playerAction.canMine = false;
-                    SceneManager.sceneLoaded += OnSceneLoaded;
-                    SceneManager.LoadScene(_portalData.targetScene);
-                }
+                Player.Player.Instance.playerAction.canMine = false;
+                SceneManager.sceneLoaded += OnSceneLoaded;
+                SceneManager.LoadScene(_portalData.targetScene);
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            _isPlayerInRange = true;
+            Player.Player.Instance.playerAction.canMine = false;
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            _isPlayerInRange = false;
+            Player.Player.Instance.playerAction.canMine = true;
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
