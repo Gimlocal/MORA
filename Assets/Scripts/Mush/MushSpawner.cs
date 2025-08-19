@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Mush
 {
@@ -21,7 +23,11 @@ namespace Mush
             _spawnCount = 15;
             _rareSpawnRate = 0.2f;
             _mushDistance = 1f;
-            
+        }
+
+        private void Start()
+        {
+            _spawnedPositions.Add(Player.Player.Instance.transform.position);
             SpawnMush();
         }
 
