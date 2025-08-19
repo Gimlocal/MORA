@@ -32,7 +32,7 @@ namespace Object
                     _player.playerMovement.StopPlayer();
                 }
 
-                if (canvas.gameObject.activeSelf && Input.GetKey(KeyCode.Escape))
+                if (canvas.gameObject.activeSelf && Input.GetKey(KeyCode.Z))
                 {
                     canvas.gameObject.SetActive(false);
                     _player.playerMovement.canMove = true;
