@@ -580,120 +580,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322977766}
   m_CullTransparentMesh: 1
---- !u!1001 &421723909
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (5)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
---- !u!1001 &484908468
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
 --- !u!1 &747965643
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,63 +706,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747965643}
   m_CullTransparentMesh: 1
---- !u!1001 &763628882
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
 --- !u!1 &975047547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,63 +1032,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1001 &1158469591
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
 --- !u!1 &1160959565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,63 +1169,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 329145722569773458, guid: badf642fde0207e4e8b33109934a1166, type: 3}
   m_PrefabInstance: {fileID: 1295752929}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1424085961
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
 --- !u!1 &1437065510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,120 +1343,6 @@ MonoBehaviour:
   itemNameText: {fileID: 26353266}
   itemDescriptionText: {fileID: 322977768}
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
---- !u!1001 &1521861767
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
---- !u!1001 &1616184178
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4786121381938627156, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7209594618945043361, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
-      propertyPath: m_Name
-      value: GreenMush (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 45ae91159d8a81946971cefc8b0f702e, type: 3}
 --- !u!1 &1678334354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +1890,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa8ff482a95b3a49a873a569044c2a9, type: 3}
+--- !u!4 &3759699741469028823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858672563596724976}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.624109, y: 0.6470195, z: 2.4981635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4833424645890590760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858672563596724976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444076078224e3f4a9a9e3a589ade831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMush: {fileID: 0}
+  rareMush: {fileID: 0}
+--- !u!1 &7858672563596724976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3759699741469028823}
+  - component: {fileID: 4833424645890590760}
+  m_Layer: 0
+  m_Name: MushSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &8696879923426001717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2358,13 +2005,7 @@ SceneRoots:
   - {fileID: 1819510559}
   - {fileID: 8696879923426001717}
   - {fileID: 1423623976778197378}
-  - {fileID: 1158469591}
-  - {fileID: 1521861767}
-  - {fileID: 1424085961}
-  - {fileID: 484908468}
-  - {fileID: 763628882}
-  - {fileID: 421723909}
-  - {fileID: 1616184178}
   - {fileID: 117382630}
   - {fileID: 1912876846}
   - {fileID: 975047550}
+  - {fileID: 3759699741469028823}
