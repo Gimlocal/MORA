@@ -1960,6 +1960,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8594359966736543155, guid: 55b95f7a9af9982468bf72f1bf2bda15, type: 3}
+      propertyPath: text
+      value: "\uBCF5\uADC0"
+      objectReference: {fileID: 0}
+    - target: {fileID: -8594359966736543155, guid: 55b95f7a9af9982468bf72f1bf2bda15, type: 3}
       propertyPath: portalID
       value: 1
       objectReference: {fileID: 0}
