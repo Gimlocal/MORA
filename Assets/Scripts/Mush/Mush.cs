@@ -10,6 +10,8 @@ namespace Mush
         [SerializeField] private MushDatabase mushDatabase;
         [SerializeField] private MushId mushId;
         [SerializeField] private float hp;
+        [SerializeField] private int dropInterval;
+        private int _hitCount;
         private SpriteRenderer _sR;
         private Collider2D _col;
         private Coroutine _flickCoroutine;
@@ -33,7 +35,8 @@ namespace Mush
             if (hp > 0)
             {
                 Flick();
-                DropPiece();
+                _hitCount++;
+                if (_hitCount % dropInterval == 0) DropPiece();
                 hp--;
                 if (hp == 0) OnDead();
             }
