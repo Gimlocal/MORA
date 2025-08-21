@@ -10,15 +10,12 @@ namespace Object
         [SerializeField] private PortalID portalID;
         [SerializeField] private PortalDatabase portalDatabase;
         [SerializeField] private Canvas canvas;
-        [SerializeField] private TextMeshProUGUI tmPro;
-        [SerializeField] private String text;
         private PortalData _portalData;
         private bool _isPlayerInRange;
 
         private void Awake()
         {
             _portalData = portalDatabase.GetPortal(portalID);
-            tmPro.text = text;
         }
 
         private void Update()
