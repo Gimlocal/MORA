@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Object
 {
     public class InteractableObject : MonoBehaviour
     {
-        [SerializeField] private Canvas canvas;
+        [SerializeField] private Canvas uI;
+        [SerializeField] private Canvas text;
         private Player.Player _player;
         private bool _isPlayerInRange;
 
@@ -18,8 +20,8 @@ namespace Object
         {
             if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
-                bool isActive = canvas.gameObject.activeSelf;
-                canvas.gameObject.SetActive(!isActive);
+                bool isActive = uI.gameObject.activeSelf;
+                uI.gameObject.SetActive(!isActive);
                 _player.playerMovement.canMove = isActive;
                 if (!isActive)
                     _player.playerMovement.StopPlayer();
@@ -30,6 +32,7 @@ namespace Object
         {
             if (other.CompareTag("Player"))
             {
+                text.gameObject.SetActive(true);
                 _isPlayerInRange = true;
                 Player.Player.Instance.playerAction.canMine = false;
             }
@@ -39,11 +42,12 @@ namespace Object
         {
             if (other.CompareTag("Player"))
             {
+                text.gameObject.SetActive(false);
                 _isPlayerInRange = false;
                 Player.Player.Instance.playerAction.canMine = true;
-                if (canvas.gameObject.activeSelf)
+                if (uI.gameObject.activeSelf)
                 {
-                    canvas.gameObject.SetActive(false);
+                    uI.gameObject.SetActive(false);
                     _player.playerMovement.canMove = true;
                 }
             }

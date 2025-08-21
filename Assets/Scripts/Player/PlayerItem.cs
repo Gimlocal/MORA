@@ -36,6 +36,11 @@ namespace Player
             return OwnedItems.ContainsKey(id);
         }
 
+        public bool HasItem(MushId id, int amount)
+        {
+            return OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount;
+        }
+
         public void UseItem(MushId id)
         {
             if (OwnedItems.ContainsKey(id) &&  OwnedItems[id] > 0)
