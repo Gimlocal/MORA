@@ -8405,6 +8405,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1850610085646000524, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2439331662554807553, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8420,6 +8424,10 @@ PrefabInstance:
     - target: {fileID: 3601572669151547030, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501212557525687413, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5393081410586499994, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_AnchorMax.x

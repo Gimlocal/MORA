@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace UI
 {
-    public class UIManager : MonoBehaviour
+    public class InventoryUI : MonoBehaviour
     {
-        public static UIManager Instance { get; private set; }
+        public static InventoryUI Instance { get; private set; }
         private bool _inventoryOpened;
         [SerializeField] private GameObject inventoryPanel;
 
