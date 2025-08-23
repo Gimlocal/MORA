@@ -13,6 +13,7 @@ namespace Mush
         public string name;
         public List<MushIngredient> ingredients;
         public string description;
+        public MushFoodEffect mushFoodEffect;
     }
     
     [System.Serializable]
@@ -25,6 +26,11 @@ namespace Mush
     public enum MushFoodId
     {
         VegetableSoup,
+    }
+
+    public enum MushFoodEffect
+    {
+        IncreaseSpeed,
     }
     
     [CreateAssetMenu(fileName = "Mush Food Database", menuName = "Mush Food Database")]
@@ -40,6 +46,16 @@ namespace Mush
                     return  foodInfo;
             }
             return null;
+        }
+
+        public void EatMushFood(MushFoodId id)
+        {
+            switch (GetMushFoodInfo(id).mushFoodEffect)
+            {
+                case MushFoodEffect.IncreaseSpeed:
+                    Player.Player.Instance.playerMovement.moveSpeed += 0.1f;
+                    break;
+            }
         }
     }
 }

@@ -33,10 +33,42 @@ namespace UI
         {
             if (top)
             {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                    MoveSelection(1);
-                else if (Input.GetKeyDown(KeyCode.UpArrow))
-                    MoveSelection(-1);
+                ManageMoveSelection();
+                CookItem();
+            }
+        }
+
+        private void ManageMoveSelection()
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                MoveSelection(1);
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+                MoveSelection(-1);
+        }
+
+        private void CookItem()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Dictionary<MushId, int> ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+                var foodInfo = _mushFoodInfo[_selectedIndex];
+                bool canCook = true;
+                foreach (var info in foodInfo.ingredients)
+                {
+                    if (ownedItems.ContainsKey(info.mushId) && ownedItems[info.mushId] >= info.amount)
+                        continue;
+                    canCook = false;
+                    break;
+                }
+
+                if (canCook)
+                {
+                    foreach (var info in foodInfo.ingredients)
+                    {
+                        Player.Player.Instance.playerItem.UseItem(info.mushId, info.amount);
+                    }
+                    mushFoodDatabase.EatMushFood(foodInfo.mushFoodId);
+                }
             }
         }
         
