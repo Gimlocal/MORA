@@ -20,13 +20,13 @@ namespace Player
             _collider = GetComponent<Collider2D>();
         }
 
-        public void Mining(float speed)
+        public void Mining(float duration)
         {
             StopMining();
-            _miningCoroutine = StartCoroutine(MiningCoroutine(speed));
+            _miningCoroutine = StartCoroutine(MiningCoroutine(duration));
         }
         
-        private IEnumerator MiningCoroutine(float speed)
+        private IEnumerator MiningCoroutine(float duration)
         {
             if (Player.Instance.playerMovement.lastMovementX > 0)
             {
@@ -44,17 +44,12 @@ namespace Player
             }
             transform.position = _startPos;
             transform.rotation = Quaternion.Euler(0, 0, _startAngle);
-            _miningTween = transform.DORotate(new Vector3(0f, 0, _endAngle), speed).SetEase(Ease.InOutCubic);
-            StartCoroutine(SetCollider(speed / 2));
+            _miningTween = transform.DORotate(new Vector3(0f, 0, _endAngle), duration).SetEase(Ease.InOutCubic);
+            yield return new WaitForSeconds(duration / 3 * 2);
+            _collider.enabled = true;
             yield return _miningTween.WaitForCompletion();
             _collider.enabled = false;
             gameObject.SetActive(false);
-        }
-
-        private IEnumerator SetCollider(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            _collider.enabled = true;
         }
 
         private void StopMining()
