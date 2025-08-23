@@ -748,7 +748,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3601572669151547030, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_Name
-      value: InGameManger
+      value: InGameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5765189495177921604, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_Pivot.x
@@ -1766,6 +1766,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09f39856f225c448807c5ddfe10d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 0
+  layer: 0
+  topLayer: 0
   itemButtonPrefab: {fileID: 4485764140468248591, guid: b82c96c3a3be2e3418826e3ab0fdaf77, type: 3}
   itemListParent: {fileID: 647717377}
   goldAmount: {fileID: 854742506}
@@ -3785,6 +3788,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a09f39856f225c448807c5ddfe10d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 0
+  layer: 0
+  topLayer: 0
   itemButtonPrefab: {fileID: 4485764140468248591, guid: b82c96c3a3be2e3418826e3ab0fdaf77, type: 3}
   itemListParent: {fileID: 1092734841}
   goldAmount: {fileID: 764120214}
@@ -5719,6 +5725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2a7754e72c7748a4a48f26544fcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 0
+  layer: 0
+  topLayer: 0
   mushFoodDatabase: {fileID: 11400000, guid: 000b4170b5ee225459c9961b64dcb0fe, type: 2}
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
   itemButtonPrefab: {fileID: 8238329443096128256, guid: 13de29f3a5e62b74e8f32ed8121bb10a, type: 3}

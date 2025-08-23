@@ -90,6 +90,7 @@ namespace UI
 
             itemImage.sprite = itemData.sprite;
             itemNameText.text = itemData.name;
+            itemIngredientsText.text = "";
             foreach (var text in itemData.ingredients)
             {
                 itemIngredientsText.text += mushDatabase.GetPieceById(text.mushId).itemName;
