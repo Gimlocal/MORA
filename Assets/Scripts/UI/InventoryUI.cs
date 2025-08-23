@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using Mush;
-using Player;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -15,6 +13,7 @@ namespace UI
         public Image itemImage;
         public TextMeshProUGUI itemNameText;
         public TextMeshProUGUI itemDescriptionText;
+        public TextMeshProUGUI goldAmount;
 
         private Dictionary<MushId, int> _ownedItems;
         private List<GameObject> _itemButtons = new();
@@ -42,6 +41,7 @@ namespace UI
             LoadItemsFromPlayer();
             DisplayItemList();
             UpdateItemInfoUI();
+            UpdateGoldAmount();
         }
 
         private void Update()
@@ -58,6 +58,11 @@ namespace UI
         private void LoadItemsFromPlayer()
         {
             _ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+        }
+        
+        private void UpdateGoldAmount()
+        {
+            goldAmount.text = Player.Player.Instance.playerItem.gold.ToString();
         }
 
         private void DisplayItemList()
