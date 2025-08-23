@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class CookingUI : MonoBehaviour
+    public class CookingUI : UIBase
     {
         [SerializeField] private MushFoodDatabase mushFoodDatabase;
         [SerializeField] private MushDatabase mushDatabase;
@@ -31,10 +31,13 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
+            if (top)
+            {
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                    MoveSelection(1);
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                    MoveSelection(-1);
+            }
         }
         
         private void MoveSelection(int dir)

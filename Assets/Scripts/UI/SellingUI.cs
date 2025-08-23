@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class SellingUI : MonoBehaviour
+    public class SellingUI : UIBase
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
@@ -50,18 +50,21 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (top)
             {
-                if (_itemKeys.Count <= 0) return;
-                if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
-                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
-                _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
-                RefreshInventory();
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                    MoveSelection(1);
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                    MoveSelection(-1);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (_itemKeys.Count <= 0) return;
+                    if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
+                    _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
+                    _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
+                    RefreshInventory();
+                }
             }
         }
 

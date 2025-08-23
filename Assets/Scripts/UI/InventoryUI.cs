@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class InventoryUI : MonoBehaviour
+    public class InventoryUI : UIBase
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
@@ -46,10 +46,13 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
+            if (top)
+            {
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                    MoveSelection(1);
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                    MoveSelection(-1);
+            }
         }
 
         private void LoadItemsFromPlayer()

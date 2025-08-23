@@ -8,6 +8,7 @@ namespace UI
         public static InventoryManager Instance { get; private set; }
         private bool _inventoryOpened;
         [SerializeField] private GameObject inventoryPanel;
+        private UIBase _uIBase;
 
         private void Awake()
         {
@@ -18,6 +19,8 @@ namespace UI
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            _uIBase = inventoryPanel.GetComponentInChildren<UIBase>();
         }
 
         private void Update()
@@ -31,8 +34,18 @@ namespace UI
             {
                 inventoryPanel.SetActive(!_inventoryOpened);
                 _inventoryOpened = !_inventoryOpened;
-                Player.Player.Instance.playerMovement.canMove = !_inventoryOpened;
-                if (_inventoryOpened) Player.Player.Instance.playerMovement.StopPlayer();
+                if (_inventoryOpened)
+                {
+                    UIManager.Instance.RegisterUI(_uIBase);
+                    Player.Player.Instance.playerMovement.StopPlayer();
+                }
+                else
+                {
+                    UIManager.Instance.UnRegisterUI(_uIBase);
+                }
+                
+                if (_inventoryOpened || UIManager.Instance.uIList.Count == 0)
+                    Player.Player.Instance.playerMovement.canMove = !_inventoryOpened;
             }
         }
     }

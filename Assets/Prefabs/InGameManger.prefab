@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 2623228194340581896}
   - component: {fileID: 2069327264877321012}
   - component: {fileID: 2005625505074478405}
+  - component: {fileID: 5515821104669438517}
   m_Layer: 5
   m_Name: InGameManger
   m_TagString: Untagged
@@ -414,6 +415,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 7470013166825743391}
+--- !u!114 &5515821104669438517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601572669151547030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae524af2aa3df409740d7a2103b2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4688180241995129514
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f630434ede708614ca7341e34ddb8cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  top: 0
+  layer: 0
+  topLayer: 1
   itemButtonPrefab: {fileID: 5832680988436288368, guid: 6777fc545ee04b64a90037e2f12438b7, type: 3}
   itemListParent: {fileID: 4501212557525687413}
   itemImage: {fileID: 8390327208582849500}

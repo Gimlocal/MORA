@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,21 +11,36 @@ namespace Object
         [SerializeField] private Canvas text;
         private Player.Player _player;
         private bool _isPlayerInRange;
+        private UIBase _uiBase;
 
         private void Start()
         {
             _player = Player.Player.Instance;
+            _uiBase = uI.GetComponentInChildren<UIBase>(true);
         }
 
         private void Update()
+        {
+            ManageUI();
+        }
+
+        private void ManageUI()
         {
             if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
                 bool isActive = uI.gameObject.activeSelf;
                 uI.gameObject.SetActive(!isActive);
-                _player.playerMovement.canMove = isActive;
                 if (!isActive)
+                {
+                    UIManager.Instance.RegisterUI(_uiBase);
                     _player.playerMovement.StopPlayer();
+                }
+                else
+                {
+                    UIManager.Instance.UnRegisterUI(_uiBase);
+                }
+                if (!isActive || UIManager.Instance.uIList.Count == 0)
+                    _player.playerMovement.canMove = isActive;
             }
         }
 
