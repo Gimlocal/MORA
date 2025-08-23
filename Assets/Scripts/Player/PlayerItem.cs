@@ -41,12 +41,13 @@ namespace Player
             return OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount;
         }
 
-        public void UseItem(MushId id)
+        public void UseItem(MushId id, int amount = 1)
         {
-            if (OwnedItems.ContainsKey(id) &&  OwnedItems[id] > 0)
+            if (OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount)
             {
-                OwnedItems[id]--;
+                OwnedItems[id] -= amount;
             }
+
             OnItemChanged?.Invoke();
         }
     }

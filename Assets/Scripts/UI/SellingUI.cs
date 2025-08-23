@@ -52,19 +52,28 @@ namespace UI
         {
             if (top)
             {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                    MoveSelection(1);
-                else if (Input.GetKeyDown(KeyCode.UpArrow))
-                    MoveSelection(-1);
+                ManageMoveSelection();
+                SellItem();
+            }
+        }
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (_itemKeys.Count <= 0) return;
-                    if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
-                    _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
-                    _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
-                    RefreshInventory();
-                }
+        private void ManageMoveSelection()
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                MoveSelection(1);
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+                MoveSelection(-1);
+        }
+
+        private void SellItem()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (_itemKeys.Count <= 0) return;
+                if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
+                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
+                _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
+                RefreshInventory();
             }
         }
 
@@ -107,6 +116,7 @@ namespace UI
                 _itemButtons.Add(buttonObj);
             }
             
+            _selectedIndex = _itemKeys.Count > 0 ? Math.Clamp(_selectedIndex, 0, _itemKeys.Count - 1) : 0;
             HighlightSelectedItem();
         }
 

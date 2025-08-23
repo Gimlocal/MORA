@@ -71,6 +71,8 @@ namespace UI
             int index = 0;
             foreach (var id in _ownedItems.Keys)
             {
+                if (_ownedItems[id] == 0) continue;
+                
                 _itemKeys.Add(id); // 키 저장
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
                 buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushDatabase.GetPieceById(id).itemName}  x{_ownedItems[id]}";
@@ -110,11 +112,22 @@ namespace UI
 
         private void UpdateItemInfoUI()
         {
-            if (_itemKeys.Count == 0) return;
+            if (_itemKeys.Count == 0)
+            {
+                itemImage.sprite = null;
+                itemImage.gameObject.SetActive(false);
+                itemNameText.text = "";
+                itemDescriptionText.text = "";
+                return;
+            }
+            
+            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemKeys.Count - 1);
+            HighlightSelectedItem();
 
             MushId id = _itemKeys[_selectedIndex];
             var itemData = mushDatabase.GetPieceById(id);
 
+            itemImage.gameObject.SetActive(true);
             itemImage.sprite = itemData.sprite;
             itemNameText.text = itemData.itemName;
             itemDescriptionText.text = itemData.description;
