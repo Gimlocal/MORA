@@ -45,7 +45,7 @@ namespace Player
             transform.position = _startPos;
             transform.rotation = Quaternion.Euler(0, 0, _startAngle);
             _miningTween = transform.DORotate(new Vector3(0f, 0, _endAngle), duration).SetEase(Ease.InOutCubic);
-            yield return new WaitForSeconds(duration / 3 * 2);
+            yield return new WaitForSeconds(duration / 5 * 4);
             _collider.enabled = true;
             yield return _miningTween.WaitForCompletion();
             _collider.enabled = false;

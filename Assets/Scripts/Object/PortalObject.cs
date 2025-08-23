@@ -30,16 +30,22 @@ namespace Object
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            _isPlayerInRange = true;
-            Player.Player.Instance.playerAction.canMine = false;
-            canvas.gameObject.SetActive(true);
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerInRange = true;
+                Player.Player.Instance.playerAction.canMine = false;
+                canvas.gameObject.SetActive(true);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            _isPlayerInRange = false;
-            Player.Player.Instance.playerAction.canMine = true;
-            canvas.gameObject.SetActive(false);
+            if (other.CompareTag("Player"))
+            {
+                _isPlayerInRange = false;
+                Player.Player.Instance.playerAction.canMine = true;
+                canvas.gameObject.SetActive(false);
+            }
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
