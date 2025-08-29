@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portals:
   - portalID: 0
-    targetScene: Mountain
+    targetScene: MORA-1
     targetPos: {x: -8.5, y: 0.2}
   - portalID: 1
-    targetScene: Town
+    targetScene: MORA-0
+    targetPos: {x: 8.3, y: 0.2}
+  - portalID: 2
+    targetScene: MORA-2
+    targetPos: {x: -8.5, y: 0.2}
+  - portalID: 3
+    targetScene: MORA-1
     targetPos: {x: 8.3, y: 0.2}

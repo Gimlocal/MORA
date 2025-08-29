@@ -5,8 +5,10 @@ namespace Object
 {
     public enum PortalID
     {
-        Town,
-        Mountain,
+        Mora0To1,
+        Mora1To0,
+        Mora1To2,
+        Mora2To1,
     }
 
     [System.Serializable]

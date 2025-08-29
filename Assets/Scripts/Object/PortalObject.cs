@@ -22,7 +22,6 @@ namespace Object
         {
             if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
-                Player.Player.Instance.playerAction.canMine = false;
                 SceneManager.sceneLoaded += OnSceneLoaded;
                 SceneManager.LoadScene(_portalData.targetScene);
             }
