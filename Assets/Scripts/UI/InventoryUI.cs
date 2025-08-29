@@ -29,6 +29,7 @@ namespace UI
             LoadItemsFromPlayer();
             DisplayItemList();
             UpdateItemInfoUI();
+            UpdateGoldAmount();
         }
 
         private void OnDisable()

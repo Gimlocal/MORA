@@ -16,7 +16,9 @@ namespace Mush
     public enum MushId
     {
         GreenMush,
-        WaterMush,
+        BlueMush,
+        RedMush,
+        LightBlueMush,
     }
 
     [CreateAssetMenu(fileName = "Mush Piece Database", menuName = "Mush Piece Database")]

@@ -16,13 +16,27 @@ MonoBehaviour:
   - mushId: 0
     itemName: "\uCD08\uB85D \uBC84\uC12F"
     value: 1
-    description: "\uD480 \uD5A5\uAE30\uAC00 \uB098\uB294 \uCD08\uB85D\uC0C9 \uBC84\uC12F\uC774\uB2E4.\n\uB3C5\uC131\uC774
-      \uC788\uC5B4 \uB053\uC5EC \uBA39\uC5B4\uC57C \uD55C\uB2E4."
+    description: "\uD480 \uD5A5\uAE30\uAC00 \uB098\uB294 \uCD08\uB85D\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uB2E4\uC591\uD55C
+      \uC601\uC591\uBD84\uC774 \uD48D\uBD80\uD558\uB2E4."
     sprite: {fileID: 21300000, guid: a15501f0e3f737b479b028c016150db8, type: 3}
   - mushId: 1
-    itemName: "\uBB3C \uBC84\uC12F"
+    itemName: "\uD30C\uB780 \uBC84\uC12F"
     value: 2
-    description: "\uD638\uC218\uAC00 \uB2F4\uAE34\uAC83 \uAC19\uC740 \uD478\uB978\uC0C9
-      \uBC84\uC12F\uC774\uB2E4.\n\uC0C1\uC628\uC5D0 \uB450\uBA74 \uBB3C\uACFC \uAC19\uC740
-      \uC131\uBD84\uC774 \uB41C\uB2E4."
+    description: "\uD638\uC218\uAC00 \uB2F4\uAE34 \uAC83 \uAC19\uC740 \uD478\uB978\uBE5B
+      \uBC84\uC12F\uC774\uB2E4.\n\uC0C1\uC628\uC5D0 \uB450\uBA74 \uC561\uCCB4 \uC0C1\uD0DC\uAC00
+      \uB41C\uB2E4."
     sprite: {fileID: 21300000, guid: 391c963e97449094abd6729c1e13d421, type: 3}
+  - mushId: 2
+    itemName: "\uBE68\uAC04 \uBC84\uC12F"
+    value: 2
+    description: "\uC0DD\uBB3C\uC758 \uD53C\uB97C \uB2F4\uC740 \uAC83 \uAC19\uC740
+      \uBD89\uC740\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uBD88\uC5D0 \uC775\uD788\uBA74
+      \uAC08\uC0C9\uBE5B\uC774 \uB3C8\uB2E4."
+    sprite: {fileID: 21300000, guid: d6d58a707ea662544a465f746ee75d5e, type: 3}
+  - mushId: 3
+    itemName: "\uC5F0\uD558\uB298 \uBC84\uC12F"
+    value: 3
+    description: "\uBC14\uB2E4\uC758 \uD5A5\uAE30\uAC00 \uB098\uB294 \uC5F0\uD558\uB298\uBE5B
+      \uBC84\uC12F\uC774\uB2E4.\n\uC798\uAC8C \uBD80\uC234 \uC74C\uC2DD\uC5D0 \uB123\uC73C\uBA74
+      \uC74C\uC2DD\uC774 \uB9DB\uC788\uC5B4\uC9C8 \uAC83 \uAC19\uB2E4."
+    sprite: {fileID: 21300000, guid: b39ac3ee884fe0b41a1f472c92f4ff4a, type: 3}

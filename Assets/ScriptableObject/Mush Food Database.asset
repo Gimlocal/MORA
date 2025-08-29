@@ -15,12 +15,13 @@ MonoBehaviour:
   mushFoodInfo:
   - mushFoodId: 0
     sprite: {fileID: 21300000, guid: 1fc7d2784f39bca4e9158ea31427d79a, type: 3}
-    name: "\uC57C\uCC44 \uAD6D"
+    name: "\uAC74\uAC15\uC999"
     ingredients:
     - mushId: 0
       amount: 3
     - mushId: 1
       amount: 1
     description: "\uCD08\uB85D \uBC84\uC12F\uACFC \uBB3C \uBC84\uC12F\uC744 \uC774\uC6A9\uD574
-      \uB9CC\uB4E0 \uC694\uB9AC.\\n\uB9E4\uC6B0 \uC2F1\uAC81\uB2E4.\\n\uC774\uB3D9\uC18D\uB3C4\uB97C
+      \uB9CC\uB4E0 \uC694\uB9AC.\\n\uBAB8\uC5D0 \uC88B\uB2E4.\\n\uC774\uB3D9\uC18D\uB3C4\uB97C
       \uC870\uAE08 \uC0C1\uC2B9\uC2DC\uCF1C\uC900\uB2E4."
+    mushFoodEffect: 0
