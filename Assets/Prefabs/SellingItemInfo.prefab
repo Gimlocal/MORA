@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC124\uBA85\n\uC124\uBA85"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8d1f853f9e16f9c4eac31523f3bc67a3, type: 2}
-  m_sharedMaterial: {fileID: 4298224050607869256, guid: 8d1f853f9e16f9c4eac31523f3bc67a3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3258bcab40d0a064a99224d8e6df95ec, type: 2}
+  m_sharedMaterial: {fileID: 4325974266020320250, guid: 3258bcab40d0a064a99224d8e6df95ec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

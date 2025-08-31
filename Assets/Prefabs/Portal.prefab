@@ -195,8 +195,6 @@ MonoBehaviour:
   portalID: 0
   portalDatabase: {fileID: 11400000, guid: c3def0926fb047942a35ab617c2ab12e, type: 2}
   canvas: {fileID: 109003111994649946}
-  tmPro: {fileID: 1645168275268628853}
-  text: "\uC774\uB3D9"
 --- !u!1 &3358506957061720641
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +262,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC774\uB3D9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6b7834cc871d0c343bd33896f61d2314, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3258bcab40d0a064a99224d8e6df95ec, type: 2}
   m_sharedMaterial: {fileID: -3634816291252502675, guid: 6b7834cc871d0c343bd33896f61d2314, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -330,7 +328,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6042010230517855591
