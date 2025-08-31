@@ -32,14 +32,14 @@ namespace Object
                 uI.gameObject.SetActive(!isActive);
                 if (!isActive)
                 {
-                    UIManager.Instance.RegisterUI(_uiBase);
+                    GameManager.UIManager.RegisterUI(_uiBase);
                     _player.playerMovement.StopPlayer();
                 }
                 else
                 {
-                    UIManager.Instance.UnRegisterUI(_uiBase);
+                    GameManager.UIManager.UnRegisterUI(_uiBase);
                 }
-                if (!isActive || UIManager.Instance.uIList.Count == 0)
+                if (!isActive || GameManager.UIManager.uIList.Count == 0)
                     _player.playerMovement.canMove = isActive;
             }
         }
