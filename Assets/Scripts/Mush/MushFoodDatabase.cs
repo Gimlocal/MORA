@@ -25,7 +25,8 @@ namespace Mush
 
     public enum MushFoodId
     {
-        VegetableSoup,
+        GreenSoup,
+        RedMeat,
     }
 
     public enum MushFoodEffect

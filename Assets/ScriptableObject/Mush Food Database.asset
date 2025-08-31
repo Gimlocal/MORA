@@ -15,7 +15,7 @@ MonoBehaviour:
   mushFoodInfo:
   - mushFoodId: 0
     sprite: {fileID: 21300000, guid: 1fc7d2784f39bca4e9158ea31427d79a, type: 3}
-    name: "\uAC74\uAC15\uC999"
+    name: "\uAC74\uAC15\uC2A4\uD504"
     ingredients:
     - mushId: 0
       amount: 3
