@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MORA-2.unity
     guid: 07859a6b7e672d245a62884cbfb5a6bb
+  - enabled: 1
+    path: Assets/Scenes/MORA-3.unity
+    guid: 1435297538df47244beb8e315d96583d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

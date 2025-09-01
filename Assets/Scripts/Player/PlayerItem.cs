@@ -9,7 +9,10 @@ namespace Player
         [SerializeField] private MushDatabase mushDatabase;
         public Dictionary<MushId, int> OwnedItems = new();
         public int gold = 0;
+        public int suitLevel = 0;
+        public bool canGoHome;
         public event System.Action OnItemChanged;
+        public event System.Action OnGoldChanged;
 
         public void AddItem(MushId id)
         {
@@ -49,6 +52,12 @@ namespace Player
             }
 
             OnItemChanged?.Invoke();
+        }
+
+        public void UseGold(int amount)
+        {
+            gold -= amount;
+            OnGoldChanged?.Invoke();
         }
     }
 }
