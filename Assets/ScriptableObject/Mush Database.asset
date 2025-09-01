@@ -25,7 +25,7 @@ MonoBehaviour:
     description: "\uD638\uC218\uAC00 \uB2F4\uAE34 \uAC83 \uAC19\uC740 \uD478\uB978\uBE5B
       \uBC84\uC12F\uC774\uB2E4.\n\uC0C1\uC628\uC5D0 \uB450\uBA74 \uC561\uCCB4 \uC0C1\uD0DC\uAC00
       \uB41C\uB2E4."
-    sprite: {fileID: 21300000, guid: 391c963e97449094abd6729c1e13d421, type: 3}
+    sprite: {fileID: 21300000, guid: 8edb69ed8dc505a46b207f6ddcce0f57, type: 3}
   - mushId: 2
     itemName: "\uBE68\uAC04 \uBC84\uC12F"
     value: 2
@@ -39,4 +39,17 @@ MonoBehaviour:
     description: "\uBC14\uB2E4\uC758 \uD5A5\uAE30\uAC00 \uB098\uB294 \uC5F0\uD558\uB298\uBE5B
       \uBC84\uC12F\uC774\uB2E4.\n\uC798\uAC8C \uBD80\uC234 \uC74C\uC2DD\uC5D0 \uB123\uC73C\uBA74
       \uC74C\uC2DD\uC774 \uB9DB\uC788\uC5B4\uC9C8 \uAC83 \uAC19\uB2E4."
-    sprite: {fileID: 21300000, guid: b39ac3ee884fe0b41a1f472c92f4ff4a, type: 3}
+    sprite: {fileID: 21300000, guid: f862a750c0a12ad46b343504fcbce8c2, type: 3}
+  - mushId: 4
+    itemName: "\uD770\uC0C9 \uBC84\uC12F"
+    value: 3
+    description: "\uACE0\uC18C\uD55C \uD5A5\uAE30\uAC00 \uB098\uB294 \uD770\uC0C9
+      \uBC84\uC12F\uC774\uB2E4.\n\uBD88\uC5D0 \uC775\uD788\uBA74 \uD3ED\uC2E0\uD3ED\uC2E0\uD574\uC9C4\uB2E4.\n"
+    sprite: {fileID: 21300000, guid: 6bb481fd9d5e0604d85cb5f889f20592, type: 3}
+  - mushId: 5
+    itemName: "\uD669\uAE08 \uBC84\uC12F"
+    value: 4
+    description: "\uB9CC\uC9C0\uBA74 \uAE30\uB984\uC774 \uBB3B\uC5B4\uB098\uC624\uB294
+      \uD669\uAE08\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uC5F4\uC744 \uAC00\uD558\uBA74
+      \uC561\uCCB4 \uC0C1\uD0DC\uAC00 \uB41C\uB2E4."
+    sprite: {fileID: 21300000, guid: 5d5ec530666fb1144a6ebc85a77a6636, type: 3}
