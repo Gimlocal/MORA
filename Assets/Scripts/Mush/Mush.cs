@@ -10,8 +10,8 @@ namespace Mush
         [SerializeField] private MushDatabase mushDatabase;
         [SerializeField] private MushId mushId;
         [SerializeField] private float hp;
-        [SerializeField] private int dropInterval;
-        private int _hitCount;
+        [SerializeField] private float dropInterval;
+        private float _hitCount;
         private SpriteRenderer _sR;
         private Collider2D _col;
         private Coroutine _flickCoroutine;
@@ -26,19 +26,29 @@ namespace Mush
         {
             if (other.CompareTag("Tool"))
             {
-                OnMined();
+                OnMined(Player.Player.Instance.playerStat.power);
             }
         }
 
-        private void OnMined()
+        private void OnMined(float power)
         {
             if (hp > 0)
             {
                 Flick();
-                _hitCount++;
-                if (_hitCount % dropInterval == 0) DropPiece();
-                hp--;
-                if (hp == 0) OnDead();
+
+                float prevHitCount = _hitCount;
+                _hitCount += power;
+                // 이전 hitCount ~ 현재 hitCount 사이에 dropInterval 배수가 몇 개 있었는지 체크
+                int prevDrop = Mathf.FloorToInt(prevHitCount / dropInterval);
+                int newDrop = Mathf.FloorToInt(_hitCount / dropInterval);
+                int dropCount = newDrop - prevDrop;
+                for (int i = 0; i < dropCount; i++)
+                {
+                    DropPiece();
+                }
+
+                hp -= power;
+                if (hp <= 0) OnDead();
             }
         }
 
