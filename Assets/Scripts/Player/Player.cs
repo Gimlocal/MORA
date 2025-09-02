@@ -11,6 +11,7 @@ namespace Player
         public PlayerAction playerAction;
         public PlayerSorting playerSorting;
         public PlayerItem playerItem;
+        public PlayerStat playerStat;
 
         private void Awake()
         {

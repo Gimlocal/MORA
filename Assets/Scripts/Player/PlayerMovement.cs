@@ -12,8 +12,6 @@ namespace Player
         private Vector2 _movement;
         public bool canMove = true;
         public float lastMovementX = 1;
-        public float moveSpeed;
-        [SerializeField] private float moveAcceleration;
         private static readonly int IsWalking = Animator.StringToHash("isWalking");
 
         private void Awake()
@@ -43,7 +41,7 @@ namespace Player
             _movement.Normalize();
 
             Vector2 velocity = _playerRb.linearVelocity;
-            velocity = Vector2.Lerp(velocity, _movement * moveSpeed, moveAcceleration * Time.fixedDeltaTime);
+            velocity = Vector2.Lerp(velocity, _movement * Player.Instance.playerStat.moveSpeed, Player.Instance.playerStat.moveAcceleration * Time.fixedDeltaTime);
             _playerRb.linearVelocity = velocity;
         }
 

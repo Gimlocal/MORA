@@ -54,7 +54,7 @@ namespace Mush
             switch (GetMushFoodInfo(id).mushFoodEffect)
             {
                 case MushFoodEffect.IncreaseSpeed:
-                    Player.Player.Instance.playerMovement.moveSpeed += 0.1f;
+                    Player.Player.Instance.playerStat.moveSpeed += 0.1f;
                     break;
             }
         }
