@@ -5,18 +5,14 @@ using UnityEngine.Serialization;
 
 namespace Object
 {
-    public class InteractableObject : MonoBehaviour
+    public abstract class InteractableObject : MonoBehaviour
     {
-        [SerializeField] private Canvas uI;
-        [SerializeField] private Canvas text;
-        private Player.Player _player;
-        private bool _isPlayerInRange;
-        private UIBase _uiBase;
-
-        private void Start()
+        protected Player.Player Player;
+        protected bool IsPlayerInRange;
+        
+        protected virtual void Start()
         {
-            _player = Player.Player.Instance;
-            _uiBase = uI.GetComponentInChildren<UIBase>(true);
+            Player = global::Player.Player.Instance;
         }
 
         private void Update()
@@ -24,48 +20,23 @@ namespace Object
             ManageUI();
         }
 
-        private void ManageUI()
-        {
-            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
-            {
-                bool isActive = uI.gameObject.activeSelf;
-                uI.gameObject.SetActive(!isActive);
-                if (!isActive)
-                {
-                    GameManager.UIManager.RegisterUI(_uiBase);
-                    _player.playerMovement.StopPlayer();
-                }
-                else
-                {
-                    GameManager.UIManager.UnRegisterUI(_uiBase);
-                }
-                if (!isActive || GameManager.UIManager.uIList.Count == 0)
-                    _player.playerMovement.canMove = isActive;
-            }
-        }
+        protected abstract void ManageUI();
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                text.gameObject.SetActive(true);
-                _isPlayerInRange = true;
-                Player.Player.Instance.playerAction.canMine = false;
+                IsPlayerInRange = true;
+                Player.playerAction.canMine = false;
             }
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        protected virtual void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                text.gameObject.SetActive(false);
-                _isPlayerInRange = false;
-                Player.Player.Instance.playerAction.canMine = true;
-                if (uI.gameObject.activeSelf)
-                {
-                    uI.gameObject.SetActive(false);
-                    _player.playerMovement.canMove = true;
-                }
+                IsPlayerInRange = false;
+                Player.playerAction.canMine = true;
             }
         }
     }
