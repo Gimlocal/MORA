@@ -22,5 +22,16 @@ namespace Player
             capacity += value;
             OnCapacityChanged?.Invoke();
         }
+
+        public void IncreaseMaxCapacity(float value)
+        {
+            maxCapacity += value;
+            OnCapacityChanged?.Invoke();
+        }
+
+        public void IncreasePower(float value)
+        {
+            power += value;
+        }
     }
 }

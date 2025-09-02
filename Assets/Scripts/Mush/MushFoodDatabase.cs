@@ -12,7 +12,7 @@ namespace Mush
         public Sprite sprite;
         public string name;
         public List<MushIngredient> ingredients;
-        public string description;
+        [TextArea] public string description;
         public MushFoodEffect mushFoodEffect;
     }
     
@@ -27,11 +27,14 @@ namespace Mush
     {
         GreenSoup,
         RedMeat,
+        WhiteBread,
     }
 
     public enum MushFoodEffect
     {
         IncreaseSpeed,
+        IncreaseCapacity,
+        IncreasePower,
     }
     
     [CreateAssetMenu(fileName = "Mush Food Database", menuName = "Mush Food Database")]
@@ -55,6 +58,12 @@ namespace Mush
             {
                 case MushFoodEffect.IncreaseSpeed:
                     Player.Player.Instance.playerStat.moveSpeed += 0.1f;
+                    break;
+                case MushFoodEffect.IncreaseCapacity:
+                    Player.Player.Instance.playerStat.maxCapacity += 5f;
+                    break;
+                case MushFoodEffect.IncreasePower:
+                    Player.Player.Instance.playerStat.power += 0.2f;
                     break;
             }
         }
