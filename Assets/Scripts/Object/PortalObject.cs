@@ -10,6 +10,7 @@ namespace Object
         [SerializeField] private PortalID portalID;
         [SerializeField] private PortalDatabase portalDatabase;
         [SerializeField] private Canvas canvas;
+        [SerializeField] private int portalRestriction;
         private PortalData _portalData;
         private bool _isPlayerInRange;
 
@@ -20,7 +21,8 @@ namespace Object
 
         private void Update()
         {
-            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z))
+            if (_isPlayerInRange && Input.GetKeyDown(KeyCode.Z) 
+                                 && Player.Player.Instance.playerItem.suitLevel >= portalRestriction)
             {
                 SceneManager.sceneLoaded += OnSceneLoaded;
                 SceneManager.LoadScene(_portalData.targetScene);

@@ -1185,6 +1185,7 @@ MonoBehaviour:
   portalID: 5
   portalDatabase: {fileID: 11400000, guid: c3def0926fb047942a35ab617c2ab12e, type: 2}
   canvas: {fileID: 638491323}
+  portalRestriction: 2
 --- !u!58 &1956008834
 CircleCollider2D:
   m_ObjectHideFlags: 0
