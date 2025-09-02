@@ -9,8 +9,13 @@ namespace Mush
         {
             if (other.CompareTag("Player"))
             {
-                Player.Player.Instance.playerItem.AddItem(mushInfo.mushId);
-                Destroy(gameObject);
+                var player = Player.Player.Instance;
+                if (player.playerStat.capacity + mushInfo.value <= player.playerStat.maxCapacity)
+                {
+                    player.playerItem.AddItem(mushInfo.mushId);
+                    player.playerStat.Store(mushInfo.value);
+                    Destroy(gameObject);
+                }
             }
         }
     }
