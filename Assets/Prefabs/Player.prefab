@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030b1dcba337d924bb1e9eb1c5623e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   lastMovementX: 1
   moveSpeed: 3
   moveAcceleration: 10
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axeSpeed: 0.25
+  canMine: 1
 --- !u!114 &3715601310800711338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  gold: 0
+  suitLevel: 0
+  canGoHome: 0
 --- !u!50 &6304260863168566705
 Rigidbody2D:
   serializedVersion: 5
