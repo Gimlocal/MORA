@@ -1,4 +1,5 @@
 using System;
+using Sound;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,6 +24,7 @@ namespace Player
 
         private void FixedUpdate()
         {
+            SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
             if (!canMove) return;
             Move();
             FacingDirection();
@@ -48,6 +50,7 @@ namespace Player
         public void StopPlayer()
         {
             _playerAnim.SetBool(IsWalking, false);
+            _movement = Vector2.zero;
             _playerRb.linearVelocity = Vector2.zero;
         }
 

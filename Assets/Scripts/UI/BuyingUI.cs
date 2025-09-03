@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Object;
+using Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using AudioType = Sound.AudioType;
 
 namespace UI
 {
@@ -77,6 +79,7 @@ namespace UI
                     {
                         _playerItem.UseGold(productInfo.price * (_playerItem.suitLevel + 1));
                         productDatabase.GetEffect(productInfo.productID);
+                        SoundManager.Instance.Play(AudioType.UI);
                     }
                 }
                 else
@@ -85,6 +88,7 @@ namespace UI
                     {
                         _playerItem.UseGold(productInfo.price);
                         productDatabase.GetEffect(productInfo.productID);
+                        SoundManager.Instance.Play(AudioType.UI);
                     }
                 }
                 

@@ -1,4 +1,6 @@
+using Sound;
 using UnityEngine;
+using AudioType = Sound.AudioType;
 
 namespace Object
 {
@@ -11,6 +13,7 @@ namespace Object
             if (IsPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
                 Player.playerStat.ResetCapacity();
+                SoundManager.Instance.Play(AudioType.UI);
             }
         }
         

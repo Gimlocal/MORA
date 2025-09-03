@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mush;
+using Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using AudioType = UnityEngine.AudioType;
 
 namespace UI
 {
@@ -73,6 +75,7 @@ namespace UI
                 if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
                 _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
                 _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
+                SoundManager.Instance.Play(Sound.AudioType.UI);
                 RefreshInventory();
             }
         }

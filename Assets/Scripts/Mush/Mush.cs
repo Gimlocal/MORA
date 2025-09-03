@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Data;
 using UnityEngine;
 using DG.Tweening;
+using Sound;
+using AudioType = Sound.AudioType;
+using Random = UnityEngine.Random;
 
 namespace Mush
 {
@@ -36,6 +40,9 @@ namespace Mush
             {
                 Flick();
 
+                int ran = Random.Range(1, 3);
+                SoundManager.Instance.Play((AudioType)Enum.Parse(typeof(AudioType), "Pickaxe" + ran));
+                
                 float prevHitCount = _hitCount;
                 _hitCount += power;
                 // 이전 hitCount ~ 현재 hitCount 사이에 dropInterval 배수가 몇 개 있었는지 체크
