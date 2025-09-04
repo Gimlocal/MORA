@@ -9,25 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: AudioDatabase
-  m_EditorClassIdentifier: Assembly-CSharp:Sound:AudioDatabase
+  m_Script: {fileID: 11500000, guid: 4a670a1efe14dfd4990789a0ff83d369, type: 3}
+  m_Name: Audio Database
+  m_EditorClassIdentifier: 
   audioData:
   - audioClip: {fileID: 8300000, guid: 5b866eb381bd5a94da7de5a348a6ed60, type: 3}
     audioType: 0
-    volume: 0.05
+    volume: 0.06
   - audioClip: {fileID: 8300000, guid: 597729f59db2c7943863f63931c72919, type: 3}
     audioType: 1
-    volume: 0.6
+    volume: 0.45
   - audioClip: {fileID: 8300000, guid: 7993db5ccd572e9468216f4a68b269a9, type: 3}
     audioType: 2
-    volume: 0.04
+    volume: 0.08
   - audioClip: {fileID: 8300000, guid: 5f25ab952473aa342bea48121e18d309, type: 3}
     audioType: 3
-    volume: 0.04
+    volume: 0.08
   - audioClip: {fileID: 8300000, guid: d02aea3b91f338e4793b141c05d42557, type: 3}
     audioType: 4
-    volume: 0.04
+    volume: 0.08
   - audioClip: {fileID: 8300000, guid: 092de1db930e0ce4bab7f47654b5a4e9, type: 3}
     audioType: 5
-    volume: 0.3
+    volume: 0.25

@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c127d776fa3c04b949b01722e06c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioDatabase: {fileID: 11400000, guid: 4ff3609c867b56c4e876f0aa61acf5f4, type: 2}
+  audioDatabase: {fileID: 11400000, guid: b945d05a6bd168246861d515cf35cf09, type: 2}
 --- !u!4 &1959761038
 Transform:
   m_ObjectHideFlags: 0
