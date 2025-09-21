@@ -7,7 +7,6 @@ namespace Player
     public class PlayerAction : MonoBehaviour
     {
         private Pickaxe _pickaxe;
-        public float axeSpeed;
         public bool canMine = true;
 
         private void Awake()
@@ -26,7 +25,7 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 _pickaxe.gameObject.SetActive(true);
-                _pickaxe.Mining(axeSpeed);
+                _pickaxe.Mining(Player.Instance.playerStat.axeSpeed);
             }
         }
     }

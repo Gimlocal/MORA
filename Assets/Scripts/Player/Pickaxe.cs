@@ -22,7 +22,7 @@ namespace Player
 
         public void Mining(float duration)
         {
-            StopMining();
+            if (_miningCoroutine != null) return;
             _miningCoroutine = StartCoroutine(MiningCoroutine(duration));
         }
         
@@ -50,23 +50,8 @@ namespace Player
             yield return _miningTween.WaitForCompletion();
             _collider.enabled = false;
             gameObject.SetActive(false);
-        }
-
-        private void StopMining()
-        {
-            _collider.enabled = false;
             
-            if (_miningCoroutine != null)
-            {
-                StopCoroutine(_miningCoroutine);
-                _miningCoroutine = null;
-            }
-            
-            if (_miningTween != null && _miningTween.IsActive())
-            {
-                _miningTween.Kill();
-                _miningTween = null;
-            }
+            _miningCoroutine = null;
         }
     }
 }
