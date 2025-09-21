@@ -24,7 +24,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            //SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
+            SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
             if (!canMove) return;
             Move();
             FacingDirection();

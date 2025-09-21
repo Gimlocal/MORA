@@ -10,15 +10,13 @@ using AudioType = UnityEngine.AudioType;
 
 namespace UI
 {
-    public class SellingUI : UIBase
+    public class SellingUI : ItemUI
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
         public TextMeshProUGUI goldAmount;
 
         private Dictionary<MushId, int> _ownedItems;
-        private List<GameObject> _itemButtons = new();
-        private int _selectedIndex = 0;
         private List<MushId> _itemKeys = new();
         private Player.Player _player;
         
@@ -50,31 +48,14 @@ namespace UI
             DisplayItemList();
         }
 
-        private void Update()
-        {
-            if (top)
-            {
-                ManageMoveSelection();
-                SellItem();
-            }
-        }
-
-        private void ManageMoveSelection()
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
-        }
-
-        private void SellItem()
+        protected override void Act()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (_itemKeys.Count <= 0) return;
-                if (_ownedItems[_itemKeys[_selectedIndex]] == 0) return;
-                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[_selectedIndex]).value;
-                _player.playerItem.UseItem(_itemKeys[_selectedIndex]);
+                if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
+                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[SelectedIndex]).value;
+                _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
                 SoundManager.Instance.Play(Sound.AudioType.UI);
                 RefreshInventory();
             }
@@ -95,7 +76,7 @@ namespace UI
             foreach (Transform child in itemListParent)
                 Destroy(child.gameObject);
             
-            _itemButtons.Clear();
+            ItemButtons.Clear();
             _itemKeys.Clear();
 
             int index = 0;
@@ -111,32 +92,23 @@ namespace UI
                 int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    _selectedIndex = capturedIndex;
+                    SelectedIndex = capturedIndex;
                     HighlightSelectedItem();
                 });
 
                 index++;
-                _itemButtons.Add(buttonObj);
+                ItemButtons.Add(buttonObj);
             }
             
-            _selectedIndex = _itemKeys.Count > 0 ? Math.Clamp(_selectedIndex, 0, _itemKeys.Count - 1) : 0;
+            SelectedIndex = _itemKeys.Count > 0 ? Math.Clamp(SelectedIndex, 0, _itemKeys.Count - 1) : 0;
             HighlightSelectedItem();
         }
 
-        private void MoveSelection(int dir)
+        protected override void MoveSelection(int dir)
         {
-            _selectedIndex += dir;
-            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex += dir;
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
             HighlightSelectedItem();
-        }
-
-        private void HighlightSelectedItem()
-        {
-            for (int i = 0; i < _itemButtons.Count; i++)
-            {
-                var image = _itemButtons[i].GetComponent<Image>();
-                image.color = (i == _selectedIndex) ? Color.gray : Color.white;
-            }
         }
     }
 }

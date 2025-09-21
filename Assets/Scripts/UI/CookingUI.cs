@@ -9,7 +9,7 @@ using AudioType = UnityEngine.AudioType;
 
 namespace UI
 {
-    public class CookingUI : UIBase
+    public class CookingUI : ItemUI
     {
         [SerializeField] private MushFoodDatabase mushFoodDatabase;
         [SerializeField] private MushDatabase mushDatabase;
@@ -20,9 +20,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI itemIngredientsText;
         [SerializeField] private TextMeshProUGUI itemDescriptionText;
         
-        private int _selectedIndex = 0;
         private MushFoodInfo[] _mushFoodInfo;
-        private List<GameObject> _itemButtons = new();
 
         private void Start()
         {
@@ -31,29 +29,12 @@ namespace UI
             UpdateItemInfoUI();
         }
 
-        private void Update()
-        {
-            if (top)
-            {
-                ManageMoveSelection();
-                CookItem();
-            }
-        }
-
-        private void ManageMoveSelection()
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
-        }
-
-        private void CookItem()
+        protected override void Act()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Dictionary<MushId, int> ownedItems = Player.Player.Instance.playerItem.OwnedItems;
-                var foodInfo = _mushFoodInfo[_selectedIndex];
+                var foodInfo = _mushFoodInfo[SelectedIndex];
                 bool canCook = true;
                 foreach (var info in foodInfo.ingredients)
                 {
@@ -75,10 +56,10 @@ namespace UI
             }
         }
         
-        private void MoveSelection(int dir)
+        protected override void MoveSelection(int dir)
         {
-            _selectedIndex += dir;
-            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _mushFoodInfo.Length - 1);
+            SelectedIndex += dir;
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _mushFoodInfo.Length - 1);
             UpdateItemInfoUI();
             HighlightSelectedItem();
         }
@@ -97,31 +78,24 @@ namespace UI
                 int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    _selectedIndex = capturedIndex;
+                    SelectedIndex = capturedIndex;
                     HighlightSelectedItem();
                 });
                 
                 index++;
-                _itemButtons.Add(buttonObj);
+                ItemButtons.Add(buttonObj);
             }
             
             HighlightSelectedItem();
         }
         
-        private void HighlightSelectedItem()
-        {
-            for (int i = 0; i < _itemButtons.Count; i++)
-            {
-                var image = _itemButtons[i].GetComponent<Image>();
-                image.color = (i == _selectedIndex) ? Color.gray : Color.white;
-            }
-        }
+        
         
         private void UpdateItemInfoUI()
         {
             if (_mushFoodInfo.Length == 0) return;
 
-            var itemData =  _mushFoodInfo[_selectedIndex];
+            var itemData =  _mushFoodInfo[SelectedIndex];
 
             itemImage.sprite = itemData.sprite;
             itemNameText.text = itemData.name;

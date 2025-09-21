@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class InventoryUI : UIBase
+    public class InventoryUI : ItemUI
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
@@ -16,8 +16,6 @@ namespace UI
         public TextMeshProUGUI goldAmount;
 
         private Dictionary<MushId, int> _ownedItems;
-        private List<GameObject> _itemButtons = new();
-        private int _selectedIndex = 0;
         private List<MushId> _itemKeys = new();
         
         [SerializeField] private MushDatabase mushDatabase;
@@ -45,15 +43,9 @@ namespace UI
             UpdateGoldAmount();
         }
 
-        private void Update()
+        protected override void Act()
         {
-            if (top)
-            {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                    MoveSelection(1);
-                else if (Input.GetKeyDown(KeyCode.UpArrow))
-                    MoveSelection(-1);
-            }
+            
         }
 
         private void LoadItemsFromPlayer()
@@ -71,7 +63,7 @@ namespace UI
             foreach (Transform child in itemListParent)
                 Destroy(child.gameObject);
             
-            _itemButtons.Clear();
+            ItemButtons.Clear();
             _itemKeys.Clear();
 
             int index = 0;
@@ -86,34 +78,25 @@ namespace UI
                 int capturedIndex = index; // 캡처한 인덱스
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    _selectedIndex = capturedIndex;
+                    SelectedIndex = capturedIndex;
                     HighlightSelectedItem();
                     UpdateItemInfoUI();
                 });
 
                 index++;
-                _itemButtons.Add(buttonObj);
+                ItemButtons.Add(buttonObj);
             }
 
 
             HighlightSelectedItem();
         }
 
-        private void MoveSelection(int dir)
+        protected override void MoveSelection(int dir)
         {
-            _selectedIndex += dir;
-            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex += dir;
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
             HighlightSelectedItem();
             UpdateItemInfoUI();
-        }
-
-        private void HighlightSelectedItem()
-        {
-            for (int i = 0; i < _itemButtons.Count; i++)
-            {
-                var image = _itemButtons[i].GetComponent<Image>();
-                image.color = (i == _selectedIndex) ? Color.gray : Color.white; // 하이라이트 색상
-            }
         }
 
         private void UpdateItemInfoUI()
@@ -127,10 +110,10 @@ namespace UI
                 return;
             }
             
-            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
             HighlightSelectedItem();
 
-            MushId id = _itemKeys[_selectedIndex];
+            MushId id = _itemKeys[SelectedIndex];
             var itemData = mushDatabase.GetPieceById(id);
 
             itemImage.gameObject.SetActive(true);

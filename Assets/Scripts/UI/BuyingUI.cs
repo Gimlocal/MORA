@@ -9,7 +9,7 @@ using AudioType = Sound.AudioType;
 
 namespace UI
 {
-    public class BuyingUI : UIBase
+    public class BuyingUI : ItemUI
     {
         [SerializeField] private ProductDatabase productDatabase;
         [SerializeField] private GameObject itemButtonPrefab;
@@ -19,8 +19,6 @@ namespace UI
         [SerializeField] private TextMeshProUGUI itemNameText;
         [SerializeField] private TextMeshProUGUI itemDescriptionText;
         
-        private int _selectedIndex = 0;
-        private List<GameObject> _itemButtons = new();
         private ProductData[] _productData;
         private Player.PlayerItem _playerItem;
         private List<ProductID> _productIDs = new();
@@ -32,15 +30,6 @@ namespace UI
             DisplayItemList();
             UpdateItemInfoUI();
             UpdateGoldAmount();
-        }
-
-        private void Update()
-        {
-            if (top)
-            {
-                ManageMoveSelection();
-                BuyItem();
-            }
         }
 
         private void OnEnable()
@@ -59,19 +48,11 @@ namespace UI
             goldAmount.text = _playerItem.gold.ToString();
         }
 
-        private void ManageMoveSelection()
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                MoveSelection(1);
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-                MoveSelection(-1);
-        }
-
-        private void BuyItem()
+        protected override void Act()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                var productInfo = productDatabase.GetProductById(_productIDs[_selectedIndex]);
+                var productInfo = productDatabase.GetProductById(_productIDs[SelectedIndex]);
                 
                 if (productInfo.productID == ProductID.Spacesuit)
                 {
@@ -97,10 +78,10 @@ namespace UI
             }
         }
         
-        private void MoveSelection(int dir)
+        protected override void MoveSelection(int dir)
         {
-            _selectedIndex += dir;
-            _selectedIndex = Mathf.Clamp(_selectedIndex, 0, _itemButtons.Count - 1);
+            SelectedIndex += dir;
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, ItemButtons.Count - 1);
             UpdateItemInfoUI();
             HighlightSelectedItem();
         }
@@ -110,7 +91,7 @@ namespace UI
             foreach (Transform child in itemListParent)
                 Destroy(child.gameObject);
             
-            _itemButtons.Clear();
+            ItemButtons.Clear();
             _productIDs.Clear();
 
             int index = 0;
@@ -128,25 +109,16 @@ namespace UI
                 int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    _selectedIndex = capturedIndex;
+                    SelectedIndex = capturedIndex;
                     HighlightSelectedItem();
                 });
                 
                 index++;
-                _itemButtons.Add(buttonObj);
+                ItemButtons.Add(buttonObj);
             }
             
-            _selectedIndex = _productIDs.Count > 0 ? Math.Clamp(_selectedIndex, 0, _productIDs.Count - 1) : 0;
+            SelectedIndex = _productIDs.Count > 0 ? Math.Clamp(SelectedIndex, 0, _productIDs.Count - 1) : 0;
             HighlightSelectedItem();
-        }
-        
-        private void HighlightSelectedItem()
-        {
-            for (int i = 0; i < _itemButtons.Count; i++)
-            {
-                var image = _itemButtons[i].GetComponent<Image>();
-                image.color = (i == _selectedIndex) ? Color.gray : Color.white;
-            }
         }
         
         private void UpdateItemInfoUI()
@@ -161,7 +133,7 @@ namespace UI
                 return;
             }
 
-            var itemData =  productDatabase.GetProductById(_productIDs[_selectedIndex]);
+            var itemData =  productDatabase.GetProductById(_productIDs[SelectedIndex]);
             
             itemImage.gameObject.SetActive(true);
             itemImage.sprite = itemData.sprite;
