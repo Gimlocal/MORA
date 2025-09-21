@@ -7,31 +7,34 @@ namespace Object
     {
         [SerializeField] private Canvas uI;
         [SerializeField] private Canvas text;
-        private UIBase _uiBase;
+        private UIBase _uIBase;
 
         protected override void Start()
         {
             base.Start();
-            _uiBase = uI.GetComponentInChildren<UIBase>(true);
+            _uIBase = uI.GetComponentInChildren<UIBase>(true);
         }
 
         protected override void ManageUI()
         {
-            if (IsPlayerInRange && Input.GetKeyDown(KeyCode.Z))
+            if (IsPlayerInRange && Input.GetKeyDown(KeyCode.Z) && !GameManager.UIManager.isOptionOpened)
             {
                 bool isActive = uI.gameObject.activeSelf;
                 uI.gameObject.SetActive(!isActive);
                 if (!isActive)
                 {
-                    GameManager.UIManager.RegisterUI(_uiBase);
+                    GameManager.UIManager.RegisterUI(_uIBase);
+                    Player.playerMovement.canMove = false;
                     Player.playerMovement.StopPlayer();
                 }
                 else
                 {
-                    GameManager.UIManager.UnRegisterUI(_uiBase);
+                    GameManager.UIManager.UnRegisterUI(_uIBase);
+                    if (GameManager.UIManager.uIList.Count == 0)
+                    {
+                        Player.playerMovement.canMove = true;
+                    }
                 }
-                if (!isActive || GameManager.UIManager.uIList.Count == 0)
-                    Player.playerMovement.canMove = isActive;
             }
         }
 

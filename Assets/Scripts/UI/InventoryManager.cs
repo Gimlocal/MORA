@@ -21,22 +21,24 @@ namespace UI
 
         private void ManageInventory()
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) && !GameManager.UIManager.isOptionOpened)
             {
-                inventoryPanel.SetActive(!_inventoryOpened);
-                _inventoryOpened = !_inventoryOpened;
-                if (_inventoryOpened)
+                bool isActive = inventoryPanel.activeSelf;
+                inventoryPanel.SetActive(!isActive);
+                if (!isActive)
                 {
                     GameManager.UIManager.RegisterUI(_uIBase);
+                    Player.Player.Instance.playerMovement.canMove = false;
                     Player.Player.Instance.playerMovement.StopPlayer();
                 }
                 else
                 {
                     GameManager.UIManager.UnRegisterUI(_uIBase);
+                    if (GameManager.UIManager.uIList.Count == 0)
+                    {
+                        Player.Player.Instance.playerMovement.canMove = true;
+                    }
                 }
-                
-                if (_inventoryOpened || GameManager.UIManager.uIList.Count == 0)
-                    Player.Player.Instance.playerMovement.canMove = !_inventoryOpened;
             }
         }
     }

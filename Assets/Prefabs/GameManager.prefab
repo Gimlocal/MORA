@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIList: []
+  isOptionOpened: 0
 --- !u!114 &6308586361891498107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,8 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   top: 0
-  layer: 0
-  topLayer: 1
+  canvasOrPanel: {fileID: 0}
 --- !u!1 &6436209895278100916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,8 +1503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   top: 0
-  layer: 0
-  topLayer: 1
+  canvasOrPanel: {fileID: 7470013166825743391}
   itemButtonPrefab: {fileID: 5832680988436288368, guid: 6777fc545ee04b64a90037e2f12438b7, type: 3}
   itemListParent: {fileID: 4501212557525687413}
   itemImage: {fileID: 8390327208582849500}

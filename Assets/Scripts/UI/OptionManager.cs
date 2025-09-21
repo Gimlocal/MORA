@@ -22,20 +22,17 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                optionPanel.SetActive(!_optionOpened);
-                _optionOpened = !_optionOpened;
-                if (_optionOpened)
+                bool opened = optionPanel.activeSelf;
+                if (!opened && GameManager.UIManager.uIList.Count == 0)
                 {
-                    GameManager.UIManager.RegisterUI(_uIBase);
-                    Player.Player.Instance.playerMovement.StopPlayer();
+                    GameManager.UIManager.isOptionOpened = true;
+                    optionPanel.SetActive(true);
                 }
-                else
+                else if (opened)
                 {
-                    GameManager.UIManager.UnRegisterUI(_uIBase);
+                    GameManager.UIManager.isOptionOpened = false;
+                    optionPanel.SetActive(false);
                 }
-                
-                if (_optionOpened || GameManager.UIManager.uIList.Count == 0)
-                    Player.Player.Instance.playerMovement.canMove = !_optionOpened;
             }
         }
     }
