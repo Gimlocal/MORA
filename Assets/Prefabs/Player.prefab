@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfceff92281604445b4e8f107f520825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axeSpeed: 0.25
   canMine: 1
 --- !u!114 &3715601310800711338
 MonoBehaviour:
@@ -318,8 +317,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   moveAcceleration: 10
-  capacity: 0
-  maxCapacity: 10
+  axeSpeed: 0.25
+  corruption: 0
+  maxCorruption: 0
   power: 1
 --- !u!50 &6304260863168566705
 Rigidbody2D:

@@ -20,7 +20,7 @@ namespace UI
 
         private void SetCapacity()
         {
-            slider.value = playerStat.capacity /  playerStat.maxCapacity;
+            slider.value = playerStat.corruption /  playerStat.maxCorruption;
         }
     }
 }

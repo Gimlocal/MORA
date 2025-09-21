@@ -12,7 +12,7 @@ namespace Object
         {
             if (IsPlayerInRange && Input.GetKeyDown(KeyCode.Z))
             {
-                Player.playerStat.ResetCapacity();
+                Player.playerStat.Cleanse();
                 SoundManager.Instance.Play(AudioType.UI);
             }
         }

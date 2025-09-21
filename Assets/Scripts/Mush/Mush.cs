@@ -16,6 +16,7 @@ namespace Mush
         [SerializeField] private float hp;
         [SerializeField] private float dropInterval;
         private float _hitCount;
+        private float _maxHp;
         private SpriteRenderer _sR;
         private Collider2D _col;
         private Coroutine _flickCoroutine;
@@ -24,6 +25,7 @@ namespace Mush
         {
             _sR = GetComponent<SpriteRenderer>();
             _col = GetComponent<Collider2D>();
+            _maxHp = hp;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -45,6 +47,7 @@ namespace Mush
                 
                 float prevHitCount = _hitCount;
                 _hitCount += power;
+                _hitCount = Math.Clamp(_hitCount, 0, _maxHp);
                 // 이전 hitCount ~ 현재 hitCount 사이에 dropInterval 배수가 몇 개 있었는지 체크
                 int prevDrop = Mathf.FloorToInt(prevHitCount / dropInterval);
                 int newDrop = Mathf.FloorToInt(_hitCount / dropInterval);

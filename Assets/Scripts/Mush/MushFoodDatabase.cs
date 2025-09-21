@@ -60,7 +60,7 @@ namespace Mush
                     Player.Player.Instance.playerStat.moveSpeed += 0.1f;
                     break;
                 case MushFoodEffect.IncreaseCapacity:
-                    Player.Player.Instance.playerStat.maxCapacity += 5f;
+                    Player.Player.Instance.playerStat.maxCorruption += 5f;
                     break;
                 case MushFoodEffect.IncreasePower:
                     Player.Player.Instance.playerStat.power += 0.2f;
