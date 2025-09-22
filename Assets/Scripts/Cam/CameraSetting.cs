@@ -2,7 +2,7 @@ using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Object
+namespace Cam
 {
     public class CameraSetting : MonoBehaviour
     {

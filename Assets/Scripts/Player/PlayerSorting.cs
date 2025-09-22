@@ -7,15 +7,19 @@ namespace Player
 {
     public class PlayerSorting : MonoBehaviour
     {
-        private SpriteRenderer _playerSR;
+        private SpriteRenderer _playerSr;
         private CapsuleCollider2D _capsuleCol;
         private int _defaultOrder;
         private RaycastHit2D _hit;
         private void Awake()
         {
-            _playerSR = GetComponent<SpriteRenderer>();
             _capsuleCol = GetComponent<CapsuleCollider2D>();
-            _defaultOrder = _playerSR.sortingOrder;
+        }
+
+        private void Start()
+        {
+            _playerSr = Player.Instance.playerSprite.GetComponent<SpriteRenderer>();
+            _defaultOrder = _playerSr.sortingOrder;
         }
 
         private void Update()

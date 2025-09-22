@@ -10,12 +10,12 @@ namespace UI
 
         private void OnEnable()
         {
-            playerStat.OnCapacityChanged += SetCapacity;
+            playerStat.OnCorruptionChanged += SetCapacity;
         }
 
         private void OnDisable()
         {
-            playerStat.OnCapacityChanged -= SetCapacity;
+            playerStat.OnCorruptionChanged -= SetCapacity;
         }
 
         private void SetCapacity()

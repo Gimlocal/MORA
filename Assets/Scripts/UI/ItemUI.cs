@@ -48,25 +48,20 @@ namespace UI
             var selected = ItemButtons[SelectedIndex].GetComponent<RectTransform>();
             var viewport = scrollRect.viewport;
             var content = scrollRect.content;
-
-// 아이템 높이와 전체 content 높이
+            
             float itemHeight = selected.rect.height;
             float contentHeight = content.rect.height;
             float viewportHeight = viewport.rect.height;
-
-// 스크롤 이동 비율 (아이템 하나 크기만큼)
+            
             float step = itemHeight / (contentHeight - viewportHeight);
-
-// 아이템 위치를 viewport 기준 좌표로 변환
+            
             Vector3 itemWorldPos = selected.position;
             Vector3 itemLocalPos = viewport.InverseTransformPoint(itemWorldPos);
-
-// 위쪽 벗어남 → 스크롤 한 칸 위로
+            
             if (itemLocalPos.y >= viewport.rect.height * 0.5f)
             {
                 scrollRect.verticalScrollbar.value = Mathf.Clamp01(scrollRect.verticalScrollbar.value + step);
             }
-// 아래쪽 벗어남 → 스크롤 한 칸 아래로
             else if (itemLocalPos.y <= -viewport.rect.height * 0.5f)
             {
                 scrollRect.verticalScrollbar.value = Mathf.Clamp01(scrollRect.verticalScrollbar.value - step);

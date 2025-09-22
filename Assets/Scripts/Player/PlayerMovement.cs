@@ -18,13 +18,17 @@ namespace Player
         private void Awake()
         {
             _playerRb = GetComponent<Rigidbody2D>();
-            _playerSr = GetComponent<SpriteRenderer>();
-            _playerAnim = GetComponent<Animator>();
+        }
+
+        private void Start()
+        {
+            _playerSr = Player.Instance.playerSprite.GetComponent<SpriteRenderer>();
+            _playerAnim = Player.Instance.playerSprite.GetComponent<Animator>();
         }
 
         private void FixedUpdate()
         {
-            SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
+            //SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
             if (!canMove) return;
             Move();
             FacingDirection();

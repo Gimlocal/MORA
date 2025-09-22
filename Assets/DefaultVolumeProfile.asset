@@ -248,6 +248,28 @@ MonoBehaviour:
   highlightsEnd:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &-5684466097813280871
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132e5fd51b7aa5d49ac66f91aa2280c7, type: 3}
+  m_Name: PostDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  speed:
+    m_OverrideState: 1
+    m_Value: 1
+  scale:
+    m_OverrideState: 1
+    m_Value: 20
 --- !u!114 &-4210620904635426390
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -506,6 +528,7 @@ MonoBehaviour:
   - {fileID: -8186968272690591729}
   - {fileID: -3978695733392391637}
   - {fileID: -1083910812058648046}
+  - {fileID: -5684466097813280871}
 --- !u!114 &156332030701414761
 MonoBehaviour:
   m_ObjectHideFlags: 3

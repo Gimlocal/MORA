@@ -1,18 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Player
+namespace Cam
 {
-    public class Player : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
-        public static Player Instance { get; private set; }
-
-        public PlayerMovement playerMovement;
-        public PlayerAction playerAction;
-        public PlayerSorting playerSorting;
-        public PlayerItem playerItem;
-        public PlayerStat playerStat;
-        public GameObject playerSprite;
+        public static CameraManager Instance { get; private set; }
 
         private void Awake()
         {
