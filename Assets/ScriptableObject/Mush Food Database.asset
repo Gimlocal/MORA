@@ -23,8 +23,8 @@ MonoBehaviour:
       amount: 1
     description: "\uCD08\uB85D \uBC84\uC12F\uACFC \uD30C\uB780 \uBC84\uC12F\uC744
       \uC774\uC6A9\uD574 \uB9CC\uB4E0 \uC694\uB9AC.\n\uBA74\uC5ED\uB825\uC774 \uC624\uB974\uACE0
-      \uBAB8\uC774 \uAC74\uAC15\uD574\uC9C4\uB2E4.\n\uC624\uC5FC\uC5D0 \uC870\uAE08
-      \uB354 \uBC84\uD2F8 \uC218 \uC788\uB2E4."
+      \uBAB8\uC774 \uAC74\uAC15\uD574\uC9C4\uB2E4.\n<b><color=#0000FF>\uC624\uC5FC\uC5D0
+      \uC870\uAE08 \uB354 \uBC84\uD2F8 \uC218 \uC788\uB2E4.</color></b>"
     mushFoodEffect: 1
   - mushFoodId: 1
     sprite: {fileID: 21300000, guid: eab87f10d2afa594c92ed3d29451b618, type: 3}
@@ -36,8 +36,8 @@ MonoBehaviour:
       amount: 1
     description: "\uBE68\uAC04 \uBC84\uC12F\uACFC \uC5F0 \uD558\uB298 \uBC84\uC12F\uC744
       \uC774\uC6A9\uD574 \uB9CC\uB4E0 \uC694\uB9AC.\n\uCCB4\uB825\uC774 \uC624\uB974\uACE0
-      \uC9C0\uAD6C\uB825\uC774 \uB298\uC5B4\uB09C\uB2E4.\n\uC774\uB3D9\uC18D\uB3C4\uB97C
-      \uC870\uAE08 \uC0C1\uC2B9\uC2DC\uCF1C\uC900\uB2E4."
+      \uC9C0\uAD6C\uB825\uC774 \uB298\uC5B4\uB09C\uB2E4.\n<b><color=#0000FF>\uC774\uB3D9\uC18D\uB3C4\uB97C
+      \uC870\uAE08 \uC0C1\uC2B9\uC2DC\uCF1C\uC900\uB2E4.</color></b>"
     mushFoodEffect: 0
   - mushFoodId: 2
     sprite: {fileID: 21300000, guid: 45854289d4f5e5a418b189bc9b896389, type: 3}
@@ -49,6 +49,6 @@ MonoBehaviour:
       amount: 1
     description: "\uD770 \uBC84\uC12F\uACFC \uD669\uAE08 \uBC84\uC12F\uC744 \uC774\uC6A9\uD574
       \uB9CC\uB4E0 \uC694\uB9AC.\n\uD3EC\uB9CC\uAC10\uC774 \uC0DD\uAE30\uACE0 \uD798\uC774
-      \uC99D\uAC00\uD55C\uB2E4.\n\uACE1\uAD2D\uC774\uC9C8\uC744 \uC870\uAE08 \uB354
-      \uAC15\uD558\uAC8C \uD560 \uC218 \uC788\uB2E4."
+      \uC99D\uAC00\uD55C\uB2E4.\n<b><color=#0000FF>\uACE1\uAD2D\uC774\uC9C8\uC744
+      \uC870\uAE08 \uB354 \uAC15\uD558\uAC8C \uD560 \uC218 \uC788\uB2E4.</color></b>"
     mushFoodEffect: 2
