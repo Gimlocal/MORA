@@ -112,6 +112,9 @@ namespace Player
             else if (ratio < secondPenaltyRatio && _deathCoroutine != null)
             {
                 StopCoroutine(_deathCoroutine);
+                _vignette.intensity.value = 0;
+                _chromaticAberration.intensity.value = 0;
+                _postDistortion.intensity.value = 0;
                 _deathCoroutine = null;
             }
         }
@@ -164,6 +167,7 @@ namespace Player
             _colorAdjustments.saturation.value = -100;
             PlayerMovement movement = Player.Instance.playerMovement;
             movement.canMove = false;
+            movement.StopPlayer();
             int dir = movement.lastMovementX > 0 ? -1 : 1;
             float angle = 90 * dir;
             Player.Instance.playerSprite.transform.DORotate(new Vector3(0, 0, angle), 0.3f).SetEase(Ease.InSine)
