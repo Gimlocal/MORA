@@ -9,11 +9,12 @@ namespace UI
     public class UIManager : MonoBehaviour
     {
         public List<UIBase> uIList = new();
-        public bool isOptionOpened = false;
+        [SerializeField] private GameObject optionPanel;
+        public bool isOptionOpened;
 
         private void Update()
         {
-            CloseUI();
+            ManageUI();
         }
 
         public void RegisterUI(UIBase uI)
@@ -47,11 +48,11 @@ namespace UI
             }
         }
 
-        private void CloseUI()
+        private void ManageUI()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !isOptionOpened)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (uIList.Count > 0)
+                if (uIList.Count > 0 && !isOptionOpened)
                 {
                     UIBase uI = uIList[^1];
                     UnRegisterUI(uI);
@@ -59,6 +60,23 @@ namespace UI
                     if (uIList.Count == 0)
                     {
                         Player.Player.Instance.playerMovement.canMove = true;
+                    }
+                }
+                else if (uIList.Count == 0)
+                {
+                    bool opened = optionPanel.activeSelf;
+                    if (!opened)
+                    {
+                        isOptionOpened = true;
+                        Player.Player.Instance.playerMovement.canMove = false;
+                        Player.Player.Instance.playerMovement.StopPlayer();
+                        optionPanel.SetActive(true);
+                    }
+                    else
+                    {
+                        isOptionOpened = false;
+                        Player.Player.Instance.playerMovement.canMove = true;
+                        optionPanel.SetActive(false);
                     }
                 }
             }

@@ -312,7 +312,6 @@ GameObject:
   - component: {fileID: 2069327264877321012}
   - component: {fileID: 2005625505074478405}
   - component: {fileID: 5515821104669438517}
-  - component: {fileID: 6308586361891498107}
   - component: {fileID: 3351541757165025415}
   m_Layer: 5
   m_Name: GameManager
@@ -431,20 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIList: []
-  isOptionOpened: 0
---- !u!114 &6308586361891498107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3601572669151547030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9affbd1f4bfc994c89c1561a7a6ccfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   optionPanel: {fileID: 6191533356676942258}
+  isOptionOpened: 0
 --- !u!114 &3351541757165025415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,8 +536,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
-  m_fontSizeBase: 90
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1129,7 +1116,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1570.9504, y: -873.9061}
+  m_SizeDelta: {x: -1583.3899, y: -960.9838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6538817699828921713
 CanvasRenderer:
