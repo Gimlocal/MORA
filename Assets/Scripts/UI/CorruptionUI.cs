@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class CapacityUI : MonoBehaviour
+    public class CorruptionUI : MonoBehaviour
     {
         [SerializeField] private Slider slider;
         [SerializeField] private Player.PlayerStat playerStat;

@@ -564,7 +564,7 @@ MonoBehaviour:
   itemButtonPrefab: {fileID: 4485764140468248591, guid: b82c96c3a3be2e3418826e3ab0fdaf77, type: 3}
   itemListParent: {fileID: 647717377}
   goldAmount: {fileID: 854742506}
-  mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
 --- !u!1 &178378475
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,7 +7728,7 @@ MonoBehaviour:
   canvasOrPanel: {fileID: 2057564380}
   scrollRect: {fileID: 178378477}
   mushFoodDatabase: {fileID: 11400000, guid: 000b4170b5ee225459c9961b64dcb0fe, type: 2}
-  mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
   itemButtonPrefab: {fileID: 8238329443096128256, guid: 13de29f3a5e62b74e8f32ed8121bb10a, type: 3}
   itemListParent: {fileID: 841027098}
   itemImage: {fileID: 1523658011}

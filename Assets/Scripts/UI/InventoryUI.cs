@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Mush;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -15,10 +16,10 @@ namespace UI
         public TextMeshProUGUI itemDescriptionText;
         public TextMeshProUGUI goldAmount;
 
-        private Dictionary<MushId, int> _ownedItems;
-        private List<MushId> _itemKeys = new();
+        private Dictionary<ItemId, int> _ownedItems;
+        private List<ItemId> _itemKeys = new();
         
-        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private ItemDatabase itemDatabase;
 
         private void OnEnable()
         {
@@ -73,7 +74,10 @@ namespace UI
                 
                 _itemKeys.Add(id); // 키 저장
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushDatabase.GetPieceById(id).itemName}  x{_ownedItems[id]}";
+                var itemData = itemDatabase.GetItemById(id);
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = itemData.isMush ? 
+                    $"{itemDatabase.GetItemById(id).itemName}  x{_ownedItems[id]}" :
+                    $"{itemDatabase.GetItemById(id).itemName}";
 
                 int capturedIndex = index; // 캡처한 인덱스
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
@@ -113,8 +117,8 @@ namespace UI
             SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
             HighlightSelectedItem();
 
-            MushId id = _itemKeys[SelectedIndex];
-            var itemData = mushDatabase.GetPieceById(id);
+            ItemId id = _itemKeys[SelectedIndex];
+            var itemData = itemDatabase.GetItemById(id);
 
             itemImage.gameObject.SetActive(true);
             itemImage.sprite = itemData.sprite;

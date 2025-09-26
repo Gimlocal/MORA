@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Mush;
 using UnityEngine;
@@ -6,15 +7,21 @@ namespace Player
 {
     public class PlayerItem : MonoBehaviour
     {
-        [SerializeField] private MushDatabase mushDatabase;
-        public Dictionary<MushId, int> OwnedItems = new();
+        [SerializeField] private ItemDatabase mushDatabase;
+        public Dictionary<ItemId, int> OwnedItems = new();
         public int gold = 0;
         public int suitLevel = 0;
         public bool canGoHome;
         public event System.Action OnItemChanged;
         public event System.Action OnGoldChanged;
 
-        public void AddItem(MushId id)
+        private void Start()
+        {
+            AddItem(ItemId.PlanetInfo);
+            AddItem(ItemId.WorkInfo);
+        }
+
+        public void AddItem(ItemId id)
         {
             if (!OwnedItems.TryAdd(id, 1))
             {
@@ -23,28 +30,28 @@ namespace Player
             OnItemChanged?.Invoke();
         }
 
-        private List<MushInfo> GetAllItemsInfo()
+        private List<ItemInfo> GetAllItemsInfo()
         {
-            List<MushInfo> mushInfos = new();
+            List<ItemInfo> mushInfos = new();
             foreach (var id in OwnedItems.Keys)
             {
-                var info = mushDatabase.GetPieceById(id);
+                var info = mushDatabase.GetItemById(id);
                 mushInfos.Add(info);
             }
             return  mushInfos;
         }
 
-        public bool HasItem(MushId id)
+        public bool HasItem(ItemId id)
         {
             return OwnedItems.ContainsKey(id);
         }
 
-        public bool HasItem(MushId id, int amount)
+        public bool HasItem(ItemId id, int amount)
         {
             return OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount;
         }
 
-        public void UseItem(MushId id, int amount = 1)
+        public void UseItem(ItemId id, int amount = 1)
         {
             if (OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount)
             {

@@ -4,7 +4,7 @@ namespace Mush
 {
     public class MushPiece : MonoBehaviour
     {
-        public MushInfo mushInfo;
+        public ItemInfo mushInfo;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -12,7 +12,7 @@ namespace Mush
                 var player = Player.Player.Instance;
                 if (player.playerStat.corruption + mushInfo.value <= player.playerStat.maxCorruption)
                 {
-                    player.playerItem.AddItem(mushInfo.mushId);
+                    player.playerItem.AddItem(mushInfo.itemId);
                     player.playerStat.Corrupt(mushInfo.value);
                     Destroy(gameObject);
                 }

@@ -11,8 +11,8 @@ namespace Mush
 {
     public class Mush : MonoBehaviour
     {
-        [SerializeField] private MushDatabase mushDatabase;
-        [SerializeField] private MushId mushId;
+        [SerializeField] private ItemDatabase mushDatabase;
+        [SerializeField] private ItemId mushId;
         [SerializeField] private float hp;
         [SerializeField] private float dropInterval;
         private float _hitCount;
@@ -98,7 +98,7 @@ namespace Mush
             cd.isTrigger = true;
             cd.enabled = false;
             MushPiece mushPiece = dropPiece.AddComponent<MushPiece>();
-            mushPiece.mushInfo = mushDatabase.GetPieceById(mushId);
+            mushPiece.mushInfo = mushDatabase.GetItemById(mushId);
             
             dropPiece.transform.DOJump(dropPos, 0.5f, 1, 0.5f).
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});

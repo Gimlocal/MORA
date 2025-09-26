@@ -5,6 +5,7 @@ using Mush;
 using Sound;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using AudioType = UnityEngine.AudioType;
 
@@ -16,11 +17,11 @@ namespace UI
         public Transform itemListParent;
         public TextMeshProUGUI goldAmount;
 
-        private Dictionary<MushId, int> _ownedItems;
-        private List<MushId> _itemKeys = new();
+        private Dictionary<ItemId, int> _ownedItems;
+        private List<ItemId> _itemKeys = new();
         private Player.Player _player;
         
-        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
@@ -54,7 +55,7 @@ namespace UI
             {
                 if (_itemKeys.Count <= 0) return;
                 if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
-                _player.playerItem.gold += mushDatabase.GetPieceById(_itemKeys[SelectedIndex]).value;
+                _player.playerItem.gold += itemDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
                 _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
                 SoundManager.Instance.Play(Sound.AudioType.UI);
                 RefreshInventory();
@@ -85,9 +86,11 @@ namespace UI
                 if (_ownedItems[id] == 0) continue;
                 _itemKeys.Add(id);
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                MushInfo mushInfo = mushDatabase.GetPieceById(id);
+                ItemInfo mushInfo = itemDatabase.GetItemById(id);
                 buttonObj.GetComponentsInChildren<Image>().FirstOrDefault(img => img.gameObject != buttonObj)!.sprite = mushInfo.sprite;
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushInfo.itemName}  x{_ownedItems[id]}\n판매가격 : {mushInfo.value}";
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = mushInfo.isMush ? 
+                    $"{mushInfo.itemName}  x{_ownedItems[id]}\n판매가격 : {mushInfo.value}" :
+                    $"{mushInfo.itemName}  \n판매가격 : {mushInfo.value}";
 
                 int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>

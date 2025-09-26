@@ -4,6 +4,7 @@ using Mush;
 using Sound;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using AudioType = UnityEngine.AudioType;
 
@@ -12,7 +13,7 @@ namespace UI
     public class CookingUI : ItemUI
     {
         [SerializeField] private MushFoodDatabase mushFoodDatabase;
-        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private GameObject itemButtonPrefab;
         [SerializeField] private Transform itemListParent;
         [SerializeField] private Image itemImage;
@@ -33,7 +34,7 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Dictionary<MushId, int> ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+                Dictionary<ItemId, int> ownedItems = Player.Player.Instance.playerItem.OwnedItems;
                 var foodInfo = _mushFoodInfo[SelectedIndex];
                 bool canCook = true;
                 foreach (var info in foodInfo.ingredients)
@@ -102,7 +103,7 @@ namespace UI
             itemIngredientsText.text = "";
             foreach (var text in itemData.ingredients)
             {
-                itemIngredientsText.text += mushDatabase.GetPieceById(text.mushId).itemName;
+                itemIngredientsText.text += itemDatabase.GetItemById(text.mushId).itemName;
                 itemIngredientsText.text += $" x{text.amount}\n";
             }
             itemDescriptionText.text = itemData.description;

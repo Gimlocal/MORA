@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 7694261901065132538}
   - component: {fileID: 4078583250791620750}
   - component: {fileID: 3227050527995790833}
-  - component: {fileID: 3101127449755056003}
+  - component: {fileID: 1959776849460547008}
   m_Layer: 5
   m_Name: Corruption
   m_TagString: Untagged
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3101127449755056003
+--- !u!114 &1959776849460547008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

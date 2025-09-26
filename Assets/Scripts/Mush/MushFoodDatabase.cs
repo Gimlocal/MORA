@@ -19,7 +19,7 @@ namespace Mush
     [System.Serializable]
     public class MushIngredient
     {
-        public MushId mushId;
+        public ItemId mushId;
         public int amount;
     }
 

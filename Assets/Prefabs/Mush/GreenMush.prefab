@@ -139,6 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
-  mushId: 0
+  mushId: 2
   hp: 3
   dropInterval: 1
