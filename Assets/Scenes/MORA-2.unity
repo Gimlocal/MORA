@@ -338,7 +338,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.035
+        m_Name: Size
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -357,8 +360,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0.43529412, g: 0.12303437, b: 0.054901954, a: 0.39215687}
-          key1: {r: 0.43529412, g: 0.1254902, b: 0.055025343, a: 0.39215687}
+          key0: {r: 0.43529412, g: 0.12303437, b: 0.054901954, a: 1}
+          key1: {r: 0.43529412, g: 0.1254902, b: 0.055025343, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
