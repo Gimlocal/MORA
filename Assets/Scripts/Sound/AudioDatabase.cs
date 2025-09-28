@@ -5,37 +5,41 @@ using UnityEngine.Serialization;
 
 namespace Sound
 {
-    public enum AudioType
+    public enum AudioCategory
     {
-        Bgm,
-        Walk,
-        Pickaxe1,
-        Pickaxe2,
-        Pickaxe3,
-        UI,
+        Bgm, 
+        Player,
+        Tool,
+        ToolHit,
+        UI, 
+        Voice
+    }
+
+    [Serializable]
+    public class AudioCategoryData
+    {
+        public AudioCategory audioCategory;
+        public List<AudioData> audioData;
     }
     
     [Serializable]
     public class AudioData
     {
-        public AudioClip audioClip;
-        public AudioType audioType;
-        public float volume;
+        public string key;
+        public List<AudioClip> audioClips;
+        public float volume = 1f;
     }
     
     [CreateAssetMenu (fileName = "AudioDatabase", menuName = "AudioDatabase")]
     public class AudioDatabase : ScriptableObject
     {
-        public List<AudioData> audioData;
+        public List<AudioCategoryData> audioCategoryData;
 
-        public AudioData GetAudioClips(AudioType audioType)
+        public AudioData GetAudioData(AudioCategory audioCategory, string key)
         {
-            foreach (var audio in audioData)
-            {
-                if (audio.audioType == audioType)
-                    return audio;
-            }
-            return null;
+            var categoryData =  audioCategoryData.Find(x => x.audioCategory == audioCategory);
+            var audioData = categoryData.audioData.Find(x => x.key == key);
+            return audioData;
         }
     }
 }

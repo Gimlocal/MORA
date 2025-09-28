@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -8,7 +9,7 @@ namespace Player
         public static Player Instance { get; private set; }
 
         public PlayerMovement playerMovement;
-        public PlayerAction playerAction;
+        public PlayerMining playerMining;
         public PlayerSorting playerSorting;
         public PlayerItem playerItem;
         public PlayerStat playerStat;

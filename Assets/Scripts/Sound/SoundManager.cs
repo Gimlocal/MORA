@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sound
@@ -8,9 +9,7 @@ namespace Sound
         public static SoundManager Instance; 
     
         [SerializeField] private AudioDatabase audioDatabase;
-        private AudioSource _audioSourceBgm;
-        private AudioSource _audioSourceSfx1;
-        private AudioSource _audioSourceSfx2;
+        private Dictionary<AudioCategory, AudioSource> _audioSources;
 
         private void Awake()
         {
@@ -19,16 +18,24 @@ namespace Sound
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
                 
-                _audioSourceBgm = gameObject.AddComponent<AudioSource>();
-                _audioSourceBgm.loop = true;
+                _audioSources = new Dictionary<AudioCategory, AudioSource>
+                {
+                    { AudioCategory.Bgm, gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Player, gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Tool, gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.ToolHit, gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.UI, gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Voice, gameObject.AddComponent<AudioSource>() }
+                };
                 
-                _audioSourceSfx1 = gameObject.AddComponent<AudioSource>();
-                _audioSourceSfx1.loop = true;
-                AudioData data = audioDatabase.GetAudioClips(AudioType.Walk);
-                _audioSourceSfx1.clip = data.audioClip;
-                _audioSourceSfx1.volume = data.volume;
-                
-                _audioSourceSfx2 = gameObject.AddComponent<AudioSource>();
+                foreach (var src in _audioSources.Values)
+                {
+                    src.loop = true;
+                }
+
+                var audioData = audioDatabase.GetAudioData(AudioCategory.Player, "Walk");
+                _audioSources[AudioCategory.Player].clip = audioData.audioClips[0];
+                _audioSources[AudioCategory.Player].volume = audioData.volume;
             }
             else
             {
@@ -38,22 +45,25 @@ namespace Sound
 
         private void Start()
         {
-            Play(AudioType.Bgm);
+            Play(AudioCategory.Bgm, "Bgm", true);
         }
 
-        public void Play(AudioType type)
+        public void Play(AudioCategory category, string key, bool loop = false)
         {
-            AudioData data = audioDatabase.GetAudioClips(type);
-
-            if (type == AudioType.Bgm)
+            AudioData data = audioDatabase.GetAudioData(category, key);
+            if (data == null || data.audioClips.Count == 0) return;
+            
+            var source = _audioSources[category];
+            int ran = UnityEngine.Random.Range(0, data.audioClips.Count);
+            if (loop)
             {
-                _audioSourceBgm.clip = data.audioClip;
-                _audioSourceBgm.volume = data.volume;
-                _audioSourceBgm.Play();
+                source.clip = data.audioClips[ran];
+                source.volume = data.volume;
+                source.Play();
             }
             else
             {
-                _audioSourceSfx2.PlayOneShot(data.audioClip, data.volume);
+                source.PlayOneShot(data.audioClips[ran], data.volume);
             }
         }
 
@@ -61,19 +71,19 @@ namespace Sound
         {
             if (isWalking)
             {
-                if (!_audioSourceSfx1.isPlaying)
-                    _audioSourceSfx1.Play();
+                if (!_audioSources[AudioCategory.Player].isPlaying)
+                    _audioSources[AudioCategory.Player].Play();
             }
             else
             {
-                if (_audioSourceSfx1.isPlaying)
-                    _audioSourceSfx1.Stop();
+                if (_audioSources[AudioCategory.Player].isPlaying)
+                    _audioSources[AudioCategory.Player].Stop();
             }
         }
 
-        public void StopBgm()
+        public void Stop(AudioCategory category)
         {
-            _audioSourceBgm.Stop();
+            _audioSources[category].Stop();
         }
     }
 }

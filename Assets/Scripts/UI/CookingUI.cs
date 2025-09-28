@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Mush;
 using Sound;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using AudioType = UnityEngine.AudioType;
 
 namespace UI
 {
@@ -52,7 +49,7 @@ namespace UI
                         Player.Player.Instance.playerItem.UseItem(info.mushId, info.amount);
                     }
                     mushFoodDatabase.EatMushFood(foodInfo.mushFoodId);
-                    SoundManager.Instance.Play(Sound.AudioType.UI);
+                    SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 }
             }
         }

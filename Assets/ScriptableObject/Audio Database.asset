@@ -12,22 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a670a1efe14dfd4990789a0ff83d369, type: 3}
   m_Name: Audio Database
   m_EditorClassIdentifier: 
-  audioData:
-  - audioClip: {fileID: 8300000, guid: 5b866eb381bd5a94da7de5a348a6ed60, type: 3}
-    audioType: 0
-    volume: 0.06
-  - audioClip: {fileID: 8300000, guid: 597729f59db2c7943863f63931c72919, type: 3}
-    audioType: 1
-    volume: 0.45
-  - audioClip: {fileID: 8300000, guid: 7993db5ccd572e9468216f4a68b269a9, type: 3}
-    audioType: 2
-    volume: 0.08
-  - audioClip: {fileID: 8300000, guid: 5f25ab952473aa342bea48121e18d309, type: 3}
-    audioType: 3
-    volume: 0.08
-  - audioClip: {fileID: 8300000, guid: d02aea3b91f338e4793b141c05d42557, type: 3}
-    audioType: 4
-    volume: 0.08
-  - audioClip: {fileID: 8300000, guid: 092de1db930e0ce4bab7f47654b5a4e9, type: 3}
-    audioType: 5
-    volume: 0.25
+  audioCategoryData:
+  - audioCategory: 0
+    audioData:
+    - key: Bgm
+      audioClips:
+      - {fileID: 8300000, guid: 5b866eb381bd5a94da7de5a348a6ed60, type: 3}
+      volume: 0.06
+  - audioCategory: 1
+    audioData:
+    - key: Walk
+      audioClips:
+      - {fileID: 8300000, guid: 597729f59db2c7943863f63931c72919, type: 3}
+      volume: 0.45
+  - audioCategory: 2
+    audioData:
+    - key: Pickaxe
+      audioClips: []
+      volume: 0
+    - key: Drill
+      audioClips:
+      - {fileID: 8300000, guid: e2fc446cfb29e864789213b45d3a70d7, type: 3}
+      volume: 0.05
+  - audioCategory: 3
+    audioData:
+    - key: Pickaxe
+      audioClips:
+      - {fileID: 8300000, guid: 7993db5ccd572e9468216f4a68b269a9, type: 3}
+      - {fileID: 8300000, guid: 5f25ab952473aa342bea48121e18d309, type: 3}
+      - {fileID: 8300000, guid: d02aea3b91f338e4793b141c05d42557, type: 3}
+      volume: 0.08
+    - key: Drill
+      audioClips:
+      - {fileID: 8300000, guid: 4ccf0b96a0e4a4144abd5fb60a507fb2, type: 3}
+      - {fileID: 8300000, guid: e9d7730f675c3ed4c99c61b4145e7270, type: 3}
+      - {fileID: 8300000, guid: b9170801bec6b1c42bacbef197f47c3c, type: 3}
+      volume: 0.08
+  - audioCategory: 4
+    audioData:
+    - key: Success
+      audioClips:
+      - {fileID: 8300000, guid: 092de1db930e0ce4bab7f47654b5a4e9, type: 3}
+      volume: 0.25
+  - audioCategory: 5
+    audioData: []

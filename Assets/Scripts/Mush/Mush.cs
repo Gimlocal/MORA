@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using System.Data;
 using UnityEngine;
 using DG.Tweening;
 using Sound;
 using Tool;
-using AudioType = Sound.AudioType;
 using Random = UnityEngine.Random;
 
 namespace Mush
@@ -34,9 +32,10 @@ namespace Mush
         {
             if (other.CompareTag("Tool"))
             {
-                if (other.GetComponent<Tools>().toolType == ToolType.OneTime)
+                Tools tool = other.gameObject.GetComponent<Tools>();
+                if (tool.toolType == ToolType.OneTime)
                 {
-                    OnMined(Player.Player.Instance.playerStat.power);
+                    OnMined(Player.Player.Instance.playerStat.power, tool);
                 }
             }
         }
@@ -45,25 +44,25 @@ namespace Mush
         {
             if (other.CompareTag("Tool"))
             {
-                if (other.GetComponent<Tools>().toolType == ToolType.Continuous)
+                Tools tool = other.gameObject.GetComponent<Tools>();
+                if (tool.toolType == ToolType.Continuous)
                 {
-                    if (Time.time >= _lastMiningTime + other.GetComponent<Tools>().mineInterval)
+                    if (Time.time >= _lastMiningTime + tool.mineInterval)
                     {
-                        OnMined(Player.Player.Instance.playerStat.power);
+                        OnMined(Player.Player.Instance.playerStat.power / 2, tool);
                         _lastMiningTime = Time.time;
                     }
                 }
             }
         }
 
-        private void OnMined(float power)
+        private void OnMined(float power, Tools tool)
         {
             if (hp > 0)
             {
                 Flick();
-
-                int ran = Random.Range(1, 3);
-                SoundManager.Instance.Play((AudioType)Enum.Parse(typeof(AudioType), "Pickaxe" + ran));
+                
+                SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
                 
                 float prevHitCount = _hitCount;
                 _hitCount += power;

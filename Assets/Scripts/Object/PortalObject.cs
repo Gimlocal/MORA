@@ -34,7 +34,7 @@ namespace Object
             if (other.CompareTag("Player"))
             {
                 _isPlayerInRange = true;
-                Player.Player.Instance.playerAction.canMine = false;
+                Player.Player.Instance.playerMining.canMine = false;
                 canvas.gameObject.SetActive(true);
             }
         }
@@ -44,14 +44,14 @@ namespace Object
             if (other.CompareTag("Player"))
             {
                 _isPlayerInRange = false;
-                Player.Player.Instance.playerAction.canMine = true;
+                Player.Player.Instance.playerMining.canMine = true;
                 canvas.gameObject.SetActive(false);
             }
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Player.Player.Instance.playerAction.canMine = true;
+            Player.Player.Instance.playerMining.canMine = true;
             Player.Player.Instance.transform.position = _portalData.targetPos;
             
             SceneManager.sceneLoaded -= OnSceneLoaded;

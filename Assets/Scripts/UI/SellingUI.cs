@@ -5,9 +5,7 @@ using Mush;
 using Sound;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using AudioType = UnityEngine.AudioType;
 
 namespace UI
 {
@@ -57,7 +55,7 @@ namespace UI
                 if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
                 _player.playerItem.gold += itemDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
                 _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
-                SoundManager.Instance.Play(Sound.AudioType.UI);
+                SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 RefreshInventory();
             }
         }

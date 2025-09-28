@@ -27,7 +27,7 @@ namespace Object
             if (other.CompareTag("Player"))
             {
                 IsPlayerInRange = true;
-                Player.playerAction.canMine = false;
+                Player.playerMining.canMine = false;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Object
             if (other.CompareTag("Player"))
             {
                 IsPlayerInRange = false;
-                Player.playerAction.canMine = true;
+                Player.playerMining.canMine = true;
             }
         }
     }

@@ -20,6 +20,9 @@ namespace Tool
         public ToolName toolName;
         public ToolType toolType;
         public float mineInterval;
+        public string audioKey;
+        public string hitAudioKey;
+        
         public abstract void Mining();
     }
 }

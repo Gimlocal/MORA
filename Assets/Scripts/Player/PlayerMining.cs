@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Sound;
 using Tool;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Player
 {
-    public class PlayerAction : MonoBehaviour
+    public class PlayerMining : MonoBehaviour
     {
         public List<Tools> tools;
         public ToolName toolName;
@@ -26,6 +27,7 @@ namespace Player
             {
                 _tool = tools.Find(t => t.toolName == toolName);
                 _tool.gameObject.SetActive(true);
+                SoundManager.Instance.Play(AudioCategory.Tool, _tool.audioKey, _tool.toolType ==  ToolType.Continuous);
                 _tool.Mining();
             }
         }

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1571620702980064631}
-  playerAction: {fileID: 508325148312166649}
+  playerMining: {fileID: 508325148312166649}
   playerSorting: {fileID: 3715601310800711338}
   playerItem: {fileID: 5697777076350935157}
   playerStat: {fileID: 7376922322043055063}
@@ -542,7 +542,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolName: 1
   toolType: 1
-  mineInterval: 0.5
+  mineInterval: 0.25
+  audioKey: Drill
+  hitAudioKey: Drill
 --- !u!61 &162814505393936069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -768,6 +770,8 @@ MonoBehaviour:
   toolName: 0
   toolType: 0
   mineInterval: 0
+  audioKey: Pickaxe
+  hitAudioKey: Pickaxe
 --- !u!60 &7992263644710315377
 PolygonCollider2D:
   m_ObjectHideFlags: 0
