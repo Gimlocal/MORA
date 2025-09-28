@@ -1,10 +1,10 @@
 using System.Collections;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
-namespace Player
+namespace Tool
 {
-    public class Pickaxe : MonoBehaviour
+    public class Pickaxe : Tools
     {
         private Coroutine _miningCoroutine;
         private Tween _miningTween;
@@ -20,25 +20,25 @@ namespace Player
             _collider = GetComponent<Collider2D>();
         }
 
-        public void Mining(float duration)
+        public override void Mining()
         {
             if (_miningCoroutine != null) return;
-            _miningCoroutine = StartCoroutine(MiningCoroutine(duration));
+            _miningCoroutine = StartCoroutine(MiningCoroutine(Player.Player.Instance.playerStat.axeSpeed));
         }
         
         private IEnumerator MiningCoroutine(float duration)
         {
-            if (Player.Instance.playerMovement.lastMovementX > 0)
+            if (Player.Player.Instance.playerMovement.lastMovementX > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
-                _startPos = (Vector2)Player.Instance.transform.position + new Vector2(0.1f, 1.2f) * Player.Instance.transform.localScale;
+                _startPos = (Vector2)Player.Player.Instance.transform.position + new Vector2(0.1f, 1.2f) * Player.Player.Instance.transform.localScale;
                 _startAngle = 70f;
                 _endAngle = -30f;
             }
             else
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                _startPos = (Vector2)Player.Instance.transform.position + new Vector2(-0.1f, 1.2f) * Player.Instance.transform.localScale;
+                _startPos = (Vector2)Player.Player.Instance.transform.position + new Vector2(-0.1f, 1.2f) * Player.Player.Instance.transform.localScale;
                 _startAngle = -70f;
                 _endAngle = 30f;
             }

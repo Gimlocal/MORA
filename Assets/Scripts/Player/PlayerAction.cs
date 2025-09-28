@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Tool;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,13 +8,11 @@ namespace Player
 {
     public class PlayerAction : MonoBehaviour
     {
-        private Pickaxe _pickaxe;
+        public List<Tools> tools;
+        public ToolName toolName;
         public bool canMine = true;
 
-        private void Awake()
-        {
-            _pickaxe = transform.GetComponentInChildren<Pickaxe>(true);
-        }
+        private Tools _tool;
 
         private void Update()
         {
@@ -24,8 +24,9 @@ namespace Player
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                _pickaxe.gameObject.SetActive(true);
-                _pickaxe.Mining(Player.Instance.playerStat.axeSpeed);
+                _tool = tools.Find(t => t.toolName == toolName);
+                _tool.gameObject.SetActive(true);
+                _tool.Mining();
             }
         }
     }

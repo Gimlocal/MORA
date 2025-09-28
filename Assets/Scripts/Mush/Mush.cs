@@ -4,6 +4,7 @@ using System.Data;
 using UnityEngine;
 using DG.Tweening;
 using Sound;
+using Tool;
 using AudioType = Sound.AudioType;
 using Random = UnityEngine.Random;
 
@@ -20,6 +21,7 @@ namespace Mush
         private SpriteRenderer _sR;
         private Collider2D _col;
         private Coroutine _flickCoroutine;
+        private float _lastMiningTime;
 
         private void Awake()
         {
@@ -32,7 +34,25 @@ namespace Mush
         {
             if (other.CompareTag("Tool"))
             {
-                OnMined(Player.Player.Instance.playerStat.power);
+                if (other.GetComponent<Tools>().toolType == ToolType.OneTime)
+                {
+                    OnMined(Player.Player.Instance.playerStat.power);
+                }
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Tool"))
+            {
+                if (other.GetComponent<Tools>().toolType == ToolType.Continuous)
+                {
+                    if (Time.time >= _lastMiningTime + other.GetComponent<Tools>().mineInterval)
+                    {
+                        OnMined(Player.Player.Instance.playerStat.power);
+                        _lastMiningTime = Time.time;
+                    }
+                }
             }
         }
 
