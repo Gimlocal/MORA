@@ -116,10 +116,10 @@ TextureImporter:
       name: Elevator2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 17
         y: 512
-        width: 512
-        height: 512
+        width: 495
+        height: 486
       alignment: 9
       pivot: {x: 0.5, y: 0.24}
       border: {x: 0, y: 0, z: 0, w: 0}

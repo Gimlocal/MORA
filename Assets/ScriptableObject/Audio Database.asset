@@ -28,8 +28,9 @@ MonoBehaviour:
   - audioCategory: 2
     audioData:
     - key: Pickaxe
-      audioClips: []
-      volume: 0
+      audioClips:
+      - {fileID: 8300000, guid: dfabb6251f1f75b46beb4bc2796c2389, type: 3}
+      volume: 0.05
     - key: Drill
       audioClips:
       - {fileID: 8300000, guid: e2fc446cfb29e864789213b45d3a70d7, type: 3}
@@ -38,15 +39,27 @@ MonoBehaviour:
     audioData:
     - key: Pickaxe
       audioClips:
-      - {fileID: 8300000, guid: 7993db5ccd572e9468216f4a68b269a9, type: 3}
-      - {fileID: 8300000, guid: 5f25ab952473aa342bea48121e18d309, type: 3}
-      - {fileID: 8300000, guid: d02aea3b91f338e4793b141c05d42557, type: 3}
-      volume: 0.08
-    - key: Drill
-      audioClips:
       - {fileID: 8300000, guid: 4ccf0b96a0e4a4144abd5fb60a507fb2, type: 3}
       - {fileID: 8300000, guid: e9d7730f675c3ed4c99c61b4145e7270, type: 3}
       - {fileID: 8300000, guid: b9170801bec6b1c42bacbef197f47c3c, type: 3}
+      - {fileID: 8300000, guid: 2a62151e9a2688a47ac8eb53aa45b923, type: 3}
+      - {fileID: 8300000, guid: e1097a39d7bf7b1498f6f6879f1492fe, type: 3}
+      - {fileID: 8300000, guid: e20b1a16eed14c04c91c5315089ef115, type: 3}
+      - {fileID: 8300000, guid: 994cbb14a8351ab4eaad87713789bf3b, type: 3}
+      - {fileID: 8300000, guid: 9db48faf9b642b8488cef1e03caa429c, type: 3}
+      - {fileID: 8300000, guid: a596bc888b917be4a9b8c466418383e0, type: 3}
+      volume: 0.08
+    - key: Drill
+      audioClips:
+      - {fileID: 8300000, guid: d020aa17bca20eb41b6bfabd55a66bb5, type: 3}
+      - {fileID: 8300000, guid: f0ddbfe91dae84a419d296a7db7bc7b8, type: 3}
+      - {fileID: 8300000, guid: e40f44fa46331e9489b17bde2892513f, type: 3}
+      - {fileID: 8300000, guid: b606fa15a3bac5141817c21fa5f32b45, type: 3}
+      - {fileID: 8300000, guid: 480bffbf3ef6ebc46a2fade96a991e8c, type: 3}
+      - {fileID: 8300000, guid: a5f76e34b9ef84440bc2b0661b4c04ab, type: 3}
+      - {fileID: 8300000, guid: 5e554debda6d97642beae3b034966a6d, type: 3}
+      - {fileID: 8300000, guid: d28d07c52e05cf74a8ae68dee07c1ca0, type: 3}
+      - {fileID: 8300000, guid: 1b511ffb398012a46bd6c118a8a0c23e, type: 3}
       volume: 0.08
   - audioCategory: 4
     audioData:

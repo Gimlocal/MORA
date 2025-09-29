@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using Sound;
 using UnityEngine;
 
 namespace Tool
@@ -23,6 +24,7 @@ namespace Tool
         public override void Mining()
         {
             if (_miningCoroutine != null) return;
+            SoundManager.Instance.Play(AudioCategory.Tool, audioKey);
             _miningCoroutine = StartCoroutine(MiningCoroutine(Player.Player.Instance.playerStat.axeSpeed));
         }
         

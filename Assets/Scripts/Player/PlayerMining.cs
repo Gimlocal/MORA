@@ -27,7 +27,6 @@ namespace Player
             {
                 _tool = tools.Find(t => t.toolName == toolName);
                 _tool.gameObject.SetActive(true);
-                SoundManager.Instance.Play(AudioCategory.Tool, _tool.audioKey, _tool.toolType ==  ToolType.Continuous);
                 _tool.Mining();
             }
         }
