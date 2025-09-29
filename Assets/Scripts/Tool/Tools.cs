@@ -22,6 +22,8 @@ namespace Tool
         public float mineInterval;
         public string audioKey;
         public string hitAudioKey;
+        public string toolKName;
+        [TextArea] public string toolDescription;
         
         public abstract void Mining();
     }

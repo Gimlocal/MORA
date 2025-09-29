@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Mush
+namespace Object
 {
     [System.Serializable]
     public class ItemInfo

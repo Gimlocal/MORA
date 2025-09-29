@@ -30,7 +30,7 @@ MonoBehaviour:
     - key: Pickaxe
       audioClips:
       - {fileID: 8300000, guid: dfabb6251f1f75b46beb4bc2796c2389, type: 3}
-      volume: 0.05
+      volume: 0.5
     - key: Drill
       audioClips:
       - {fileID: 8300000, guid: e2fc446cfb29e864789213b45d3a70d7, type: 3}

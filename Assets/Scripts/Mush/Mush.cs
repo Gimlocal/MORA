@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Object;
 using Sound;
 using Tool;
 using Random = UnityEngine.Random;

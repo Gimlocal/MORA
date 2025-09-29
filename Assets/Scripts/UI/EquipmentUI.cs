@@ -1,42 +1,36 @@
+using System;
 using System.Collections.Generic;
 using Mush;
 using Object;
+using Sound;
 using TMPro;
+using Tool;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class InventoryUI : ItemUI
+    public class EquipmentUI : ItemUI
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
         public Image itemImage;
         public TextMeshProUGUI itemNameText;
         public TextMeshProUGUI itemDescriptionText;
-        public TextMeshProUGUI goldAmount;
 
-        private Dictionary<ItemId, int> _ownedItems;
-        private List<ItemId> _itemKeys = new();
-        private const int UIIndex = 0;
+        private List<Tools> _ownedTools;
+        private const int UIIndex = 1;
         private UIBase[] _uiBases;
-        
-        [SerializeField] private ItemDatabase itemDatabase;
-        
+
         private void Start()
         {
             _uiBases = GetComponentInParent<InventoryManager>().uIBases;
         }
-
+        
         private void OnEnable()
         {
             Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
-
-            LoadItemsFromPlayer();
-            DisplayItemList();
-            UpdateItemInfoUI();
-            UpdateGoldAmount();
+            RefreshInventory();
         }
 
         private void OnDisable()
@@ -49,19 +43,31 @@ namespace UI
             LoadItemsFromPlayer();
             DisplayItemList();
             UpdateItemInfoUI();
-            UpdateGoldAmount();
         }
 
         protected override void Act()
         {
-            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Player.Player.Instance.playerMining.toolName = _ownedTools[SelectedIndex].toolName;
+                SoundManager.Instance.Play(AudioCategory.UI, "Success");
+            }
         }
-        
+
         protected override void ManageMoveSelection()
         {
             base.ManageMoveSelection();
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (UIIndex - 1 >= 0)
+                {
+                    GameManager.UIManager.RegisterUI(_uiBases[UIIndex - 1]);
+                    GameManager.UIManager.UnRegisterUI(this);
+                    _uiBases[UIIndex - 1].gameObject.SetActive(true);
+                    gameObject.SetActive(false);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 if (UIIndex + 1 <= _uiBases.Length - 1)
                 {
@@ -75,12 +81,7 @@ namespace UI
 
         private void LoadItemsFromPlayer()
         {
-            _ownedItems = Player.Player.Instance.playerItem.OwnedItems;
-        }
-        
-        private void UpdateGoldAmount()
-        {
-            goldAmount.text = Player.Player.Instance.playerItem.gold.ToString();
+            _ownedTools = Player.Player.Instance.playerMining.tools;
         }
 
         private void DisplayItemList()
@@ -89,19 +90,12 @@ namespace UI
                 Destroy(child.gameObject);
             
             ItemButtons.Clear();
-            _itemKeys.Clear();
 
             int index = 0;
-            foreach (var id in _ownedItems.Keys)
+            foreach (var tool in _ownedTools)
             {
-                if (_ownedItems[id] == 0) continue;
-                
-                _itemKeys.Add(id); // 키 저장
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                var itemData = itemDatabase.GetItemById(id);
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = itemData.isMush ? 
-                    $"{itemDatabase.GetItemById(id).itemName}  x{_ownedItems[id]}" :
-                    $"{itemDatabase.GetItemById(id).itemName}";
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{tool.toolKName}";
 
                 int capturedIndex = index; // 캡처한 인덱스
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
@@ -122,14 +116,14 @@ namespace UI
         protected override void MoveSelection(int dir)
         {
             SelectedIndex += dir;
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _ownedTools.Count - 1);
             HighlightSelectedItem();
             UpdateItemInfoUI();
         }
 
         private void UpdateItemInfoUI()
         {
-            if (_itemKeys.Count == 0)
+            if (_ownedTools.Count == 0)
             {
                 itemImage.sprite = null;
                 itemImage.gameObject.SetActive(false);
@@ -138,16 +132,14 @@ namespace UI
                 return;
             }
             
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _ownedTools.Count - 1);
             HighlightSelectedItem();
 
-            ItemId id = _itemKeys[SelectedIndex];
-            var itemData = itemDatabase.GetItemById(id);
-
+            var tool = _ownedTools[SelectedIndex];
             itemImage.gameObject.SetActive(true);
-            itemImage.sprite = itemData.sprite;
-            itemNameText.text = itemData.itemName;
-            itemDescriptionText.text = itemData.description;
+            itemImage.sprite = tool.GetComponent<SpriteRenderer>().sprite;
+            itemNameText.text = tool.toolKName;
+            itemDescriptionText.text = tool.toolDescription;
         }
     }
 }

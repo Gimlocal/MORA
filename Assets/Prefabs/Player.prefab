@@ -546,6 +546,8 @@ MonoBehaviour:
   mineInterval: 0.25
   audioKey: Drill
   hitAudioKey: Drill
+  toolKName: "\uB4DC\uB9B4"
+  toolDescription: "\uB4DC\uB9B4\uC774\uB2E4."
 --- !u!61 &162814505393936069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -773,6 +775,8 @@ MonoBehaviour:
   mineInterval: 0
   audioKey: Pickaxe
   hitAudioKey: Pickaxe
+  toolKName: "\uACE1\uAD2D\uC774"
+  toolDescription: "\uACE1\uAD2D\uC774\uB2E4."
 --- !u!60 &7992263644710315377
 PolygonCollider2D:
   m_ObjectHideFlags: 0

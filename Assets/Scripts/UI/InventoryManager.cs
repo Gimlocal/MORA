@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -7,11 +8,11 @@ namespace UI
     {
         private bool _inventoryOpened;
         [SerializeField] private GameObject inventoryPanel;
-        private UIBase _uIBase;
+        public UIBase[] uIBases;
 
         private void Awake()
         {
-            _uIBase = inventoryPanel.GetComponentInChildren<UIBase>();
+            uIBases = inventoryPanel.GetComponentsInChildren<UIBase>(true);
         }
 
         private void Update()
@@ -27,13 +28,19 @@ namespace UI
                 inventoryPanel.SetActive(!isActive);
                 if (!isActive)
                 {
-                    GameManager.UIManager.RegisterUI(_uIBase);
+                    foreach (var uI in uIBases)
+                    {
+                        if (uI.gameObject.activeSelf) GameManager.UIManager.RegisterUI(uI);
+                    }
                     Player.Player.Instance.playerMovement.canMove = false;
                     Player.Player.Instance.playerMovement.StopPlayer();
                 }
                 else
                 {
-                    GameManager.UIManager.UnRegisterUI(_uIBase);
+                    foreach (var uI in uIBases)
+                    {
+                        if (uI.gameObject.activeSelf) GameManager.UIManager.UnRegisterUI(uI);
+                    }
                     if (GameManager.UIManager.uIList.Count == 0)
                     {
                         Player.Player.Instance.playerMovement.canMove = true;

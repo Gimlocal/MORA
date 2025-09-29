@@ -21,7 +21,7 @@ namespace UI
 
         protected abstract void Act();
         
-        private void ManageMoveSelection()
+        protected virtual void ManageMoveSelection()
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
                 MoveSelection(1);
@@ -29,7 +29,7 @@ namespace UI
                 MoveSelection(-1);
         }
         
-        protected  abstract void MoveSelection(int direction);
+        protected abstract void MoveSelection(int direction);
         
         protected void HighlightSelectedItem()
         {
