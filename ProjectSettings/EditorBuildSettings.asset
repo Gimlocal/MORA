@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MORA-3.unity
     guid: 1435297538df47244beb8e315d96583d
   - enabled: 1
+    path: Assets/Scenes/MORA-B1.unity
+    guid: a9fc40532d04c3742bad9025b8404881
+  - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: ac9631036c6968742aa7e93c380730b8
   m_configObjects:

@@ -11,6 +11,8 @@ namespace Object
         Mora2To1,
         Mora2To3,
         Mora3To2,
+        Mora0ToB1,
+        MoraB1To0,
     }
 
     [System.Serializable]
