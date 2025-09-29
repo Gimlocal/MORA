@@ -248,7 +248,7 @@ MonoBehaviour:
   moveAcceleration: 10
   axeSpeed: 0.25
   corruption: 0
-  maxCorruption: 10
+  maxCorruption: 20
   power: 1
   moveSpeedPenaltyRatio: 0.8
   axeSpeedPenaltyRatio: 1.5

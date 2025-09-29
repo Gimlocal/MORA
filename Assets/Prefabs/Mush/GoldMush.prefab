@@ -140,5 +140,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
   mushId: 7
-  hp: 12
-  dropInterval: 4
+  hp: 35
+  dropInterval: 5

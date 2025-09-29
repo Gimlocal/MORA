@@ -443,6 +443,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+--- !u!1 &551235178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551235180}
+  - component: {fileID: 551235179}
+  m_Layer: 0
+  m_Name: MushSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &551235179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551235178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444076078224e3f4a9a9e3a589ade831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMush: {fileID: 7209594618945043361, guid: daa2c696d39579b4693fb8b164315a5b, type: 3}
+  rareMush: {fileID: 7209594618945043361, guid: 22ce59881e454104196bd258079355ff, type: 3}
+  boundaryStart: {x: -9, y: 6}
+  boundaryEnd: {x: 9, y: -6}
+--- !u!4 &551235180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551235178}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &630008981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1421,3 +1469,4 @@ SceneRoots:
   - {fileID: 481030817}
   - {fileID: 1480776510}
   - {fileID: 1638000299}
+  - {fileID: 551235180}

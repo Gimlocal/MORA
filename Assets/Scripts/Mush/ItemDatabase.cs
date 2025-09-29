@@ -25,6 +25,8 @@ namespace Mush
         LightBlueMush,
         WhiteMush,
         GoldMush,
+        MetalMush,
+        BombMush,
     }
 
     [CreateAssetMenu(fileName = "Item Database", menuName = "Item Database")]

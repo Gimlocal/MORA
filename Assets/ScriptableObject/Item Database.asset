@@ -47,7 +47,7 @@ MonoBehaviour:
   - itemId: 3
     isMush: 1
     itemName: "\uD30C\uB780 \uBC84\uC12F"
-    value: 2
+    value: 3
     description: "\uD638\uC218\uAC00 \uB2F4\uAE34 \uAC83 \uAC19\uC740 \uD478\uB978\uBE5B
       \uBC84\uC12F\uC774\uB2E4.\n\uC0C1\uC628\uC5D0 \uB450\uBA74 \uC561\uCCB4 \uC0C1\uD0DC\uAC00
       \uB41C\uB2E4."
@@ -63,7 +63,7 @@ MonoBehaviour:
   - itemId: 5
     isMush: 1
     itemName: "\uC5F0\uD558\uB298 \uBC84\uC12F"
-    value: 3
+    value: 4
     description: "\uBC14\uB2E4\uC758 \uD5A5\uAE30\uAC00 \uB098\uB294 \uC5F0\uD558\uB298\uBE5B
       \uBC84\uC12F\uC774\uB2E4.\n\uC798\uAC8C \uBD80\uC234 \uC74C\uC2DD\uC5D0 \uB123\uC73C\uBA74
       \uC74C\uC2DD\uC774 \uB9DB\uC788\uC5B4\uC9C8 \uAC83 \uAC19\uB2E4."
@@ -78,8 +78,26 @@ MonoBehaviour:
   - itemId: 7
     isMush: 1
     itemName: "\uD669\uAE08 \uBC84\uC12F"
-    value: 4
+    value: 5
     description: "\uB9CC\uC9C0\uBA74 \uAE30\uB984\uC774 \uBB3B\uC5B4\uB098\uC624\uB294
       \uD669\uAE08\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uC5F4\uC744 \uAC00\uD558\uBA74
       \uC561\uCCB4 \uC0C1\uD0DC\uAC00 \uB41C\uB2E4."
     sprite: {fileID: 21300000, guid: 5d5ec530666fb1144a6ebc85a77a6636, type: 3}
+  - itemId: 8
+    isMush: 1
+    itemName: "\uAC15\uCCA0 \uBC84\uC12F"
+    value: 2
+    description: "\uAC15\uCCA0\uC758 \uB2E8\uB2E8\uD568\uACFC \uBC84\uC12F\uC758
+      \uB9D0\uB791\uD568\uC744 \uB3D9\uC2DC\uC5D0 \uAC00\uC9C0\uACE0 \uC788\uC5B4
+      \uD615\uD0DC\uB97C \uC790\uC720\uB86D\uAC8C \uB9CC\uB4E4 \uC218 \uC788\uB2E4.
+      \n\uC7A5\uBE44 \uC678\uD615 \uC81C\uC791\uC5D0 \uC6A9\uC774\uD558\uB2E4."
+    sprite: {fileID: 21300000, guid: 26089578be7aeac469cae94b6f330823, type: 3}
+  - itemId: 9
+    isMush: 1
+    itemName: "\uD3ED\uBC1C \uBC84\uC12F"
+    value: 4
+    description: "\uC8FC\uBCC0\uC758 \uAD11\uBB3C\uC744 \uB04C\uC5B4\uB4E4\uC5EC
+      \uD06C\uAE30\uB97C \uD0A4\uC6B0\uACE0 \uC77C\uC815 \uD06C\uAE30 \uC774\uC0C1
+      \uCEE4\uC9C0\uBA74 \uD3ED\uBC1C\uD558\uB294 \uC131\uC9C8\uC774 \uC788\uB2E4.\n\uAC00\uBCBC\uC6B4
+      \uC7A5\uBE44\uC758 \uC5F0\uB8CC\uB85C \uC0AC\uC6A9\uB41C\uB2E4."
+    sprite: {fileID: 21300000, guid: 89b8c5eadcf4b7340b05948c23928698, type: 3}
