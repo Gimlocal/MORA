@@ -53,6 +53,10 @@ namespace UI
                     mushFoodDatabase.EatMushFood(foodInfo.mushFoodId);
                     SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 }
+                else
+                {
+                    SoundManager.Instance.Play(AudioCategory.UI, "Fail");
+                }
             }
         }
         

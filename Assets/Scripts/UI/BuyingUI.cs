@@ -72,6 +72,10 @@ namespace UI
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
                     }
+                    else
+                    {
+                        SoundManager.Instance.Play(AudioCategory.UI, "Fail");   
+                    }
                 }
                 else
                 {
@@ -84,6 +88,10 @@ namespace UI
                         }
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
+                    }
+                    else
+                    {
+                        SoundManager.Instance.Play(AudioCategory.UI, "Fail");
                     }
                 }
                 

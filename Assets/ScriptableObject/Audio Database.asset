@@ -67,5 +67,9 @@ MonoBehaviour:
       audioClips:
       - {fileID: 8300000, guid: 092de1db930e0ce4bab7f47654b5a4e9, type: 3}
       volume: 0.25
+    - key: Fail
+      audioClips:
+      - {fileID: 8300000, guid: ad88aa2835dc8f34c878614571da54e8, type: 3}
+      volume: 0.25
   - audioCategory: 5
     audioData: []
