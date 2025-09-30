@@ -97,6 +97,7 @@ namespace Mush
         private IEnumerator FlickAlpha(float duration = 0.1f)
         {
             Color originalColor = _sR.color;
+            originalColor.a = 1f;
             Color destColor = originalColor;
             destColor.a = 0.5f;
             _sR.color = destColor;

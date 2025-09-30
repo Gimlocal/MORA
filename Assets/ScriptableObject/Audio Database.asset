@@ -60,7 +60,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 5e554debda6d97642beae3b034966a6d, type: 3}
       - {fileID: 8300000, guid: d28d07c52e05cf74a8ae68dee07c1ca0, type: 3}
       - {fileID: 8300000, guid: 1b511ffb398012a46bd6c118a8a0c23e, type: 3}
-      volume: 0.1
+      volume: 0.07
   - audioCategory: 4
     audioData:
     - key: Success
