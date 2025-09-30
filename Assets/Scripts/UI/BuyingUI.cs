@@ -167,6 +167,7 @@ namespace UI
                 {
                     SelectedIndex = capturedIndex;
                     HighlightSelectedItem();
+                    UpdateItemInfoUI();
                 });
                 
                 index++;
