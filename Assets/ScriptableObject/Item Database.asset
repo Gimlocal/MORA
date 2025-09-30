@@ -104,7 +104,7 @@ MonoBehaviour:
   - itemId: 10
     isMush: 0
     itemName: "\uB79C\uD134"
-    value: 30
+    value: 20
     description: "\uC5B4\uB450\uC6B4 \uACF3\uC5D0\uC11C \uC791\uC5C5\uD560 \uB54C
       \uD544\uC218\uC801\uC778 \uBB3C\uAC74\uC774\uB2E4.\n\uCCAD\uB85D\uC0C9\uC758
       \uBE5B\uC744 \uBFDC\uC5B4\uB0B8\uB2E4."

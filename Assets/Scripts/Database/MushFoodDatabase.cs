@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,13 +56,14 @@ namespace Database
             switch (GetMushFoodInfo(id).mushFoodEffect)
             {
                 case MushFoodEffect.IncreaseSpeed:
-                    Player.Player.Instance.playerStat.moveSpeed += 0.1f;
+                    Player.Player.Instance.playerStat.moveSpeed =
+                        Math.Clamp(Player.Player.Instance.playerStat.moveSpeed + 0.3f, 3, 6);
                     break;
                 case MushFoodEffect.IncreaseCapacity:
-                    Player.Player.Instance.playerStat.maxCorruption += 10f;
+                    Player.Player.Instance.playerStat.maxCorruption += 20f;
                     break;
                 case MushFoodEffect.IncreasePower:
-                    Player.Player.Instance.playerStat.power += 0.2f;
+                    Player.Player.Instance.playerStat.power += 0.5f;
                     break;
             }
         }

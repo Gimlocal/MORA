@@ -18,9 +18,9 @@ MonoBehaviour:
     name: "\uCD08\uB85D \uC2A4\uD504"
     ingredients:
     - mushId: 2
-      amount: 20
-    - mushId: 3
       amount: 10
+    - mushId: 3
+      amount: 5
     description: "\uCD08\uB85D \uBC84\uC12F\uACFC \uD30C\uB780 \uBC84\uC12F\uC744
       \uC774\uC6A9\uD574 \uB9CC\uB4E0 \uC694\uB9AC.\n\uBA74\uC5ED\uB825\uC774 \uC624\uB974\uACE0
       \uBAB8\uC774 \uAC74\uAC15\uD574\uC9C4\uB2E4.\n<b><color=#0000FF>\uC624\uC5FC\uC5D0
@@ -31,9 +31,9 @@ MonoBehaviour:
     name: "\uAD6C\uC6B4 \uBC84\uC12F"
     ingredients:
     - mushId: 4
-      amount: 30
+      amount: 20
     - mushId: 5
-      amount: 15
+      amount: 10
     description: "\uBE68\uAC04 \uBC84\uC12F\uACFC \uC5F0 \uD558\uB298 \uBC84\uC12F\uC744
       \uC774\uC6A9\uD574 \uB9CC\uB4E0 \uC694\uB9AC.\n\uCCB4\uB825\uC774 \uC624\uB974\uACE0
       \uC9C0\uAD6C\uB825\uC774 \uB298\uC5B4\uB09C\uB2E4.\n<b><color=#0000FF>\uC774\uB3D9\uC18D\uB3C4\uB97C
@@ -44,9 +44,9 @@ MonoBehaviour:
     name: "\uCC10 \uBC84\uC12F"
     ingredients:
     - mushId: 6
-      amount: 40
+      amount: 30
     - mushId: 7
-      amount: 20
+      amount: 15
     description: "\uD770 \uBC84\uC12F\uACFC \uD669\uAE08 \uBC84\uC12F\uC744 \uC774\uC6A9\uD574
       \uB9CC\uB4E0 \uC694\uB9AC.\n\uD3EC\uB9CC\uAC10\uC774 \uC0DD\uAE30\uACE0 \uD798\uC774
       \uC99D\uAC00\uD55C\uB2E4.\n<b><color=#0000FF>\uACE1\uAD2D\uC774\uC9C8\uC744

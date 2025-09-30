@@ -52,7 +52,7 @@ namespace Mush
                 {
                     if (Time.time >= _lastMiningTime + tool.mineInterval)
                     {
-                        OnMined(Player.Player.Instance.playerStat.power / 2, tool);
+                        OnMined(Player.Player.Instance.playerStat.power / 3 * 2, tool);
                         _lastMiningTime = Time.time;
                     }
                 }

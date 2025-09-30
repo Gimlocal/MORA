@@ -544,7 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolName: 1
   toolType: 1
-  mineInterval: 0.25
+  mineInterval: 0.1
   audioKey: Drill
   hitAudioKey: Drill
   toolKName: "\uB4DC\uB9B4"
