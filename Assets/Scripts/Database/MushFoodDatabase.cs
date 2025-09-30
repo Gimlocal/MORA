@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using Object;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Mush
+namespace Database
 {
     [System.Serializable]
     public class MushFoodInfo

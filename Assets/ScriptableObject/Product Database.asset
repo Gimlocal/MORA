@@ -13,16 +13,52 @@ MonoBehaviour:
   m_Name: Product Database
   m_EditorClassIdentifier: 
   products:
+  - productID: 2
+    sprite: {fileID: 21300000, guid: 579644259205496aa8846fc13efe27b0, type: 3}
+    name: "\uB79C\uD134"
+    description: "\uC5B4\uB450\uC6B4 \uACF3\uC5D0\uC11C \uC791\uC5C5\uD560 \uB54C
+      \uD544\uC218\uC801\uC778 \uBB3C\uAC74\uC774\uB2E4.\n\uCCAD\uB85D\uC0C9\uC758
+      \uBE5B\uC744 \uBFDC\uC5B4\uB0B8\uB2E4."
+    ingredients:
+    - mushId: 2
+      amount: 15
+    - mushId: 3
+      amount: 30
+    price: 50
+    effect: 2
   - productID: 0
     sprite: {fileID: 21300014, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
     name: "\uC6B0\uC8FC\uBCF5"
     description: "\uC6B0\uC8FC\uBCF5\uC744 \uAC15\uD654\uC2DC\uCF1C \uB354 \uAE4A\uC740
       \uACF3\uC73C\uB85C \uD0D0\uC0AC\uD560 \uC218 \uC788\uAC8C \uD574\uC900\uB2E4."
+    ingredients:
+    - mushId: 8
+      amount: 20
+    - mushId: 9
+      amount: 10
     price: 30
     effect: 0
+  - productID: 3
+    sprite: {fileID: 254509965974115023, guid: f66d0952ff071e04f9098881e34a96d1, type: 3}
+    name: "\uB4DC\uB9B4"
+    description: "\uACE1\uAD2D\uC774\uBCF4\uB2E4 \uC870\uAE08 \uB354 \uD3B8\uD558\uAC8C
+      \uCC44\uAD74\uD560 \uC218 \uC788\uB294 \uC7A5\uBE44\uC774\uB2E4.\n\uAC00\uBCBC\uC6CC\uC11C
+      \uD734\uB300\uC5D0 \uC6A9\uC774\uD558\uB2E4."
+    ingredients:
+    - mushId: 8
+      amount: 50
+    - mushId: 9
+      amount: 30
+    price: 100
+    effect: 2
   - productID: 1
     sprite: {fileID: 21300000, guid: 579644259205496aa8846fc13efe27b0, type: 3}
     name: "\uADC0\uD658 \uC218\uC2E0\uAE30"
     description: "\uC9D1\uC73C\uB85C \uB3CC\uC544\uAC00\uC790."
+    ingredients:
+    - mushId: 8
+      amount: 100
+    - mushId: 9
+      amount: 100
     price: 300
     effect: 1

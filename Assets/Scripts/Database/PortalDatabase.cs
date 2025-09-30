@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Object
+namespace Database
 {
     public enum PortalID
     {

@@ -1,3 +1,4 @@
+using Database;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -30,7 +31,7 @@ namespace Player
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (scene.buildIndex == 0)
+            if (SceneDatabase.GetSceneType(scene.name) == SceneType.Out)
             {
                 Destroy(gameObject);
                 Instance = null;

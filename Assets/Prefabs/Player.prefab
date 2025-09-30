@@ -201,7 +201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tools:
   - {fileID: 2918781375832382410}
-  - {fileID: 6315225996678055743}
   toolName: 0
   canMine: 1
 --- !u!114 &3715601310800711338
@@ -229,9 +228,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  lantern: {fileID: 9089863985605714732}
   gold: 0
   suitLevel: 0
   canGoHome: 0
+  hasLantern: 0
 --- !u!114 &7376922322043055063
 MonoBehaviour:
   m_ObjectHideFlags: 0

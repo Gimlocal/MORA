@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Database;
 using Object;
 using Sound;
 using TMPro;
@@ -11,6 +13,7 @@ namespace UI
     public class BuyingUI : ItemUI
     {
         [SerializeField] private ProductDatabase productDatabase;
+        [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private GameObject itemButtonPrefab;
         [SerializeField] private Transform itemListParent;
         [SerializeField] private TextMeshProUGUI goldAmount;
@@ -34,6 +37,8 @@ namespace UI
         private void OnEnable()
         {
             _playerItem.OnGoldChanged += UpdateGoldAmount;
+            DisplayItemList();
+            UpdateItemInfoUI();
             UpdateGoldAmount();
         }
 
@@ -52,21 +57,31 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var productInfo = productDatabase.GetProductById(_productIDs[SelectedIndex]);
+                Dictionary<ItemId, int> ownedItems =  _playerItem.OwnedItems;
                 
                 if (productInfo.productID == ProductID.Spacesuit)
                 {
-                    if (_playerItem.gold >= productInfo.price * (_playerItem.suitLevel + 1) && _playerItem.suitLevel < 2)
+                    if (CheckIngredients(productInfo,ownedItems, productInfo.price * (_playerItem.suitLevel + 1)) 
+                        && _playerItem.suitLevel < 2)
                     {
                         _playerItem.UseGold(productInfo.price * (_playerItem.suitLevel + 1));
+                        foreach (var ingredient in productInfo.ingredients)
+                        {
+                            _playerItem.UseItem(ingredient.mushId, ingredient.amount);
+                        }
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
                     }
                 }
                 else
                 {
-                    if (_playerItem.gold >= productInfo.price)
+                    if (CheckIngredients(productInfo, ownedItems))
                     {
                         _playerItem.UseGold(productInfo.price);
+                        foreach (var ingredient in productInfo.ingredients)
+                        {
+                            _playerItem.UseItem(ingredient.mushId, ingredient.amount);
+                        }
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
                     }
@@ -75,6 +90,32 @@ namespace UI
                 DisplayItemList();
                 UpdateItemInfoUI();
             }
+        }
+
+        private bool CheckIngredients(ProductData data, Dictionary<ItemId, int> ownedItems, int price = 0)
+        {
+            bool flag = true;
+            
+            // 재료 확인
+            foreach (var ingredient in data.ingredients)
+            {
+                if (!ownedItems.ContainsKey(ingredient.mushId) ||
+                    !_playerItem.HasItem(ingredient.mushId, ingredient.amount))
+                {
+                    flag = false;
+                }
+            }
+            // 가격 확인
+            if (price == 0)
+            {
+                price = data.price;
+            }
+            if (price > _playerItem.gold)
+            {
+                flag = false;
+            }
+
+            return flag;
         }
         
         protected override void MoveSelection(int dir)
@@ -96,10 +137,18 @@ namespace UI
             int index = 0;
             foreach (var info in _productData)
             {
-                if (info.productID == ProductID.Spacesuit && _playerItem.suitLevel == 2)
+                if (info.effect == ProductEffect.UpgradeSuit && _playerItem.suitLevel == 2)
                     continue;
-                if (info.productID == ProductID.HomeTicket && _playerItem.canGoHome)
+                if (info.effect == ProductEffect.CanGoHome && _playerItem.canGoHome)
                     continue;
+                if (info.effect == ProductEffect.Equipment &&
+                    Player.Player.Instance.playerMining.tools.Any(t => t.name == info.productID.ToString()))
+                    continue;
+                if (info.effect == ProductEffect.Item && 
+                    Player.Player.Instance.playerItem.OwnedItems.
+                        Any(t => t.Key.ToString() == info.productID.ToString()))
+                    continue;
+                
                 
                 _productIDs.Add(info.productID);
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
@@ -136,15 +185,55 @@ namespace UI
             
             itemImage.gameObject.SetActive(true);
             itemImage.sprite = itemData.sprite;
-            itemNameText.text = itemData.name;
+            itemNameText.text = "";
             itemDescriptionText.text = itemData.description;
             if (itemData.productID == ProductID.Spacesuit)
             {
-                itemNameText.text += $" : {(itemData.price *  (_playerItem.suitLevel + 1)).ToString()}원";
+                for (int i = 0; i < itemData.ingredients.Count; i++)
+                {
+                    itemNameText.text += 
+                        $"{itemDatabase.GetItemById(itemData.ingredients[i].mushId).itemName}x{itemData.ingredients[i].amount}";
+                    if (i % 3 == 2)
+                    {
+                        itemNameText.text += "\n";
+                    }
+                    else
+                    {
+                        if (i < itemData.ingredients.Count - 1)
+                        {
+                            itemNameText.text += "   ";
+                        }
+                        else
+                        {
+                            itemNameText.text += "\n";
+                        }
+                    }
+                }
+                itemNameText.text += $"{(itemData.price *  (_playerItem.suitLevel + 1)).ToString()}원";
             }
             else
             {
-                itemNameText.text += $" : {(itemData.price).ToString()}원";
+                for (int i = 0; i < itemData.ingredients.Count; i++)
+                {
+                    itemNameText.text += 
+                        $"{itemDatabase.GetItemById(itemData.ingredients[i].mushId).itemName}x{itemData.ingredients[i].amount}";
+                    if (i % 3 == 2)
+                    {
+                        itemNameText.text += "\n";
+                    }
+                    else
+                    {
+                        if (i < itemData.ingredients.Count - 1)
+                        {
+                            itemNameText.text += "   ";
+                        }
+                        else
+                        {
+                            itemNameText.text += "\n";
+                        }
+                    }
+                }
+                itemNameText.text += $"{(itemData.price).ToString()}원";
             }
         }
     }

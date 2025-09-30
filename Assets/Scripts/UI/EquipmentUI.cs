@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Database;
 using Mush;
 using Object;
 using Sound;
@@ -29,13 +30,7 @@ namespace UI
         
         private void OnEnable()
         {
-            Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
             RefreshInventory();
-        }
-
-        private void OnDisable()
-        {
-            Player.Player.Instance.playerItem.OnItemChanged -= RefreshInventory;
         }
         
         private void RefreshInventory()

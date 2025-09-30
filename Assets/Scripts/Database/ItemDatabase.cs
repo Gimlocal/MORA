@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Object
+namespace Database
 {
     [System.Serializable]
     public class ItemInfo
@@ -27,6 +27,7 @@ namespace Object
         GoldMush,
         MetalMush,
         BombMush,
+        Lantern,
     }
 
     [CreateAssetMenu(fileName = "Item Database", menuName = "Item Database")]

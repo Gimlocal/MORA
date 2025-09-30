@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Database;
 using Mush;
 using Object;
 using Sound;
@@ -56,6 +57,10 @@ namespace UI
                 if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
                 _player.playerItem.gold += itemDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
                 _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
+                if (_itemKeys[SelectedIndex] == ItemId.Lantern)
+                {
+                    Player.Player.Instance.playerItem.hasLantern = false;
+                }
                 SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 RefreshInventory();
             }
