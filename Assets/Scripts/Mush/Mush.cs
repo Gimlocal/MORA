@@ -16,6 +16,7 @@ namespace Mush
         [SerializeField] private ItemId mushId;
         [SerializeField] private float hp;
         [SerializeField] private float dropInterval;
+        [SerializeField] private Material pieceMaterial;
         private float _hitCount;
         private float _maxHp;
         private SpriteRenderer _sR;
@@ -114,6 +115,7 @@ namespace Mush
             SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
             sR.sprite = _sR.sprite;
             sR.sortingOrder = _sR.sortingOrder;
+            sR.material = pieceMaterial;
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
             cd.radius = 0.12f;
             cd.isTrigger = true;

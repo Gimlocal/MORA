@@ -142,3 +142,4 @@ MonoBehaviour:
   mushId: 6
   hp: 21
   dropInterval: 3
+  pieceMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
