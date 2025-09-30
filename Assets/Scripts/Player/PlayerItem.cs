@@ -1,18 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Database;
 using Mush;
 using Object;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
     public class PlayerItem : MonoBehaviour
     {
         [SerializeField] private ItemDatabase mushDatabase;
+        [SerializeField] private GameObject lantern;
         public Dictionary<ItemId, int> OwnedItems = new();
         public int gold = 0;
         public int suitLevel = 0;
         public bool canGoHome;
+        public bool hasLantern;
         public event System.Action OnItemChanged;
         public event System.Action OnGoldChanged;
 
@@ -20,6 +25,7 @@ namespace Player
         {
             AddItem(ItemId.PlanetInfo);
             AddItem(ItemId.WorkInfo);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         public void AddItem(ItemId id)
@@ -66,6 +72,26 @@ namespace Player
         {
             gold -= amount;
             OnGoldChanged?.Invoke();
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (SceneDatabase.GetSceneType(scene.name) == SceneType.Underground)
+            {
+                if (OwnedItems.Any(t => t.Key == ItemId.Lantern))
+                {
+                    lantern.SetActive(true);
+                }
+            }
+            else if (SceneDatabase.GetSceneType(scene.name) == SceneType.Normal)
+            {
+                lantern.SetActive(false);
+            }
+        }
+        
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }
