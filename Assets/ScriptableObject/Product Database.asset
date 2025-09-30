@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products:
   - productID: 2
-    sprite: {fileID: 21300000, guid: 579644259205496aa8846fc13efe27b0, type: 3}
+    sprite: {fileID: 9120274773078298782, guid: 345a72e16147adb49a7df1f59bb108cc, type: 3}
     name: "\uB79C\uD134"
     description: "\uC5B4\uB450\uC6B4 \uACF3\uC5D0\uC11C \uC791\uC5C5\uD560 \uB54C
       \uD544\uC218\uC801\uC778 \uBB3C\uAC74\uC774\uB2E4.\n\uCCAD\uB85D\uC0C9\uC758
