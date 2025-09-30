@@ -12,7 +12,7 @@ namespace Object
         {
             if (IsPlayerInRange && Input.GetKeyDown(KeyCode.Z) && Player.playerItem.canGoHome)
             {
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene("Ending");
             }
         }
         

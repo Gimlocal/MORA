@@ -50,7 +50,7 @@ MonoBehaviour:
     - mushId: 9
       amount: 30
     price: 100
-    effect: 2
+    effect: 3
   - productID: 1
     sprite: {fileID: 21300000, guid: 579644259205496aa8846fc13efe27b0, type: 3}
     name: "\uADC0\uD658 \uC218\uC2E0\uAE30"
