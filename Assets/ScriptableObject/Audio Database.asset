@@ -24,7 +24,7 @@ MonoBehaviour:
     - key: Walk
       audioClips:
       - {fileID: 8300000, guid: 597729f59db2c7943863f63931c72919, type: 3}
-      volume: 0.45
+      volume: 0.5
   - audioCategory: 2
     audioData:
     - key: Pickaxe
@@ -48,7 +48,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 994cbb14a8351ab4eaad87713789bf3b, type: 3}
       - {fileID: 8300000, guid: 9db48faf9b642b8488cef1e03caa429c, type: 3}
       - {fileID: 8300000, guid: a596bc888b917be4a9b8c466418383e0, type: 3}
-      volume: 0.08
+      volume: 0.12
     - key: Drill
       audioClips:
       - {fileID: 8300000, guid: d020aa17bca20eb41b6bfabd55a66bb5, type: 3}
@@ -60,7 +60,7 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 5e554debda6d97642beae3b034966a6d, type: 3}
       - {fileID: 8300000, guid: d28d07c52e05cf74a8ae68dee07c1ca0, type: 3}
       - {fileID: 8300000, guid: 1b511ffb398012a46bd6c118a8a0c23e, type: 3}
-      volume: 0.08
+      volume: 0.1
   - audioCategory: 4
     audioData:
     - key: Success

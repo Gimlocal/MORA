@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Database;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sound
 {
@@ -10,7 +11,13 @@ namespace Sound
         public static SoundManager Instance; 
     
         [SerializeField] private AudioDatabase audioDatabase;
+        [SerializeField] private GameObject bgm;
+        [SerializeField] private GameObject sFX;
+        [SerializeField] private GameObject uI;
+        [SerializeField] private GameObject voice;
+        
         private Dictionary<AudioCategory, AudioSource> _audioSources;
+        private AudioReverbFilter _sFXReverbFilter;
 
         private void Awake()
         {
@@ -21,18 +28,21 @@ namespace Sound
                 
                 _audioSources = new Dictionary<AudioCategory, AudioSource>
                 {
-                    { AudioCategory.Bgm, gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.Player, gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.Tool, gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.ToolHit, gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.UI, gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.Voice, gameObject.AddComponent<AudioSource>() }
+                    { AudioCategory.Bgm, bgm.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Player, sFX.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Tool, sFX.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.ToolHit, sFX.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.UI, uI.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Voice, voice.gameObject.AddComponent<AudioSource>() }
                 };
                 
                 foreach (var src in _audioSources.Values)
                 {
                     src.loop = true;
                 }
+
+                _sFXReverbFilter = sFX.AddComponent<AudioReverbFilter>();
+                _sFXReverbFilter.reverbPreset = AudioReverbPreset.Off;
 
                 var audioData = audioDatabase.GetAudioData(AudioCategory.Player, "Walk");
                 _audioSources[AudioCategory.Player].clip = audioData.audioClips[0];
@@ -42,6 +52,7 @@ namespace Sound
             {
                 Destroy(gameObject);
             }
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void Start()
@@ -85,6 +96,23 @@ namespace Sound
         public void Stop(AudioCategory category)
         {
             _audioSources[category].Stop();
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (SceneDatabase.GetSceneType(scene.name) == SceneType.Underground)
+            {
+                _sFXReverbFilter.reverbPreset = AudioReverbPreset.Cave;
+            }
+            else if (SceneDatabase.GetSceneType(scene.name) == SceneType.Normal)
+            {
+                _sFXReverbFilter.reverbPreset = AudioReverbPreset.Off;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }
