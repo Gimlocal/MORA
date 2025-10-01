@@ -55,8 +55,8 @@ namespace Database
                     Player.Player.Instance.playerItem.canGoHome = true;
                     break;
                 case ProductEffect.Equipment:
-                    Player.Player.Instance.playerMining.tools.
-                        Add(Player.Player.Instance.gameObject.transform.Find(id.ToString()).GetComponent<Tools>());
+                    Player.Player.Instance.playerMining.
+                        AddTool(Player.Player.Instance.gameObject.transform.Find(id.ToString()).GetComponent<Tools>());
                     break;
                 case ProductEffect.Item:
                     Player.Player.Instance.playerItem.AddItem((ItemId)Enum.Parse(typeof(ItemId), id.ToString()));

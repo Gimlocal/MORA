@@ -14,11 +14,18 @@ namespace Player
         public bool canMine = true;
 
         private Tools _tool;
+        public event Action OnToolsChanged;
 
         private void Update()
         {
             if (!canMine) return;
             Mining();
+        }
+        
+        public void AddTool(Tools tool)
+        {
+            tools.Add(tool);
+            OnToolsChanged?.Invoke();
         }
 
         private void Mining()

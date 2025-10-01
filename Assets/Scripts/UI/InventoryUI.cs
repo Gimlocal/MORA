@@ -33,11 +33,7 @@ namespace UI
         private void OnEnable()
         {
             Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
-
-            LoadItemsFromPlayer();
-            DisplayItemList();
-            UpdateItemInfoUI();
-            UpdateGoldAmount();
+            RefreshInventory();
         }
 
         private void OnDisable()
@@ -62,16 +58,27 @@ namespace UI
         {
             base.ManageMoveSelection();
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (UIIndex + 1 <= _uiBases.Length - 1)
-                {
-                    GameManager.UIManager.RegisterUI(_uiBases[UIIndex + 1]);
-                    GameManager.UIManager.UnRegisterUI(this);
-                    _uiBases[UIIndex + 1].gameObject.SetActive(true);
-                    gameObject.SetActive(false);
-                }
+                int idx = Mod(UIIndex - 1, _uiBases.Length);
+                GameManager.UIManager.RegisterUI(_uiBases[idx]);
+                GameManager.UIManager.UnRegisterUI(this);
+                _uiBases[idx].gameObject.SetActive(true);
+                gameObject.SetActive(false);
             }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                int idx = Mod(UIIndex + 1, _uiBases.Length);
+                GameManager.UIManager.RegisterUI(_uiBases[idx]);
+                GameManager.UIManager.UnRegisterUI(this);
+                _uiBases[idx].gameObject.SetActive(true);
+                gameObject.SetActive(false);
+            }
+        }
+        
+        private int Mod(int a, int b)
+        {
+            return  (a % b + b) % b;
         }
 
         private void LoadItemsFromPlayer()

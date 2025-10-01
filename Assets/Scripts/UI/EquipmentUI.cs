@@ -30,7 +30,13 @@ namespace UI
         
         private void OnEnable()
         {
+            Player.Player.Instance.playerMining.OnToolsChanged += RefreshInventory;
             RefreshInventory();
+        }
+
+        private void OnDisable()
+        {
+            Player.Player.Instance.playerMining.OnToolsChanged -= RefreshInventory;
         }
         
         private void RefreshInventory()
@@ -52,26 +58,28 @@ namespace UI
         protected override void ManageMoveSelection()
         {
             base.ManageMoveSelection();
+            
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (UIIndex - 1 >= 0)
-                {
-                    GameManager.UIManager.RegisterUI(_uiBases[UIIndex - 1]);
-                    GameManager.UIManager.UnRegisterUI(this);
-                    _uiBases[UIIndex - 1].gameObject.SetActive(true);
-                    gameObject.SetActive(false);
-                }
+                int idx = Mod(UIIndex - 1, _uiBases.Length);
+                GameManager.UIManager.RegisterUI(_uiBases[idx]);
+                GameManager.UIManager.UnRegisterUI(this);
+                _uiBases[idx].gameObject.SetActive(true);
+                gameObject.SetActive(false);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (UIIndex + 1 <= _uiBases.Length - 1)
-                {
-                    GameManager.UIManager.RegisterUI(_uiBases[UIIndex + 1]);
-                    GameManager.UIManager.UnRegisterUI(this);
-                    _uiBases[UIIndex + 1].gameObject.SetActive(true);
-                    gameObject.SetActive(false);
-                }
+                int idx = Mod(UIIndex + 1, _uiBases.Length);
+                GameManager.UIManager.RegisterUI(_uiBases[idx]);
+                GameManager.UIManager.UnRegisterUI(this);
+                _uiBases[idx].gameObject.SetActive(true);
+                gameObject.SetActive(false);
             }
+        }
+
+        private int Mod(int a, int b)
+        {
+            return  (a % b + b) % b;
         }
 
         private void LoadItemsFromPlayer()
