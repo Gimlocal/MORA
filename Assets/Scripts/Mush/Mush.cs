@@ -132,7 +132,8 @@ namespace Mush
         private void OnDead()
         {
             _col.enabled = false;
-            GetComponent<ShadowCaster2D>().castsShadows = false;
+            var component = GetComponent<ShadowCaster2D>();
+            if (component != null) component.castsShadows = false;
             _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }
