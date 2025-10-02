@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sound;
 using Tool;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -30,7 +31,7 @@ namespace Player
 
         private void Mining()
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) && GameManager.UIManager.uIList.Count == 0)
             {
                 _tool = tools.Find(t => t.toolName == toolName);
                 _tool.gameObject.SetActive(true);

@@ -539,7 +539,7 @@ MonoBehaviour:
   top: 0
   layer: 0
   topLayer: 1
-  canvasOrPanel: {fileID: 1966668300513540233}
+  canvasOrPanel: {fileID: 4929538830678452113}
   scrollRect: {fileID: 6232205827676547501}
   itemButtonPrefab: {fileID: 5832680988436288368, guid: 6777fc545ee04b64a90037e2f12438b7, type: 3}
   itemListParent: {fileID: 6123895906241177818}
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   top: 0
   layer: 0
   topLayer: 1
-  canvasOrPanel: {fileID: 7470013166825743391}
+  canvasOrPanel: {fileID: 4929538830678452113}
   scrollRect: {fileID: 258730597791690636}
   itemButtonPrefab: {fileID: 5832680988436288368, guid: 6777fc545ee04b64a90037e2f12438b7, type: 3}
   itemListParent: {fileID: 4501212557525687413}
