@@ -6,6 +6,7 @@ using DG.Tweening;
 using Object;
 using Sound;
 using Tool;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 namespace Mush
@@ -131,6 +132,7 @@ namespace Mush
         private void OnDead()
         {
             _col.enabled = false;
+            GetComponent<ShadowCaster2D>().castsShadows = false;
             _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }

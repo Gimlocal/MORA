@@ -56,11 +56,11 @@ namespace UI
                 if (_itemKeys.Count <= 0) return;
                 if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
                 _player.playerItem.gold += itemDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
-                _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
                 if (_itemKeys[SelectedIndex] == ItemId.Lantern)
                 {
                     Player.Player.Instance.playerItem.hasLantern = false;
                 }
+                _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
                 SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 RefreshInventory();
             }
