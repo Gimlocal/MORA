@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Database;
 using Settings.Shader;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -45,6 +46,8 @@ namespace Player
         private float _initialMoveSpeed;
         private float _initialMaxCorruption;
         private float _initialPower;
+        
+        private PlayerData _playerData;
 
         private void Start()
         {
@@ -59,9 +62,9 @@ namespace Player
                 _mainCameraVolume.profile.TryGet(out _colorAdjustments);
             }
             
-            _initialMoveSpeed = moveSpeed;
-            _initialMaxCorruption = maxCorruption;
-            _initialPower = power;
+            _initialMoveSpeed = 3;
+            _initialMaxCorruption = 20;
+            _initialPower = 1;
         }
 
         public void Cleanse()
@@ -173,20 +176,18 @@ namespace Player
             Player.Instance.playerSprite.transform.DORotate(new Vector3(0, 0, angle), 0.3f).SetEase(Ease.InSine)
                 .OnComplete(() =>
                 {
+                    _playerData = DataManager.LoadData();
                     SceneManager.sceneLoaded += DeadSceneLoaded;
                     _colorAdjustments.postExposure.value = -10;
-                    SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(_playerData.sceneName);
                 });
         }
 
         private void DeadSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            moveSpeed = _initialMoveSpeed;
             corruption = 0;
+            DataManager.SetData(_playerData);
             OnCorruptionChanged?.Invoke();
-            maxCorruption = _initialMaxCorruption;
-            power = _initialPower;
-            Player.Instance.transform.position = new Vector3(7f, 0f, 0f);
             Player.Instance.playerSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
             _colorAdjustments.saturation.value = 0;
             DOTween.To(

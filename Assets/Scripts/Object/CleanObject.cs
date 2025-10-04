@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Object
 {
-    public class StoreObject : InteractableObject
+    public class CleanObject : InteractableObject
     {
         [SerializeField] private Canvas text;
         
