@@ -42,10 +42,6 @@ namespace Player
         private DepthOfField _depthOfField;
         private PostDistortion _postDistortion;
         private ColorAdjustments _colorAdjustments;
-
-        private float _initialMoveSpeed;
-        private float _initialMaxCorruption;
-        private float _initialPower;
         
         private PlayerData _playerData;
 
@@ -61,10 +57,6 @@ namespace Player
                 _mainCameraVolume.profile.TryGet(out _postDistortion);
                 _mainCameraVolume.profile.TryGet(out _colorAdjustments);
             }
-            
-            _initialMoveSpeed = 3;
-            _initialMaxCorruption = 20;
-            _initialPower = 1;
         }
 
         public void Cleanse()
