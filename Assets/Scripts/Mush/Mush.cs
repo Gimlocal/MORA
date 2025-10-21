@@ -7,6 +7,7 @@ using Object;
 using Sound;
 using Tool;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Mush
@@ -20,14 +21,18 @@ namespace Mush
         [SerializeField] private Material pieceMaterial;
         private float _hitCount;
         private float _maxHp;
-        private SpriteRenderer _sR;
         private Collider2D _col;
         private Coroutine _flickCoroutine;
         private float _lastMiningTime;
+        
+        public SpriteRenderer sR;
+        
+        [HideInInspector]
+        public MushRarity rarity;
 
         private void Awake()
         {
-            _sR = GetComponent<SpriteRenderer>();
+            sR = GetComponent<SpriteRenderer>();
             _col = GetComponent<Collider2D>();
             _maxHp = hp;
         }
@@ -97,13 +102,13 @@ namespace Mush
 
         private IEnumerator FlickAlpha(float duration = 0.1f)
         {
-            Color originalColor = _sR.color;
+            Color originalColor = sR.color;
             originalColor.a = 1f;
             Color destColor = originalColor;
             destColor.a = 0.5f;
-            _sR.color = destColor;
+            sR.color = destColor;
             yield return new WaitForSeconds(duration);
-            _sR.color = originalColor; 
+            sR.color = originalColor; 
         }
 
         private void DropPiece()
@@ -115,8 +120,8 @@ namespace Mush
             GameObject dropPiece = new GameObject("Piece");
             dropPiece.transform.position = transform.position;
             SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
-            sR.sprite = _sR.sprite;
-            sR.sortingOrder = _sR.sortingOrder;
+            sR.sprite = this.sR.sprite;
+            sR.sortingOrder = this.sR.sortingOrder;
             sR.material = pieceMaterial;
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
             cd.radius = 0.12f;
@@ -134,7 +139,7 @@ namespace Mush
             _col.enabled = false;
             var component = GetComponent<ShadowCaster2D>();
             if (component != null) component.castsShadows = false;
-            _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
+            sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }
 }
