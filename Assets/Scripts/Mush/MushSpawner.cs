@@ -40,7 +40,7 @@ namespace Mush
         {
             new MushType { Rarity = MushRarity.Normal, Probability = 91f },
             new MushType { Rarity = MushRarity.Gold,   Probability = 6f },
-            new MushType { Rarity = MushRarity.Boom,   Probability = 300f },
+            new MushType { Rarity = MushRarity.Boom,   Probability = 3f },
         };
 
         private Dictionary<MushRarity, Color> _mushColors = new()
