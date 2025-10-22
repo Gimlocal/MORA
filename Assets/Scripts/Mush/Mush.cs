@@ -20,6 +20,7 @@ namespace Mush
         [SerializeField] private float dropInterval;
         [SerializeField] private Material pieceMaterial;
         [SerializeField] private Sprite goldSprite;
+        [SerializeField] private GameObject explosionEffect;
         
         private float _hitCount;
         private float _maxHp;
@@ -175,6 +176,13 @@ namespace Mush
         private void OnDead()
         {
             _col.enabled = false;
+            if (rarity == MushRarity.Boom)
+            {
+                GameObject mushExplosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                mushExplosion.GetComponent<MushExplosion>().amount = mushDatabase.GetItemById(mushId).value * 10;
+                SoundManager.Instance.Play(AudioCategory.Effect, "MushExplosion");
+                mushExplosion.GetComponent<Collider2D>().enabled = true;
+            }
             var component = GetComponent<ShadowCaster2D>();
             if (component != null) component.castsShadows = false;
             _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });

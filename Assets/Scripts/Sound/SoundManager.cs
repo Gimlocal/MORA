@@ -33,7 +33,8 @@ namespace Sound
                     { AudioCategory.Tool, sFX.gameObject.AddComponent<AudioSource>() },
                     { AudioCategory.ToolHit, sFX.gameObject.AddComponent<AudioSource>() },
                     { AudioCategory.UI, uI.gameObject.AddComponent<AudioSource>() },
-                    { AudioCategory.Voice, voice.gameObject.AddComponent<AudioSource>() }
+                    { AudioCategory.Voice, voice.gameObject.AddComponent<AudioSource>() },
+                    { AudioCategory.Effect, sFX.gameObject.AddComponent<AudioSource>() },
                 };
                 
                 foreach (var src in _audioSources.Values)

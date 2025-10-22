@@ -11,7 +11,8 @@ namespace Database
         Tool,
         ToolHit,
         UI, 
-        Voice
+        Voice,
+        Effect,
     }
 
     [Serializable]

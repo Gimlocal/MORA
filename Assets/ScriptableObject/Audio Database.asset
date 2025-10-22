@@ -73,3 +73,12 @@ MonoBehaviour:
       volume: 0.25
   - audioCategory: 5
     audioData: []
+  - audioCategory: 6
+    audioData:
+    - key: MushExplosion
+      audioClips:
+      - {fileID: 8300000, guid: 82ec1c823f2f82e4fbedf4c970201dc6, type: 3}
+      - {fileID: 8300000, guid: ba9c412c6e046c84f85d97a0c157a957, type: 3}
+      - {fileID: 8300000, guid: 77c985ae5262edb42a9df9232f05e947, type: 3}
+      - {fileID: 8300000, guid: cdcf342a36c8c5244a22dec5e0a47876, type: 3}
+      volume: 0.3
