@@ -69,6 +69,12 @@ namespace Player
             OnItemChanged?.Invoke();
         }
 
+        public void AddGold(int amount)
+        {
+            gold += amount;
+            OnGoldChanged?.Invoke();
+        }
+
         public void UseGold(int amount)
         {
             gold -= amount;

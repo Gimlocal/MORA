@@ -144,6 +144,8 @@ MonoBehaviour:
   hp: 24
   dropInterval: 4
   pieceMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  goldSprite: {fileID: 21300000, guid: 99af61578a2317c449e29344b2b17479, type: 3}
+  rarity: 0
 --- !u!114 &-6651645478187025403
 MonoBehaviour:
   m_ObjectHideFlags: 0

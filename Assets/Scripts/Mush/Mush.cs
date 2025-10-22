@@ -19,20 +19,22 @@ namespace Mush
         [SerializeField] private float hp;
         [SerializeField] private float dropInterval;
         [SerializeField] private Material pieceMaterial;
+        [SerializeField] private Sprite goldSprite;
+        
         private float _hitCount;
         private float _maxHp;
-        private Collider2D _col;
-        private Coroutine _flickCoroutine;
         private float _lastMiningTime;
         
-        public SpriteRenderer sR;
+        private SpriteRenderer _sR;
+        private Collider2D _col;
+        private Coroutine _flickCoroutine;
         
         [HideInInspector]
         public MushRarity rarity;
 
         private void Awake()
         {
-            sR = GetComponent<SpriteRenderer>();
+            _sR = GetComponent<SpriteRenderer>();
             _col = GetComponent<Collider2D>();
             _maxHp = hp;
         }
@@ -83,6 +85,10 @@ namespace Mush
                 for (int i = 0; i < dropCount; i++)
                 {
                     DropPiece();
+                    if (rarity == MushRarity.Gold)
+                    {
+                        DropGoldPiece();
+                    }
                 }
 
                 hp -= power;
@@ -102,13 +108,13 @@ namespace Mush
 
         private IEnumerator FlickAlpha(float duration = 0.1f)
         {
-            Color originalColor = sR.color;
+            Color originalColor = _sR.color;
             originalColor.a = 1f;
             Color destColor = originalColor;
             destColor.a = 0.5f;
-            sR.color = destColor;
+            _sR.color = destColor;
             yield return new WaitForSeconds(duration);
-            sR.color = originalColor; 
+            _sR.color = originalColor; 
         }
 
         private void DropPiece()
@@ -119,14 +125,17 @@ namespace Mush
             // piece 생성
             GameObject dropPiece = new GameObject("Piece");
             dropPiece.transform.position = transform.position;
+            
             SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
-            sR.sprite = this.sR.sprite;
-            sR.sortingOrder = this.sR.sortingOrder;
+            sR.sprite = _sR.sprite;
+            sR.sortingOrder = _sR.sortingOrder;
             sR.material = pieceMaterial;
+            
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
             cd.radius = 0.12f;
             cd.isTrigger = true;
             cd.enabled = false;
+            
             MushPiece mushPiece = dropPiece.AddComponent<MushPiece>();
             mushPiece.mushInfo = mushDatabase.GetItemById(mushId);
             
@@ -134,12 +143,41 @@ namespace Mush
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});
         }
 
+        private void DropGoldPiece()
+        {
+            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            Vector3 dropPos = transform.position + (Vector3)randomDir;
+            Vector3 midDropPos = (transform.position + dropPos * 2) / 3;
+            
+            GameObject dropGoldPiece = new GameObject("GoldPiece");
+            dropGoldPiece.transform.position = transform.position;
+            dropGoldPiece.transform.localScale *= 0.2f;
+            
+            SpriteRenderer sR = dropGoldPiece.AddComponent<SpriteRenderer>();
+            sR.sprite = goldSprite;
+            sR.sortingOrder = _sR.sortingOrder;
+            sR.material = pieceMaterial;
+            
+            CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
+            cd.radius = 0.12f;
+            cd.isTrigger = true;
+            cd.enabled = false;
+            
+            MushGoldPiece mushGoldPiece = dropGoldPiece.AddComponent<MushGoldPiece>();
+            mushGoldPiece.mushInfo = mushDatabase.GetItemById(mushId);
+            
+            Sequence seq = DOTween.Sequence();
+            seq.Append(dropGoldPiece.transform.DOJump(midDropPos, 0.15f, 1, 0.15f));
+            seq.Append(dropGoldPiece.transform.DOJump(dropPos, 0.4f, 1, 0.4f));
+            seq.OnComplete(() => { dropGoldPiece.GetComponent<Collider2D>().enabled = true;});
+        }
+
         private void OnDead()
         {
             _col.enabled = false;
             var component = GetComponent<ShadowCaster2D>();
             if (component != null) component.castsShadows = false;
-            sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
+            _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }
 }
