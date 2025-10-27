@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ namespace Cam
     public class CameraManager : MonoBehaviour
     {
         public static CameraManager Instance { get; private set; }
+        public CinemachineCamera cinemachineCamera;
 
         private void Awake()
         {
