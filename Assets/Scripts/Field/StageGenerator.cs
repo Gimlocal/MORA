@@ -28,7 +28,7 @@ namespace Field
         {
             public Vector2Int GridPos;
             public DoorMask Direction;
-            public RoomType Type;
+            public RoomInfo Type;
             public GameObject Room;
         }
 
@@ -37,7 +37,7 @@ namespace Field
         private void Awake()
         {
             SetSeed();
-            Generate();
+            GenerateRoom();
         }
 
         private void SetSeed()
@@ -46,31 +46,42 @@ namespace Field
             _rng = new System.Random(seed);
         }
 
-        private void Generate()
+        private void GenerateRoom()
         {
             // 방 초기화
             foreach (Transform c in transform) Destroy(c.gameObject);
             _nodes.Clear();
 
-            // 방 개수 및 시작위치 설정
             int targetRooms = Mathf.Clamp(_rng.Next(minRooms, maxRooms + 1), 1, gridSize.x * gridSize.y);
 
             Vector2Int start = new Vector2Int(_rng.Next(gridSize.x), _rng.Next(gridSize.y));
             AddNode(start);
 
-            // 시작방으로부터 확장
+            // 네 방향 (위, 오른쪽, 아래, 왼쪽)
             Vector2Int[] four = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
+            // 각 노드가 어떤 방향으로 확장됐는지 기록
+            Dictionary<Vector2Int, Vector2Int> lastDirOf = new(); 
+
             while (_nodes.Count < targetRooms)
             {
                 var baseCell = _nodes.Keys.ElementAt(_rng.Next(_nodes.Count));
-                var dir = four[_rng.Next(4)];
+                Vector2Int prevDir = Vector2Int.zero;
+                if (lastDirOf.TryGetValue(baseCell, out var value))
+                {
+                    prevDir = value;
+                }
+                
+                Vector2Int dir = WeightedDirection(four, prevDir);
+
                 var next = baseCell + dir;
                 if (!Inside(next)) continue;
                 if (_nodes.ContainsKey(next)) continue;
+
                 AddNode(next);
+                lastDirOf[next] = dir; // 다음 노드도 이동 방향 기록
             }
 
-            // 보스방을 시작방으로부터 제일 먼 곳으로 설정
+            // 가장 먼 곳 = 보스방
             Vector2Int boss = start;
             int dist = -1;
             foreach (var k in _nodes.Keys)
@@ -79,7 +90,7 @@ namespace Field
                 if (d > dist) { dist = d; boss = k; }
             }
 
-            // 비트마스크로 문 방향 설정
+            // 문 방향 세팅
             foreach (var n in _nodes.Values)
             {
                 DoorMask m = DoorMask.None;
@@ -89,10 +100,8 @@ namespace Field
                 if (_nodes.ContainsKey(n.GridPos + Vector2Int.left)) m |= DoorMask.W;
                 n.Direction = m;
             }
-            
-            AssignTypes(start, boss);
 
-            // 5) 인스턴스화 & 문 활성화
+            AssignTypes(start, boss);
             BuildWorld();
 
             player.transform.position = new Vector3(
@@ -102,6 +111,38 @@ namespace Field
             
             Debug.Log($"GridStage generated: seed {seed}, rooms {_nodes.Count}, start {start}, boss {boss}");
         }
+        
+        // 가중치 기반 방향 선택
+        private Vector2Int WeightedDirection(Vector2Int[] dirs, Vector2Int prevDir)
+        {
+            float[] weights = { 1f, 1f, 1f, 1f };
+
+            if (prevDir != Vector2Int.zero)
+            {
+                for (int i = 0; i < dirs.Length; i++)
+                {
+                    // 이전과 같은 방향 → 가중치 크게
+                    if (dirs[i] == prevDir)
+                        weights[i] = 3.5f;
+                    // 반대 방향 → 가중치 작게
+                    else if (dirs[i] == -prevDir)
+                        weights[i] = 0.5f;
+                }
+            }
+
+            // 가중치 랜덤 선택
+            float total = weights.Sum();
+            float rand = (float)_rng.NextDouble() * total;
+            float cum = 0f;
+            for (int i = 0; i < dirs.Length; i++)
+            {
+                cum += weights[i];
+                if (rand <= cum)
+                    return dirs[i];
+            }
+            return dirs[0];
+        }
+
 
         private bool Inside(Vector2Int g) => (uint)g.x < (uint)gridSize.x && (uint)g.y < (uint)gridSize.y;
 
@@ -113,7 +154,7 @@ namespace Field
         // 방 타입 설정
         private void AssignTypes(Vector2Int start, Vector2Int boss)
         {
-            var all = roomDB.Rooms ?? new List<RoomType>();
+            var all = roomDB.Rooms ?? new List<RoomInfo>();
             if (all.Count == 0)
             {
                 Debug.LogError("RoomDatabase is empty"); 
@@ -121,9 +162,9 @@ namespace Field
             }
 
             // 시작, 보스, 일반방들을 분리
-            var startCandidates = all.Where(r => r.isStart).ToList();
-            var bossCandidates  = all.Where(r => r.isBoss).ToList();
-            var normalCandidates = all.Where(r => !r.isStart && !r.isBoss).ToList();
+            var startCandidates = all.Where(r => r.roomType == RoomType.Start).ToList();
+            var bossCandidates  = all.Where(r => r.roomType == RoomType.Boss).ToList();
+            var normalCandidates = all.Where(r => r.roomType == RoomType.Normal).ToList();
 
             // 특수방이 사용됐는지 체크
             var usedUniques = new HashSet<int>();
@@ -147,9 +188,9 @@ namespace Field
         }
 
         // 문 방향을 모두 만족하는 후보만
-        private RoomType WeightedPickWithDoors(List<RoomType> candidates, DoorMask need, HashSet<int> usedUniques)
+        private RoomInfo WeightedPickWithDoors(List<RoomInfo> candidates, DoorMask need, HashSet<int> usedUniques)
         {
-            var pool = new List<RoomType>();
+            var pool = new List<RoomInfo>();
             foreach (var r in candidates)
             {
                 if ((r.allowedDoors & need) != need)
@@ -180,9 +221,9 @@ namespace Field
         }
 
         // 문 방향이 안맞아도 사용
-        private RoomType WeightedPickRelaxed(List<RoomType> candidates, HashSet<int> usedUniques)
+        private RoomInfo WeightedPickRelaxed(List<RoomInfo> candidates, HashSet<int> usedUniques)
         {
-            var pool = new List<RoomType>();
+            var pool = new List<RoomInfo>();
             foreach (var r in candidates)
             {
                 if (r.uniquePerStage && usedUniques.Contains(r.id))
@@ -233,6 +274,11 @@ namespace Field
                     door.wall.enabled = !on;
                 }
             }
+        }
+
+        private void GenerateMush()
+        {
+            
         }
     }
 }

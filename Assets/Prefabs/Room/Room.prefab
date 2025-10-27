@@ -1634,6 +1634,10 @@ PrefabInstance:
       value: CinemachineCamera
       objectReference: {fileID: 0}
     - target: {fileID: 4150875979825158103, guid: badf642fde0207e4e8b33109934a1166, type: 3}
+      propertyPath: Damping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150875979825158103, guid: badf642fde0207e4e8b33109934a1166, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}

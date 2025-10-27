@@ -17,23 +17,20 @@ MonoBehaviour:
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
-    isStart: 1
-    isBoss: 0
+    roomType: 0
     canSpawnMinerals: 0
     roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
   - id: 1
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
-    isStart: 0
-    isBoss: 1
+    roomType: 1
     canSpawnMinerals: 1
     roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
   - id: 2
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
-    isStart: 0
-    isBoss: 0
+    roomType: 2
     canSpawnMinerals: 1
     roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
