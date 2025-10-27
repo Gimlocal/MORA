@@ -690,6 +690,10 @@ PrefabInstance:
       value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 3903974639083272252, guid: fd9c34a51d22aee45be93ab5efb674d9, type: 3}
+      propertyPath: CustomBlends
+      value: 
+      objectReference: {fileID: 11400000, guid: 58831b881ce552b4abb42296f01ee0fd, type: 2}
+    - target: {fileID: 3903974639083272252, guid: fd9c34a51d22aee45be93ab5efb674d9, type: 3}
       propertyPath: DefaultBlend.Time
       value: 0.3
       objectReference: {fileID: 0}
@@ -1006,7 +1010,7 @@ MonoBehaviour:
   gridSize: {x: 6, y: 6}
   minRooms: 10
   maxRooms: 18
-  roomStride: {x: 16.48, y: 9.27}
+  roomStride: {x: 16.64, y: 9.36}
   randomSeed: 1
   seed: 0
 --- !u!1 &1829938233

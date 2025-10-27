@@ -230,6 +230,7 @@ namespace Field
                 {
                     bool on = (n.Direction & door.direction) != 0;
                     door.gameObject.SetActive(on);
+                    door.wall.enabled = !on;
                 }
             }
         }
