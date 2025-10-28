@@ -49,9 +49,23 @@ MonoBehaviour:
     roomType: 3
     roomPrefab: {fileID: 5558476489041337602, guid: 4842b98a673c0b049b25755f57ffd4c8, type: 3}
   - id: 5
-    roomName: Trap
+    roomName: Mush?
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
     roomType: 4
     roomPrefab: {fileID: 5558476489041337602, guid: 9af46dd7275532a4db36690c7fefe4d0, type: 3}
+  - id: 6
+    roomName: Gas!
+    weight: 50
+    allowedDoors: -1
+    uniquePerStage: 1
+    roomType: 4
+    roomPrefab: {fileID: 5558476489041337602, guid: 2d4d710c2147cbd419083f6fe52f270a, type: 3}
+  - id: 7
+    roomName: Gold
+    weight: 50
+    allowedDoors: -1
+    uniquePerStage: 1
+    roomType: 2
+    roomPrefab: {fileID: 5558476489041337602, guid: dd9d6cb65acac7544be81d7cf212857c, type: 3}
