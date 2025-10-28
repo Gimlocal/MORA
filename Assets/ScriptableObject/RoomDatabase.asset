@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rooms:
   - id: 0
+    roomName: Start!
     weight: 100
     allowedDoors: -1
-    uniquePerStage: 0
+    uniquePerStage: 1
     roomType: 0
-    canSpawnMinerals: 0
     roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
   - id: 1
+    roomName: Boss?
     weight: 100
     allowedDoors: -1
-    uniquePerStage: 0
+    uniquePerStage: 1
     roomType: 1
-    canSpawnMinerals: 1
-    roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
+    roomPrefab: {fileID: 5558476489041337602, guid: 35eee26ea2bc0fd418e9fc68a5b1b2ae, type: 3}
   - id: 2
+    roomName: Bush
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
     roomType: 2
-    canSpawnMinerals: 1
-    roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
+    roomPrefab: {fileID: 5558476489041337602, guid: cbce7eaee7ed19a47afabee9091f431f, type: 3}

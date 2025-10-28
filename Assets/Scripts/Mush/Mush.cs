@@ -22,6 +22,8 @@ namespace Mush
         [SerializeField] private Sprite goldSprite;
         [SerializeField] private GameObject explosionEffect;
         
+        public MushRarity rarity;
+        
         private float _hitCount;
         private float _maxHp;
         private float _lastMiningTime;
@@ -30,8 +32,6 @@ namespace Mush
         private Collider2D _col;
         private Coroutine _flickCoroutine;
         
-        [HideInInspector]
-        public MushRarity rarity;
 
         private void Awake()
         {

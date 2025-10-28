@@ -275,10 +275,5 @@ namespace Field
                 }
             }
         }
-
-        private void GenerateMush()
-        {
-            
-        }
     }
 }

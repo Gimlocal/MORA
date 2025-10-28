@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 66714701}
   roomDB: {fileID: 11400000, guid: 6efdd763ff36430408a4e54d79a62fce, type: 2}
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 16, y: 16}
   minRooms: 7
   maxRooms: 11
   roomStride: {x: 16.64, y: 9.36}

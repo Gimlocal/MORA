@@ -36,9 +36,8 @@ namespace Cam
             PlayerMovement movement = Player.Player.Instance.playerMovement;
             movement.canMove = false;
             movement.StopPlayer();
-            yield return new WaitForSeconds(_brain.DefaultBlend.Time);
+            yield return new WaitForSeconds(_brain.DefaultBlend.Time * 1.5f);
             movement.canMove = true;
-            
         }
     }
 }
