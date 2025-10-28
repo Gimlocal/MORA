@@ -9,6 +9,7 @@ namespace Database
     public class RoomInfo
     {
         public int id;
+        public int stage = 1;
         public string roomName;
         [Range(0,100)] public int weight = 100;
         public DoorMask allowedDoors = DoorMask.All;

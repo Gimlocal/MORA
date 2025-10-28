@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rooms:
   - id: 0
+    stage: 1
     roomName: Start!
     weight: 100
     allowedDoors: -1
@@ -21,6 +22,7 @@ MonoBehaviour:
     roomType: 0
     roomPrefab: {fileID: 5558476489041337602, guid: b9f61fa17e394d64fb7ac457e2a66097, type: 3}
   - id: 1
+    stage: 1
     roomName: Boss?
     weight: 100
     allowedDoors: -1
@@ -28,6 +30,7 @@ MonoBehaviour:
     roomType: 1
     roomPrefab: {fileID: 5558476489041337602, guid: 35eee26ea2bc0fd418e9fc68a5b1b2ae, type: 3}
   - id: 2
+    stage: 1
     roomName: Grass
     weight: 100
     allowedDoors: -1
@@ -35,13 +38,15 @@ MonoBehaviour:
     roomType: 2
     roomPrefab: {fileID: 5558476489041337602, guid: cbce7eaee7ed19a47afabee9091f431f, type: 3}
   - id: 3
+    stage: 1
     roomName: Bush
-    weight: 100
+    weight: 80
     allowedDoors: -1
     uniquePerStage: 0
     roomType: 2
     roomPrefab: {fileID: 5558476489041337602, guid: c0a7f3b30dd06884289a2a047a4dfcd3, type: 3}
   - id: 4
+    stage: 1
     roomName: Coin
     weight: 100
     allowedDoors: -1
@@ -49,6 +54,7 @@ MonoBehaviour:
     roomType: 3
     roomPrefab: {fileID: 5558476489041337602, guid: 4842b98a673c0b049b25755f57ffd4c8, type: 3}
   - id: 5
+    stage: 1
     roomName: Mush?
     weight: 100
     allowedDoors: -1
@@ -56,6 +62,7 @@ MonoBehaviour:
     roomType: 4
     roomPrefab: {fileID: 5558476489041337602, guid: 9af46dd7275532a4db36690c7fefe4d0, type: 3}
   - id: 6
+    stage: 1
     roomName: Gas!
     weight: 50
     allowedDoors: -1
@@ -63,9 +70,26 @@ MonoBehaviour:
     roomType: 4
     roomPrefab: {fileID: 5558476489041337602, guid: 2d4d710c2147cbd419083f6fe52f270a, type: 3}
   - id: 7
+    stage: 1
     roomName: Gold
-    weight: 50
+    weight: 20
     allowedDoors: -1
-    uniquePerStage: 1
+    uniquePerStage: 0
     roomType: 2
     roomPrefab: {fileID: 5558476489041337602, guid: dd9d6cb65acac7544be81d7cf212857c, type: 3}
+  - id: 8
+    stage: 1
+    roomName: Stream
+    weight: 50
+    allowedDoors: -1
+    uniquePerStage: 0
+    roomType: 2
+    roomPrefab: {fileID: 5558476489041337602, guid: b9de4906df1c35e4ba7a301a4d4d2ba4, type: 3}
+  - id: 9
+    stage: 1
+    roomName: Gold Stream
+    weight: 10
+    allowedDoors: -1
+    uniquePerStage: 0
+    roomType: 2
+    roomPrefab: {fileID: 5558476489041337602, guid: cb932f4d451390f4a8e65bcd9c26e7fb, type: 3}

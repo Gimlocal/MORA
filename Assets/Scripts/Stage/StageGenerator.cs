@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Database;
 using UnityEngine;
+using static UnityEngine.Mathf;
 
 namespace Stage
 {
@@ -21,8 +22,9 @@ namespace Stage
         [Header("Random")]
         public bool randomSeed = true;
         public int seed;
-        
-        [Header("Room Settings")]
+
+        [Header("Room Settings")] 
+        [SerializeField] private int stage = 1;
         [SerializeField, Min(0)] private int specialCount = 2;
         [SerializeField, Range(0f, 1f)] private float normalBias = 0.7f;
 
@@ -56,7 +58,7 @@ namespace Stage
             foreach (Transform c in transform) Destroy(c.gameObject);
             _nodes.Clear();
 
-            int targetRooms = Mathf.Clamp(_rng.Next(minRooms, maxRooms + 1), 1, gridSize.x * gridSize.y);
+            int targetRooms = Clamp(_rng.Next(minRooms, maxRooms + 1), 1, gridSize.x * gridSize.y);
 
             Vector2Int start = new Vector2Int(_rng.Next(gridSize.x), _rng.Next(gridSize.y));
             AddNode(start);
@@ -87,10 +89,10 @@ namespace Stage
 
             // 가장 먼 곳 = 보스방
             Vector2Int boss = start;
-            int dist = -1;
+            double dist = -1;
             foreach (var k in _nodes.Keys)
             {
-                int d = Mathf.Abs(k.x - start.x) + Mathf.Abs(k.y - start.y);
+                double d = Sqrt(Pow(Abs(k.x - start.x),2) + Pow(Abs(k.y - start.y),2 ));
                 if (d > dist) { dist = d; boss = k; }
             }
 
@@ -166,11 +168,11 @@ namespace Stage
             }
 
             // 시작, 보스, 일반방들을 분리
-            var startCandidates = all.Where(r => r.roomType == RoomType.Start).ToList();
-            var bossCandidates  = all.Where(r => r.roomType == RoomType.Boss).ToList();
-            var normalCandidates = all.Where(r => r.roomType == RoomType.Normal).ToList();
-            var specialCandidates = all.Where(r => r.roomType == RoomType.Special).ToList();
-            var trapCandidates = all.Where(r => r.roomType == RoomType.Trap).ToList();
+            var startCandidates = all.Where(r => r.roomType == RoomType.Start && r.stage == stage).ToList();
+            var bossCandidates  = all.Where(r => r.roomType == RoomType.Boss && r.stage == stage).ToList();
+            var normalCandidates = all.Where(r => r.roomType == RoomType.Normal && r.stage == stage).ToList();
+            var specialCandidates = all.Where(r => r.roomType == RoomType.Special && r.stage == stage).ToList();
+            var trapCandidates = all.Where(r => r.roomType == RoomType.Trap && r.stage == stage).ToList();
 
             // 특수방이 사용됐는지 체크
             var usedUniques = new HashSet<int>();
@@ -183,7 +185,7 @@ namespace Stage
                 .Where(k => k != start && k != boss)
                 .ToList();
             
-            int specialsToPlace = Mathf.Min(specialCount, remainingKeys.Count);
+            int specialsToPlace = Min(specialCount, remainingKeys.Count);
 
             ShuffleInPlace(remainingKeys); // 아무 셔플 메서드나 사용
             
@@ -234,7 +236,7 @@ namespace Stage
                     continue;
                 }
                 
-                int w = Mathf.Max(1, r.weight);
+                int w = Max(1, r.weight);
                 for (int i = 0; i < w; i++)
                 {
                     pool.Add(r);
@@ -263,7 +265,7 @@ namespace Stage
                     continue;
                 }
                 
-                int w = Mathf.Max(1, r.weight);
+                int w = Max(1, r.weight);
                 for (int i = 0; i < w; i++)
                 {
                     pool.Add(r);
