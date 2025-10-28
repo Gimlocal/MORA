@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Field
+namespace Stage
 {
     public class FloorGenerator : MonoBehaviour
     {

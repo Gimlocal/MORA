@@ -3,7 +3,7 @@ using System.Linq;
 using Database;
 using UnityEngine;
 
-namespace Field
+namespace Stage
 {
     public class StageGenerator : MonoBehaviour
     {
