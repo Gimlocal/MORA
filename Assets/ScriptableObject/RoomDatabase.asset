@@ -28,9 +28,30 @@ MonoBehaviour:
     roomType: 1
     roomPrefab: {fileID: 5558476489041337602, guid: 35eee26ea2bc0fd418e9fc68a5b1b2ae, type: 3}
   - id: 2
-    roomName: Bush
+    roomName: Grass
     weight: 100
     allowedDoors: -1
     uniquePerStage: 0
     roomType: 2
     roomPrefab: {fileID: 5558476489041337602, guid: cbce7eaee7ed19a47afabee9091f431f, type: 3}
+  - id: 3
+    roomName: Bush
+    weight: 100
+    allowedDoors: -1
+    uniquePerStage: 0
+    roomType: 2
+    roomPrefab: {fileID: 5558476489041337602, guid: c0a7f3b30dd06884289a2a047a4dfcd3, type: 3}
+  - id: 4
+    roomName: Coin
+    weight: 100
+    allowedDoors: -1
+    uniquePerStage: 0
+    roomType: 3
+    roomPrefab: {fileID: 5558476489041337602, guid: 4842b98a673c0b049b25755f57ffd4c8, type: 3}
+  - id: 5
+    roomName: Trap
+    weight: 100
+    allowedDoors: -1
+    uniquePerStage: 0
+    roomType: 4
+    roomPrefab: {fileID: 5558476489041337602, guid: 9af46dd7275532a4db36690c7fefe4d0, type: 3}

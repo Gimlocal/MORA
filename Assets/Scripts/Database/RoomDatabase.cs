@@ -22,6 +22,8 @@ namespace Database
         Start,
         Boss,
         Normal,
+        Special,
+        Trap,
     }
     
     [Flags]

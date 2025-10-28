@@ -21,6 +21,10 @@ namespace Field
         [Header("Random")]
         public bool randomSeed = true;
         public int seed;
+        
+        [Header("Room Settings")]
+        [SerializeField, Min(0)] private int specialCount = 2;
+        [SerializeField, Range(0f, 1f)] private float normalBias = 0.7f;
 
         private System.Random _rng;
         
@@ -165,6 +169,8 @@ namespace Field
             var startCandidates = all.Where(r => r.roomType == RoomType.Start).ToList();
             var bossCandidates  = all.Where(r => r.roomType == RoomType.Boss).ToList();
             var normalCandidates = all.Where(r => r.roomType == RoomType.Normal).ToList();
+            var specialCandidates = all.Where(r => r.roomType == RoomType.Special).ToList();
+            var trapCandidates = all.Where(r => r.roomType == RoomType.Trap).ToList();
 
             // 특수방이 사용됐는지 체크
             var usedUniques = new HashSet<int>();
@@ -173,15 +179,41 @@ namespace Field
             _nodes[start].Type = WeightedPickWithDoors(startCandidates, _nodes[start].Direction, usedUniques);
             _nodes[boss].Type  = WeightedPickWithDoors(bossCandidates,  _nodes[boss].Direction,  usedUniques);
 
+            var remainingKeys = _nodes.Keys
+                .Where(k => k != start && k != boss)
+                .ToList();
+            
+            int specialsToPlace = Mathf.Min(specialCount, remainingKeys.Count);
+
+            ShuffleInPlace(remainingKeys); // 아무 셔플 메서드나 사용
+            
+            for (int i = 0, placed = 0; i < remainingKeys.Count && placed < specialsToPlace; i++)
+            {
+                var key = remainingKeys[i];
+                var dir = _nodes[key].Direction;
+
+                var picked = WeightedPickWithDoors(specialCandidates, dir, usedUniques)
+                             ?? WeightedPickRelaxed(specialCandidates, usedUniques);
+
+                if (picked == null) continue;
+
+                _nodes[key].Type = picked;
+                Debug.Log(key);
+                placed++;
+            }
+            
             // 나머지
             foreach (var kv in _nodes)
             {
-                if (kv.Key == start || kv.Key == boss) continue;
-                var picked = WeightedPickWithDoors(normalCandidates, kv.Value.Direction, usedUniques);
-
-                // 전부 실패 시 문 제약 완화 후 재시도
-                if (picked == null)
-                    picked = WeightedPickRelaxed(normalCandidates, usedUniques);
+                if (kv.Value.Type != null) continue;
+                float prob = (float)_rng.NextDouble();
+                
+                var picked = (prob < normalBias ? 
+                    WeightedPickWithDoors(normalCandidates, kv.Value.Direction, usedUniques) :
+                    WeightedPickWithDoors(trapCandidates, kv.Value.Direction, usedUniques)) ?? 
+                             (prob < normalBias ?
+                    WeightedPickRelaxed(normalCandidates, usedUniques) :
+                    WeightedPickRelaxed(trapCandidates, usedUniques));
 
                 kv.Value.Type = picked;
             }
@@ -247,6 +279,15 @@ namespace Field
                 usedUniques.Add(chosen.id);
             }
             return chosen;
+        }
+        
+        private void ShuffleInPlace<T>(IList<T> list)
+        {
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                int j = _rng.Next(i, list.Count);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
         }
 
         private void BuildWorld()
