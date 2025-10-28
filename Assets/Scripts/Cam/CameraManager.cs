@@ -21,10 +21,13 @@ namespace Cam
             Instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
+            cinemachineCamera ??= FindAnyObjectByType<CinemachineCamera>();
         }
         
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            cinemachineCamera ??= FindAnyObjectByType<CinemachineCamera>();
+            
             if (scene.buildIndex == 0)
             {
                 Destroy(gameObject);

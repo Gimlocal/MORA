@@ -14,9 +14,9 @@ namespace Tool
 
         private IEnumerator DrillCoroutine()
         {
+            SoundManager.Instance.Play(AudioCategory.Tool, audioKey, true);
             while (Input.GetKey(KeyCode.Z))
             {
-                SoundManager.Instance.Play(AudioCategory.Tool, audioKey, true);
                 transform.localScale = Player.Player.Instance.playerMovement.lastMovementX > 0 ?
                     new Vector3(0.6f + Random.Range(-0.1f, 0.1f) * Player.Player.Instance.transform.localScale.x, 0.6f + Random.Range(-0.1f, 0.1f) * Player.Player.Instance.transform.localScale.x, 1) :
                     new Vector3(-0.6f + Random.Range(-0.1f, 0.1f) * Player.Player.Instance.transform.localScale.x, 0.6f + Random.Range(-0.1f, 0.1f) * Player.Player.Instance.transform.localScale.x, 1);

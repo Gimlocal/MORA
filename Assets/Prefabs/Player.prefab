@@ -249,7 +249,7 @@ MonoBehaviour:
   moveAcceleration: 10
   axeSpeed: 0.25
   corruption: 0
-  maxCorruption: 20
+  maxCorruption: 100
   power: 1
   moveSpeedPenaltyRatio: 0.8
   axeSpeedPenaltyRatio: 1.5
@@ -260,6 +260,7 @@ MonoBehaviour:
   chromaticAberrationIntensity: 0.7
   postDistortionIntensity: 0.5
   deathCount: 30
+  isInGasTrap: 0
 --- !u!50 &6304260863168566705
 Rigidbody2D:
   serializedVersion: 5

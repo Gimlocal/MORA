@@ -45,6 +45,8 @@ namespace Player
         
         private PlayerData _playerData;
 
+        [HideInInspector] public bool isInGasTrap;
+
         private void Start()
         {
             if (Camera.main != null && Camera.main.TryGetComponent(out _mainCameraVolume))
@@ -85,18 +87,16 @@ namespace Player
             power += value;
         }
 
-        private void CheckCorruptionState()
+        public void CheckCorruptionState()
         {
             float ratio = corruption / maxCorruption;
             
             if (ratio >= firstPenaltyRatio && !_isPenaltyApplied)
             {
-                _isPenaltyApplied = true;
                 ApplyPenalty();
             }
-            else if (ratio < firstPenaltyRatio && _isPenaltyApplied)
+            else if (ratio < firstPenaltyRatio && _isPenaltyApplied && !isInGasTrap)
             {
-                _isPenaltyApplied = false;
                 RemovePenalty();
             }
             
@@ -114,17 +114,19 @@ namespace Player
             }
         }
 
-        private void ApplyPenalty()
+        public void ApplyPenalty()
         {
+            _isPenaltyApplied = true;
             moveSpeed *= moveSpeedPenaltyRatio;
             axeSpeed *= axeSpeedPenaltyRatio;
             _vignette.intensity.value = firstVignetteIntensity;
         }
 
-        private void RemovePenalty()
+        public void RemovePenalty()
         {
-            moveSpeed /= 0.8f;
-            axeSpeed /= 1.5f;
+            _isPenaltyApplied = false;
+            moveSpeed /= moveSpeedPenaltyRatio;
+            axeSpeed /= axeSpeedPenaltyRatio;
             _vignette.intensity.value = 0f;
         }
 
