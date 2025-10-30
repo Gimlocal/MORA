@@ -9,9 +9,9 @@ namespace Object
     {
         public ObjectName objectName;
         public float hp = 3;
-        protected SpriteRenderer SR;
-        protected Collider2D Collider;
-        protected Coroutine FlickCoroutine;
+        protected SpriteRenderer Sr;
+        private Collider2D _collider;
+        private Coroutine _flickCoroutine;
         private ParticleSystem _particle;
         private Color _particleColor;
 
@@ -22,8 +22,8 @@ namespace Object
 
         protected virtual void InitialSetting()
         {
-            SR = GetComponent<SpriteRenderer>();
-            Collider = GetComponent<Collider2D>();
+            Sr = GetComponent<SpriteRenderer>();
+            _collider = GetComponent<Collider2D>();
             
             _particle = GetComponentInChildren<ParticleSystem>();
             _particleColor = GameManager.ColorManager.GetSpriteColor(objectName);
@@ -46,23 +46,23 @@ namespace Object
         
         protected void Flick()
         {
-            if (FlickCoroutine != null)
+            if (_flickCoroutine != null)
             {
-                StopCoroutine(FlickCoroutine);
-                FlickCoroutine = null;
+                StopCoroutine(_flickCoroutine);
+                _flickCoroutine = null;
             }
-            FlickCoroutine = StartCoroutine(FlickAlpha());
+            _flickCoroutine = StartCoroutine(FlickAlpha());
         }
         
         private IEnumerator FlickAlpha(float duration = 0.1f)
         {
-            Color originalColor = SR.color;
+            Color originalColor = Sr.color;
             originalColor.a = 1f;
             Color destColor = originalColor;
             destColor.a = 0.5f;
-            SR.color = destColor;
+            Sr.color = destColor;
             yield return new WaitForSeconds(duration);
-            SR.color = originalColor; 
+            Sr.color = originalColor; 
         }
 
         protected void Split()
@@ -72,8 +72,8 @@ namespace Object
 
         protected void Break()
         {
-            Collider.enabled = false;
-            SR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
+            _collider.enabled = false;
+            Sr.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
         }
     }
 }

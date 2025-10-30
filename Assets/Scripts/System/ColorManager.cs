@@ -39,19 +39,17 @@ namespace System
         private Color GetAverageColor(Sprite sprite)
         {
             Texture2D tex = sprite.texture;
-            Rect r = sprite.textureRect; // or sprite.rect depending Unity version
-            // textureRect는 텍스처 상에서 이 스프라이트가 차지하는 영역(픽셀 단위)
+            Rect r = sprite.textureRect;
 
             int x = Mathf.RoundToInt(r.x);
             int y = Mathf.RoundToInt(r.y);
             int w = Mathf.RoundToInt(r.width);
             int h = Mathf.RoundToInt(r.height);
-
-            // 성능 때문에 전체 픽셀 다 읽는 게 부담이면 샘플링 간격을 늘릴 수도 있음
+            
             Color accum = Color.black;
             int count = 0;
 
-            // NOTE: texture.GetPixel() / GetPixels() 는 Read/Write Enabled가 켜져 있어야 함!
+            // Sprite의 Read/Write Enabled가 켜져 있어야 됨.
             Color[] pixels = tex.GetPixels(x, y, w, h);
 
             for (int i = 0; i < pixels.Length; i++)

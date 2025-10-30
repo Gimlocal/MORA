@@ -103,8 +103,8 @@ namespace Mush
             dropPiece.transform.position = transform.position;
             
             SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
-            sR.sprite = SR.sprite;
-            sR.sortingOrder = SR.sortingOrder;
+            sR.sprite = Sr.sprite;
+            sR.sortingOrder = Sr.sortingOrder;
             sR.material = pieceMaterial;
             
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
@@ -131,7 +131,7 @@ namespace Mush
             
             SpriteRenderer sR = dropGoldPiece.AddComponent<SpriteRenderer>();
             sR.sprite = goldSprite;
-            sR.sortingOrder = SR.sortingOrder;
+            sR.sortingOrder = Sr.sortingOrder;
             sR.material = pieceMaterial;
             
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();

@@ -17,18 +17,15 @@ namespace Cam
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public void ChangeCamera()
         {
-            if (other.CompareTag("Player"))
+            StartCoroutine(StopPlayer());
+            if (CameraManager.Instance.cinemachineCamera != null)
             {
-                StartCoroutine(StopPlayer());
-                if (CameraManager.Instance.cinemachineCamera != null)
-                {
-                    CameraManager.Instance.cinemachineCamera.Priority = 0;
-                }
-                CameraManager.Instance.cinemachineCamera = GetComponentInChildren<CinemachineCamera>();
-                CameraManager.Instance.cinemachineCamera.Priority = 1;
+                CameraManager.Instance.cinemachineCamera.Priority = 0;
             }
+            CameraManager.Instance.cinemachineCamera = GetComponentInChildren<CinemachineCamera>();
+            CameraManager.Instance.cinemachineCamera.Priority = 1;
         }
         
         private IEnumerator StopPlayer()
