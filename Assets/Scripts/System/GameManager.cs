@@ -1,7 +1,8 @@
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI
+namespace System
 {
     public class GameManager : MonoBehaviour
     {
@@ -17,6 +18,20 @@ namespace UI
                     _uIManager = FindFirstObjectByType<UIManager>();
                 }
                 return _uIManager;
+            }
+        }
+        
+        private static ColorManager _colorManager;
+
+        public static ColorManager ColorManager
+        {
+            get
+            {
+                if (_colorManager == null)
+                {
+                    _colorManager = FindFirstObjectByType<ColorManager>();
+                }
+                return _colorManager;
             }
         }
 

@@ -12,11 +12,10 @@ using Random = UnityEngine.Random;
 
 namespace Mush
 {
-    public class Mush : MonoBehaviour
+    public class Mush : BreakableObject
     {
         [SerializeField] private ItemDatabase mushDatabase;
         [SerializeField] private ItemId mushId;
-        [SerializeField] private float hp;
         [SerializeField] private float dropInterval;
         [SerializeField] private Material pieceMaterial;
         [SerializeField] private Sprite goldSprite;
@@ -27,20 +26,14 @@ namespace Mush
         private float _hitCount;
         private float _maxHp;
         private float _lastMiningTime;
-        
-        private SpriteRenderer _sR;
-        private Collider2D _col;
-        private Coroutine _flickCoroutine;
-        
 
-        private void Awake()
+        protected override void Awake()
         {
-            _sR = GetComponent<SpriteRenderer>();
-            _col = GetComponent<Collider2D>();
             _maxHp = hp;
+            InitialSetting();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Tool"))
             {
@@ -72,6 +65,7 @@ namespace Mush
         {
             if (hp > 0)
             {
+                Split();
                 Flick();
                 
                 SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
@@ -79,10 +73,12 @@ namespace Mush
                 float prevHitCount = _hitCount;
                 _hitCount += power;
                 _hitCount = Math.Clamp(_hitCount, 0, _maxHp);
+                
                 // 이전 hitCount ~ 현재 hitCount 사이에 dropInterval 배수가 몇 개 있었는지 체크
                 int prevDrop = Mathf.FloorToInt(prevHitCount / dropInterval);
                 int newDrop = Mathf.FloorToInt(_hitCount / dropInterval);
                 int dropCount = newDrop - prevDrop;
+                
                 for (int i = 0; i < dropCount; i++)
                 {
                     DropPiece();
@@ -91,31 +87,10 @@ namespace Mush
                         DropGoldPiece();
                     }
                 }
-
+                
                 hp -= power;
                 if (hp <= 0) OnDead();
             }
-        }
-
-        private void Flick()
-        {
-            if (_flickCoroutine != null)
-            {
-                StopCoroutine(_flickCoroutine);
-                _flickCoroutine = null;
-            }
-            _flickCoroutine = StartCoroutine(FlickAlpha());
-        }
-
-        private IEnumerator FlickAlpha(float duration = 0.1f)
-        {
-            Color originalColor = _sR.color;
-            originalColor.a = 1f;
-            Color destColor = originalColor;
-            destColor.a = 0.5f;
-            _sR.color = destColor;
-            yield return new WaitForSeconds(duration);
-            _sR.color = originalColor; 
         }
 
         private void DropPiece()
@@ -128,8 +103,8 @@ namespace Mush
             dropPiece.transform.position = transform.position;
             
             SpriteRenderer sR = dropPiece.AddComponent<SpriteRenderer>();
-            sR.sprite = _sR.sprite;
-            sR.sortingOrder = _sR.sortingOrder;
+            sR.sprite = SR.sprite;
+            sR.sortingOrder = SR.sortingOrder;
             sR.material = pieceMaterial;
             
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
@@ -156,7 +131,7 @@ namespace Mush
             
             SpriteRenderer sR = dropGoldPiece.AddComponent<SpriteRenderer>();
             sR.sprite = goldSprite;
-            sR.sortingOrder = _sR.sortingOrder;
+            sR.sortingOrder = SR.sortingOrder;
             sR.material = pieceMaterial;
             
             CircleCollider2D cd = sR.gameObject.AddComponent<CircleCollider2D>();
@@ -175,7 +150,6 @@ namespace Mush
 
         private void OnDead()
         {
-            _col.enabled = false;
             if (rarity == MushRarity.Boom)
             {
                 GameObject mushExplosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
@@ -185,7 +159,8 @@ namespace Mush
             }
             var component = GetComponent<ShadowCaster2D>();
             if (component != null) component.castsShadows = false;
-            _sR.DOFade(0, 1f).OnComplete(() => { Destroy(gameObject); });
+
+            Break();
         }
     }
 }
