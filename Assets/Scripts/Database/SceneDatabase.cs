@@ -16,6 +16,7 @@ namespace Database
             {"MORA-2", SceneType.Normal},
             {"MORA-3", SceneType.Normal},
             {"MORA-B1", SceneType.Underground},
+            {"MORA-F1", SceneType.Underground},
         };
 
         public static SceneType GetSceneType(string sceneName)
