@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 993552974419025805, guid: 3b7fb7ec73fb4a145942deba85a4ecb3, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2399012764938510265, guid: 3b7fb7ec73fb4a145942deba85a4ecb3, type: 3}
       propertyPath: m_Name
       value: SplitEffect

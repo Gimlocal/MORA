@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Mush
 {
-    public class MushPiece : MonoBehaviour
+    public class MushPiece : ObtainableObject
     {
         public ItemInfo mushInfo;
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
@@ -16,7 +16,7 @@ namespace Mush
                 {
                     player.playerItem.AddItem(mushInfo.itemId);
                     player.playerStat.Corrupt(mushInfo.value);
-                    Destroy(gameObject);
+                    ObtainEffect();
                 }
             }
         }
