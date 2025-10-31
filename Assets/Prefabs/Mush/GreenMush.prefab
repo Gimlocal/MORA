@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: 0
-  hp: 3
+  hp: 5
 --- !u!1001 &7166832344877518667
 PrefabInstance:
   m_ObjectHideFlags: 0
