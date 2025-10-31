@@ -20,7 +20,7 @@ namespace Stage
             if (other.CompareTag("Player"))
             {
                 _cameraChange.ChangeCamera();
-                _particle.Play();
+                _particle?.Play();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Stage
         {
             if (other.CompareTag("Player"))
             {
-                _particle.Stop();
+                _particle?.Stop();
             }
         }
     }
