@@ -25,7 +25,6 @@ namespace Mush
         
         private float _hitCount;
         private float _maxHp;
-        private float _lastMiningTime;
 
         protected override void Awake()
         {
@@ -33,35 +32,7 @@ namespace Mush
             InitialSetting();
         }
 
-        protected override void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Tool"))
-            {
-                Tools tool = other.gameObject.GetComponent<Tools>();
-                if (tool.toolType == ToolType.OneTime)
-                {
-                    OnMined(Player.Player.Instance.playerStat.power, tool);
-                }
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag("Tool"))
-            {
-                Tools tool = other.gameObject.GetComponent<Tools>();
-                if (tool.toolType == ToolType.Continuous)
-                {
-                    if (Time.time >= _lastMiningTime + tool.mineInterval)
-                    {
-                        OnMined(Player.Player.Instance.playerStat.power / 3 * 2, tool);
-                        _lastMiningTime = Time.time;
-                    }
-                }
-            }
-        }
-
-        private void OnMined(float power, Tools tool)
+        protected override void OnAttacked(float power, Tools tool)
         {
             if (hp > 0)
             {
@@ -89,7 +60,10 @@ namespace Mush
                 }
                 
                 hp -= power;
-                if (hp <= 0) OnDead();
+                if (hp <= 0)
+                {
+                    OnDead();
+                }
             }
         }
 
@@ -98,7 +72,6 @@ namespace Mush
             Vector2 randomDir = Random.insideUnitCircle.normalized;
             Vector3 dropPos = transform.position + (Vector3)randomDir;
             
-            // piece 생성
             GameObject dropPiece = new GameObject("Piece");
             dropPiece.transform.position = transform.position;
             

@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using Database;
 using DG.Tweening;
+using Sound;
+using Tool;
 using UnityEngine;
 
 namespace Object
@@ -14,6 +17,7 @@ namespace Object
         private Coroutine _flickCoroutine;
         private ParticleSystem _particle;
         private Color _particleColor;
+        private float _lastAttackedTime;
 
         protected virtual void Awake()
         {
@@ -35,12 +39,41 @@ namespace Object
         {
             if (other.CompareTag("Tool"))
             {
-                hp--;
-                Split();
-                if (hp <= 0)
+                Tools tool = other.gameObject.GetComponent<Tools>();
+                if (tool.toolType == ToolType.OneTime)
                 {
-                    Break();
+                    OnAttacked(Player.Player.Instance.playerStat.power, tool);
                 }
+            }
+        }
+
+        protected virtual void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Tools tool = other.gameObject.GetComponent<Tools>();
+                if (tool.toolType == ToolType.Continuous)
+                {
+                    if (Time.time >= _lastAttackedTime + tool.mineInterval)
+                    {
+                        OnAttacked(Player.Player.Instance.playerStat.power / 3 * 2, tool);
+                        _lastAttackedTime = Time.time;
+                    }
+                }
+            }
+        }
+
+        protected virtual void OnAttacked(float power, Tools tool)
+        {
+            Flick();
+            Split();
+            
+            SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
+            
+            hp -= power;
+            if (hp <= 0)
+            {
+                Break();
             }
         }
         
