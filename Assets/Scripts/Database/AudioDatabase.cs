@@ -13,6 +13,7 @@ namespace Database
         UI, 
         Voice,
         Effect,
+        Obtain,
     }
 
     [Serializable]

@@ -7,18 +7,17 @@ namespace Mush
     public class MushPiece : ObtainableObject
     {
         public ItemInfo mushInfo;
-        protected override void OnTriggerEnter2D(Collider2D other)
+
+        protected override bool ObtainCondition()
         {
-            if (other.CompareTag("Player"))
-            {
-                var player = Player.Player.Instance;
-                if (player.playerStat.corruption + mushInfo.value <= player.playerStat.maxCorruption)
-                {
-                    player.playerItem.AddItem(mushInfo.itemId);
-                    player.playerStat.Corrupt(mushInfo.value);
-                    ObtainEffect();
-                }
-            }
+            return Player.Player.Instance.playerStat.corruption + mushInfo.value
+                   <= Player.Player.Instance.playerStat.maxCorruption;
+        }
+
+        protected override void Obtain()
+        {
+            Player.Player.Instance.playerItem.AddItem(mushInfo.itemId);
+            Player.Player.Instance.playerStat.Corrupt(mushInfo.value);
         }
     }
 }

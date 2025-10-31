@@ -1,5 +1,6 @@
 using Database;
 using Object;
+using Sound;
 using UnityEngine;
 
 namespace Mush
@@ -7,13 +8,15 @@ namespace Mush
     public class MushGoldPiece : ObtainableObject
     {
         public ItemInfo mushInfo;
-        protected override void OnTriggerEnter2D(Collider2D other)
+
+        protected override void Obtain()
         {
-            if (other.CompareTag("Player"))
-            {
-                Player.Player.Instance.playerItem.AddGold(mushInfo.value * 2);
-                ObtainEffect();
-            }
+            Player.Player.Instance.playerItem.AddGold(mushInfo.value * 2);
+        }
+        
+        protected override void ObtainSound()
+        {
+            SoundManager.Instance.Play(AudioCategory.Obtain, "Coin");
         }
     }
 }

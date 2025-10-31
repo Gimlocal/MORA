@@ -1,4 +1,6 @@
+using Database;
 using Object;
+using Sound;
 using UnityEngine;
 
 namespace Item
@@ -7,13 +9,14 @@ namespace Item
     {
         public int value;
 
-        protected override void OnTriggerEnter2D(Collider2D other)
+        protected override void Obtain()
         {
-            if (other.CompareTag("Player"))
-            {
-                Player.Player.Instance.playerItem.AddGold(value);
-                ObtainEffect();
-            }
+            Player.Player.Instance.playerItem.AddGold(value);
+        }
+
+        protected override void ObtainSound()
+        {
+            SoundManager.Instance.Play(AudioCategory.Obtain, "Coin");
         }
     }
 }

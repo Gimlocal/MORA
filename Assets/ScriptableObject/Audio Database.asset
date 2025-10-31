@@ -82,3 +82,13 @@ MonoBehaviour:
       - {fileID: 8300000, guid: 77c985ae5262edb42a9df9232f05e947, type: 3}
       - {fileID: 8300000, guid: cdcf342a36c8c5244a22dec5e0a47876, type: 3}
       volume: 0.3
+  - audioCategory: 7
+    audioData:
+    - key: Default
+      audioClips:
+      - {fileID: 8300000, guid: 4ab2bb1c9385ba54e94605eba873d0d4, type: 3}
+      volume: 0.15
+    - key: Coin
+      audioClips:
+      - {fileID: 8300000, guid: 5fc358dd85e97304ebce92012317b562, type: 3}
+      volume: 0.3
