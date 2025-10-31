@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9178030359850095045}
   - component: {fileID: 4010964746433180588}
   - component: {fileID: 2151236149535637542}
-  - component: {fileID: -3068416937150064598}
   m_Layer: 0
   m_Name: WhiteMush
   m_TagString: Mush
@@ -149,20 +148,6 @@ MonoBehaviour:
   goldSprite: {fileID: 21300000, guid: 99af61578a2317c449e29344b2b17479, type: 3}
   explosionEffect: {fileID: 6808623425202001514, guid: 0a7e8c9272cb05042b951dc6f7d2d7c7, type: 3}
   rarity: 0
---- !u!114 &-3068416937150064598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7209594618945043361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f47674af0faf1418e9f158c4056a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: 4
-  hp: 21
 --- !u!1001 &3817081432956574119
 PrefabInstance:
   m_ObjectHideFlags: 0

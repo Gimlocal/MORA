@@ -105,12 +105,10 @@ namespace Sound
             if (SceneDatabase.GetSceneType(scene.name) == SceneType.Underground)
             {
                 _sFXReverbFilter.reverbPreset = AudioReverbPreset.Cave;
-                _audioSources[AudioCategory.Bgm].pitch = 0.8f;
             }
             else if (SceneDatabase.GetSceneType(scene.name) == SceneType.Normal)
             {
                 _sFXReverbFilter.reverbPreset = AudioReverbPreset.Off;
-                _audioSources[AudioCategory.Bgm].pitch = 1f;
             }
         }
 

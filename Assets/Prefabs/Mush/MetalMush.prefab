@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4010964746433180588}
   - component: {fileID: 2151236149535637542}
   - component: {fileID: 1636438855718881467}
-  - component: {fileID: -6196867519417600263}
   m_Layer: 0
   m_Name: MetalMush
   m_TagString: Mush
@@ -203,20 +202,6 @@ MonoBehaviour:
     - rid: 5137359912482373710
       type: {class: ShadowShape2DProvider_SpriteRenderer, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
---- !u!114 &-6196867519417600263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7209594618945043361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f47674af0faf1418e9f158c4056a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectName: 6
-  hp: 12
 --- !u!1001 &4224303035685466933
 PrefabInstance:
   m_ObjectHideFlags: 0

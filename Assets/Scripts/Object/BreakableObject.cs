@@ -19,7 +19,7 @@ namespace Object
         private Color _particleColor;
         private float _lastAttackedTime;
 
-        protected virtual void Awake()
+        private void Awake()
         {
             InitialSetting();
         }

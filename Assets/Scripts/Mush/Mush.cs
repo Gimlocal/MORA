@@ -26,10 +26,10 @@ namespace Mush
         private float _hitCount;
         private float _maxHp;
 
-        protected override void Awake()
+        protected override void InitialSetting()
         {
             _maxHp = hp;
-            InitialSetting();
+            base.InitialSetting();
         }
 
         protected override void OnAttacked(float power, Tools tool)
@@ -40,6 +40,7 @@ namespace Mush
                 Flick();
                 
                 SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
+                Debug.Log("sound");
                 
                 float prevHitCount = _hitCount;
                 _hitCount += power;
