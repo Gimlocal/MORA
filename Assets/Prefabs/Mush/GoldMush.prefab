@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7d6b58d52a1c9448c4be18df3d40c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectName: 0
+  objectName: 5
   hp: 35
   mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
   mushId: 7

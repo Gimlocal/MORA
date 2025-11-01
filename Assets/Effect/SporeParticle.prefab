@@ -996,13 +996,13 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.058572292
         - serializedVersion: 3
-          time: 1
+          time: 0.9951189
           value: 0
-          inSlope: 0.41213143
-          outSlope: 0.41213143
+          inSlope: -0.16600482
+          outSlope: -0.16600482
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.15314221
+          inWeight: 0.17841803
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
