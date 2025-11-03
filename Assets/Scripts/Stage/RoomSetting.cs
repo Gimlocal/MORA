@@ -49,7 +49,7 @@ namespace Stage
 
             Vector2 dir = Mathf.Abs(diff.x) > Mathf.Abs(diff.y) ?
                 new Vector3(Mathf.Sign(diff.x), 0) :
-                new Vector3(0, Mathf.Sign(diff.y));
+                new Vector3(0, Mathf.Sign(diff.y) / 2);
 
             player.position += (Vector3)dir;
         }
