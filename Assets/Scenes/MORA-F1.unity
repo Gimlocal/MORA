@@ -1018,7 +1018,7 @@ MonoBehaviour:
   gridSize: {x: 16, y: 16}
   minRooms: 7
   maxRooms: 11
-  roomStride: {x: 16.64, y: 9.36}
+  roomStride: {x: 16, y: 9}
   randomSeed: 1
   seed: 0
   stage: 1
