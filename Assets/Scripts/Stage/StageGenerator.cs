@@ -8,7 +8,7 @@ namespace Stage
 {
     public class StageGenerator : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
+        public GameObject player;
         
         [Header("Database")]
         public RoomDatabase roomDB;
@@ -18,6 +18,7 @@ namespace Stage
         public int minRooms = 10;
         public int maxRooms = 18;
         public Vector2 roomStride = new Vector2(16f, 9f);
+        
 
         [Header("Random")]
         public bool randomSeed = true;
@@ -52,6 +53,7 @@ namespace Stage
             _rng = new System.Random(seed);
         }
 
+        #region Room Settings
         private void GenerateRoom()
         {
             // 방 초기화
@@ -109,6 +111,7 @@ namespace Stage
 
             AssignTypes(start, boss);
             BuildWorld();
+            RaiseMinimapEvent(start, boss);
 
             player.transform.position = new Vector3(
                 (start.x - (gridSize.x - 1) / 2f) * roomStride.x,
@@ -116,6 +119,13 @@ namespace Stage
                 0f);
             
             Debug.Log($"GridStage generated: seed {seed}, rooms {_nodes.Count}, start {start}, boss {boss}");
+        }
+        
+        public Vector2Int WorldToGrid(Vector3 world) 
+        {
+            float gx = world.x / roomStride.x + (gridSize.x - 1) / 2f;
+            float gy = world.y / roomStride.y + (gridSize.y - 1) / 2f;
+            return new Vector2Int(Mathf.RoundToInt(gx), Mathf.RoundToInt(gy));
         }
         
         // 가중치 기반 방향 선택
@@ -187,7 +197,7 @@ namespace Stage
             
             int specialsToPlace = Min(specialCount, remainingKeys.Count);
 
-            ShuffleInPlace(remainingKeys); // 아무 셔플 메서드나 사용
+            ShuffleInPlace(remainingKeys);
             
             for (int i = 0, placed = 0; i < remainingKeys.Count && placed < specialsToPlace; i++)
             {
@@ -318,5 +328,30 @@ namespace Stage
                 }
             }
         }
+        #endregion
+
+        #region Minimap Settings
+        public struct NodeSnapshot 
+        {
+            public Vector2Int gridPos;
+            public DoorMask doors;
+            public RoomType roomType; // Start/Normal/Special/Trap/Boss
+        }
+
+        public event System.Action<IReadOnlyList<NodeSnapshot>, Vector2Int, Vector2Int> OnStageBuilt;
+
+        private NodeSnapshot MakeSnapshot(Node n) => new NodeSnapshot 
+        {
+            gridPos = n.GridPos,
+            doors = n.Direction,
+            roomType = n.Type?.roomType ?? RoomType.Normal
+        };
+        
+        private void RaiseMinimapEvent(Vector2Int start, Vector2Int boss) 
+        {
+            var list = _nodes.Values.Select(MakeSnapshot).ToList();
+            OnStageBuilt?.Invoke(list, start, boss);
+        }
+        #endregion
     }
 }

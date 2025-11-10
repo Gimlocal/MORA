@@ -10,11 +10,13 @@ namespace Stage
         public bool setPlayer = true;
         private ParticleSystem _particle;
         private CameraChange _cameraChange;
+        private MinimapController _minimapController;
 
         private void Awake()
         {
             _particle = GetComponentInChildren<ParticleSystem>();
             _cameraChange = GetComponent<CameraChange>();
+            _minimapController = FindAnyObjectByType<MinimapController>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -52,6 +54,8 @@ namespace Stage
                 new Vector3(0, Mathf.Sign(diff.y) / 2);
 
             player.position += (Vector3)dir;
+            
+            _minimapController.UpdateMiniMap();
         }
     }
 }
