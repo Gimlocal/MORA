@@ -40,7 +40,6 @@ namespace Mush
                 Flick();
                 
                 SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
-                Debug.Log("sound");
                 
                 float prevHitCount = _hitCount;
                 _hitCount += power;
@@ -70,7 +69,7 @@ namespace Mush
 
         private void DropPiece()
         {
-            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            Vector2 randomDir = Random.insideUnitCircle;
             Vector3 dropPos = transform.position + (Vector3)randomDir;
             
             GameObject dropPiece = new GameObject("Piece");
@@ -95,7 +94,7 @@ namespace Mush
 
         private void DropGoldPiece()
         {
-            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            Vector2 randomDir = Random.insideUnitCircle;
             Vector3 dropPos = transform.position + (Vector3)randomDir;
             Vector3 midDropPos = (transform.position + dropPos * 2) / 3;
             
