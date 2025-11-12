@@ -10,13 +10,13 @@ namespace Stage
         public bool setPlayer = true;
         private ParticleSystem _particle;
         private CameraChange _cameraChange;
-        private MinimapController _minimapController;
+        private MiniMapController _minimapController;
 
         private void Awake()
         {
             _particle = GetComponentInChildren<ParticleSystem>();
             _cameraChange = GetComponent<CameraChange>();
-            _minimapController = FindAnyObjectByType<MinimapController>();
+            _minimapController = FindAnyObjectByType<MiniMapController>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

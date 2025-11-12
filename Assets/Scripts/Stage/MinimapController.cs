@@ -11,7 +11,7 @@ namespace Stage
     /// - 방문하지 않았고, 방문했던 방의 이웃방들은 진한 회색
     /// - 나머지 방들은 안보임
     /// </summary>
-    public class MinimapController : MonoBehaviour
+    public class MiniMapController : MonoBehaviour
     {
         [Header("References")]
         public RectTransform content;

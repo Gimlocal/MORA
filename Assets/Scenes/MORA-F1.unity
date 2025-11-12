@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 65714764}
   - component: {fileID: 65714766}
   m_Layer: 5
-  m_Name: MinimapPanel
+  m_Name: MiniMapPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,11 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 1540522562}
-  viewport: {fileID: 65714763}
   miniCellPrefab: {fileID: 6222717729893301087, guid: eabdbcd077bc02949af998c802c79db9, type: 3}
   cellSize: {x: 16, y: 16}
   cellGap: 210
-  fitWholeMapOnBuild: 0
   frontierFogAlpha: 0.75
   highlightCurrent: 1
 --- !u!1 &66714701 stripped
@@ -1279,7 +1277,7 @@ GameObject:
   - component: {fileID: 2013426771}
   - component: {fileID: 2013426770}
   m_Layer: 5
-  m_Name: Minimap
+  m_Name: MiniMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
