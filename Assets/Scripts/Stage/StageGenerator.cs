@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
 using UnityEngine;
 using static UnityEngine.Mathf;
+using Random = UnityEngine.Random;
 
 namespace Stage
 {
     public class StageGenerator : MonoBehaviour
     {
-        public GameObject player;
+        private GameObject _player;
         
         [Header("Database")]
         public RoomDatabase roomDB;
@@ -28,7 +30,9 @@ namespace Stage
         [SerializeField] private int stage = 1;
         [SerializeField, Min(0)] private int specialCount = 2;
         [SerializeField, Range(0f, 1f)] private float normalBias = 0.7f;
-
+        
+        private MiniMapController _minimap;
+        
         private System.Random _rng;
         
         private class Node
@@ -41,8 +45,11 @@ namespace Stage
 
         Dictionary<Vector2Int, Node> _nodes = new();
 
-        private void Awake()
+        private void Start()
         {
+            _player = Player.Player.Instance.gameObject;
+            _minimap = GameManager.MiniMapController;
+            
             SetSeed();
             GenerateRoom();
         }
@@ -57,7 +64,10 @@ namespace Stage
         private void GenerateRoom()
         {
             // 방 초기화
-            foreach (Transform c in transform) Destroy(c.gameObject);
+            foreach (Transform c in transform)
+            {
+                Destroy(c.gameObject);
+            }
             _nodes.Clear();
 
             int targetRooms = Clamp(_rng.Next(minRooms, maxRooms + 1), 1, gridSize.x * gridSize.y);
@@ -111,9 +121,9 @@ namespace Stage
 
             AssignTypes(start, boss);
             BuildWorld();
-            RaiseMinimapEvent(start, boss);
+            SetMiniMap(start, boss);
 
-            player.transform.position = new Vector3(
+            _player.transform.position = new Vector3(
                 (start.x - (gridSize.x - 1) / 2f) * roomStride.x,
                 (start.y - (gridSize.y - 1) / 2f) * roomStride.y,
                 0f);
@@ -338,8 +348,6 @@ namespace Stage
             public RoomType roomType; // Start/Normal/Special/Trap/Boss
         }
 
-        public event System.Action<IReadOnlyList<NodeSnapshot>, Vector2Int, Vector2Int> OnStageBuilt;
-
         private NodeSnapshot MakeSnapshot(Node n) => new NodeSnapshot 
         {
             gridPos = n.GridPos,
@@ -347,10 +355,10 @@ namespace Stage
             roomType = n.Type?.roomType ?? RoomType.Normal
         };
         
-        private void RaiseMinimapEvent(Vector2Int start, Vector2Int boss) 
+        private void SetMiniMap(Vector2Int start, Vector2Int boss) 
         {
             var list = _nodes.Values.Select(MakeSnapshot).ToList();
-            OnStageBuilt?.Invoke(list, start, boss);
+            _minimap.SetMiniMap(list, start, this);
         }
         #endregion
     }

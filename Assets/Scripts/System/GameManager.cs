@@ -1,3 +1,4 @@
+using Stage;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,6 @@ namespace System
         }
         
         private static ColorManager _colorManager;
-
         public static ColorManager ColorManager
         {
             get
@@ -32,6 +32,19 @@ namespace System
                     _colorManager = FindFirstObjectByType<ColorManager>();
                 }
                 return _colorManager;
+            }
+        }
+        
+        private static MiniMapController _minimapController;
+        public static MiniMapController MiniMapController
+        {
+            get
+            {
+                if (_minimapController == null)
+                {
+                    _minimapController = FindFirstObjectByType<MiniMapController>();
+                }
+                return _minimapController;
             }
         }
 

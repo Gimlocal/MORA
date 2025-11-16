@@ -4,19 +4,21 @@ using DG.Tweening;
 using Stage;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class MiniMapManager : MonoBehaviour
     {
-        private CanvasGroup _canvas;
+        [SerializeField] private CanvasGroup miniMapCanvas;
         private bool _isActive;
         private Tween _tween;
         private const float FadeDuration = 0.2f;
 
         private void Awake()
         {
-            SceneManager.sceneLoaded += SetCanvas;
+            FadeCanvas(false);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void Update()
@@ -28,18 +30,12 @@ namespace UI
             }
         }
 
-        private void SetCanvas(Scene scene, LoadSceneMode mode)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (SceneDatabase.GetSceneType(scene.name) == SceneType.Underground)
+            if (SceneDatabase.GetSceneType(scene.name) != SceneType.Underground)
             {
-                _canvas = FindAnyObjectByType<MiniMapController>().GetComponentInParent<CanvasGroup>();
-                _canvas.alpha = 0;
+                FadeCanvas(false);
             }
-        }
-
-        private void OnDestroy()
-        {
-            SceneManager.sceneLoaded -= SetCanvas;
         }
 
         private void FadeCanvas(bool flag)
@@ -50,7 +46,12 @@ namespace UI
             }
             
             _isActive = flag;
-            _tween = _canvas.DOFade(flag ? 1f : 0f, FadeDuration).SetEase(Ease.OutCubic);
+            _tween = miniMapCanvas.DOFade(flag ? 1f : 0f, FadeDuration).SetEase(Ease.OutCubic);
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Database;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Stage
 {
@@ -28,7 +29,6 @@ namespace Stage
         public bool highlightCurrent = true;
 
         private StageGenerator _generator;
-        private Transform _player;
         
         class CellView
         {
@@ -53,32 +53,11 @@ namespace Stage
         {
             DoorMask.N, DoorMask.E, DoorMask.S, DoorMask.W
         };
-
-        private void Awake()
-        {
-            _generator = FindAnyObjectByType<StageGenerator>();
-            
-            if (_generator != null)
-            {
-                _generator.OnStageBuilt += SetMiniMap;
-            }
-        }
-
-        private void Start()
-        {
-            _player = Player.Player.Instance.transform;
-        }
-
-        private void OnDestroy()
-        {
-            if (_generator != null)
-            {
-                _generator.OnStageBuilt -= SetMiniMap;
-            }
-        }
         
-        private void SetMiniMap(IReadOnlyList<StageGenerator.NodeSnapshot> nodes, Vector2Int start, Vector2Int boss)
+        public void SetMiniMap(IReadOnlyList<StageGenerator.NodeSnapshot> nodes, Vector2Int start, StageGenerator generator)
         {
+            _generator = generator;
+            
             foreach (Transform c in content)
             {
                 Destroy(c.gameObject);
@@ -134,12 +113,12 @@ namespace Stage
 
         public void UpdateMiniMap()
         {
-            if (_cells.Count == 0 || _player == null || _generator == null)
+            if (_cells.Count == 0 || Player.Player.Instance == null || _generator == null)
             {
                 return;
             }
 
-            var g = _generator.WorldToGrid(_player.position);
+            var g = _generator.WorldToGrid(Player.Player.Instance.transform.position);
             if (g != _currentGrid && _cells.ContainsKey(g))
             {
                 SetCurrent(g);

@@ -13,6 +13,7 @@ namespace Database
         Mora3To2,
         Mora0ToB1,
         MoraB1To0,
+        Mora0ToF1,
     }
 
     [System.Serializable]

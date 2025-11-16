@@ -37,3 +37,6 @@ MonoBehaviour:
   - portalID: 7
     targetScene: MORA-0
     targetPos: {x: -19.7, y: 0.68}
+  - portalID: 8
+    targetScene: MORA-F1
+    targetPos: {x: 0, y: 0}

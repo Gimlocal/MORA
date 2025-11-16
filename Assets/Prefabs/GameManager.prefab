@@ -1212,6 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3305eff1dfc06a746ab782ce9277ac93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniMapCanvas: {fileID: 4292633673313447290}
 --- !u!1 &4108429962291694928
 GameObject:
   m_ObjectHideFlags: 0
