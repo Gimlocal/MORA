@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8652108032640898693}
   - component: {fileID: 6792103921074548985}
   m_Layer: 0
-  m_Name: Light_F1
+  m_Name: Light_F1_Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

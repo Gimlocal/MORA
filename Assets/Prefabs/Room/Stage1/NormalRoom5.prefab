@@ -2082,6 +2082,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2195993648120961574}
     m_Modifications:
+    - target: {fileID: 1914613223452622463, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
+      propertyPath: objects
+      value: 
+      objectReference: {fileID: 8075987936981361533, guid: bb81d9be750623c4f9a043aa117d69d5, type: 3}
     - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -2121,6 +2125,18 @@ PrefabInstance:
     - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.54901963
       objectReference: {fileID: 0}
     - target: {fileID: 1954335980021568692, guid: 3928c78623dccea4aad07e55ae21298e, type: 3}
       propertyPath: TriggerModule.primitives.Array.size
