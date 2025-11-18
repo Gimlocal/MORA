@@ -30,3 +30,12 @@ MonoBehaviour:
     itemName: "\uC77C\uC9C01"
     description: ...
     sprite: {fileID: 21300000, guid: 60dbf6a31ffde4645b0ff2a518c88795, type: 3}
+  - itemId: 3
+    itemName: "\uC6B0\uC8FC\uBCF5"
+    description: "\uC6B0\uC8FC\uBCF5\uC744 \uAC15\uD654\uC2DC\uCF1C \uB354 \uAE4A\uC740
+      \uACF3\uC73C\uB85C \uD0D0\uC0AC\uD560 \uC218 \uC788\uAC8C \uD574\uC900\uB2E4."
+    sprite: {fileID: 21300014, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
+  - itemId: 4
+    itemName: "\uADC0\uD658 \uC218\uC2E0\uAE30"
+    description: "\uC9D1\uC73C\uB85C \uB3CC\uC544\uAC00\uC790"
+    sprite: {fileID: 21300000, guid: 579644259205496aa8846fc13efe27b0, type: 3}

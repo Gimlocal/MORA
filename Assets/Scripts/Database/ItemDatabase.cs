@@ -8,6 +8,8 @@ namespace Database
         PlanetInfo,
         Lantern,
         Record1,
+        Spacesuit,
+        HomeTicket,
     }
 
     [System.Serializable]

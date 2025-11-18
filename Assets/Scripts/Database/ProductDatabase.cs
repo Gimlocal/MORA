@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Tool;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Database
 {
@@ -14,10 +15,8 @@ namespace Database
         Drill,
     }
 
-    public enum ProductEffect
+    public enum ProductType
     {
-        UpgradeSuit,
-        CanGoHome,
         Item,
         Equipment,
     }
@@ -30,8 +29,8 @@ namespace Database
         public string name;
         [TextArea] public string description;
         public List<MushIngredient> ingredients;
-        public int price;
-        public ProductEffect effect;
+        public int price; 
+        public ProductType type;
     }
     
     [CreateAssetMenu(fileName = "Product Database", menuName = "Product Database")]
@@ -46,21 +45,14 @@ namespace Database
 
         public void GetEffect(ProductID id)
         {
-            switch (GetProductById(id).effect)
+            switch (GetProductById(id).type)
             {
-                case ProductEffect.UpgradeSuit:
-                    Player.Player.Instance.playerItem.suitLevel++;
-                    break;
-                case ProductEffect.CanGoHome:
-                    Player.Player.Instance.playerItem.canGoHome = true;
-                    break;
-                case ProductEffect.Equipment:
+                case ProductType.Equipment:
                     Player.Player.Instance.playerMining.
                         AddTool(Player.Player.Instance.gameObject.transform.Find(id.ToString()).GetComponent<Tools>());
                     break;
-                case ProductEffect.Item:
-                    Player.Player.Instance.playerItem.AddMush((MushId)Enum.Parse(typeof(MushId), id.ToString()));
-                    Player.Player.Instance.playerItem.hasLantern = true;
+                case ProductType.Item:
+                    Player.Player.Instance.playerItem.AddItem((ItemId)Enum.Parse(typeof(ItemId), id.ToString()));
                     break;
             }
         }

@@ -142,7 +142,7 @@ MonoBehaviour:
   objectName: 2
   hp: 12
   mushDatabase: {fileID: 11400000, guid: 50284e30729077045a0ad974cb52275b, type: 2}
-  mushId: 4
+  mushId: 2
   explosionEffect: {fileID: 6808623425202001514, guid: 0a7e8c9272cb05042b951dc6f7d2d7c7, type: 3}
   rarity: 0
   dropInterval: 2

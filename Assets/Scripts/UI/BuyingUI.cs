@@ -59,11 +59,11 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var productInfo = productDatabase.GetProductById(_productIDs[SelectedIndex]);
-                Dictionary<MushId, int> ownedItems =  _playerItem.OwnedMushes;
+                Dictionary<MushId, int> ownedMushes = _playerItem.OwnedMushes;
                 
                 if (productInfo.productID == ProductID.Spacesuit)
                 {
-                    if (CheckIngredients(productInfo,ownedItems, productInfo.price * (_playerItem.suitLevel + 1)) 
+                    if (CheckIngredients(productInfo, ownedMushes, productInfo.price * (_playerItem.suitLevel + 1)) 
                         && _playerItem.suitLevel < 2)
                     {
                         _playerItem.UseGold(productInfo.price * (_playerItem.suitLevel + 1));
@@ -81,7 +81,7 @@ namespace UI
                 }
                 else
                 {
-                    if (CheckIngredients(productInfo, ownedItems))
+                    if (CheckIngredients(productInfo, ownedMushes))
                     {
                         _playerItem.UseGold(productInfo.price);
                         foreach (var ingredient in productInfo.ingredients)
@@ -102,14 +102,14 @@ namespace UI
             }
         }
 
-        private bool CheckIngredients(ProductData data, Dictionary<MushId, int> ownedItems, int price = 0)
+        private bool CheckIngredients(ProductData data, Dictionary<MushId, int> ownedMushes, int price = 0)
         {
             bool flag = true;
             
             // 재료 확인
             foreach (var ingredient in data.ingredients)
             {
-                if (!ownedItems.ContainsKey(ingredient.mushId) ||
+                if (!ownedMushes.ContainsKey(ingredient.mushId) ||
                     !_playerItem.HasMush(ingredient.mushId, ingredient.amount))
                 {
                     flag = false;
@@ -147,15 +147,11 @@ namespace UI
             int index = 0;
             foreach (var info in _productData)
             {
-                if (info.effect == ProductEffect.UpgradeSuit && _playerItem.suitLevel == 2)
-                    continue;
-                if (info.effect == ProductEffect.CanGoHome && _playerItem.canGoHome)
-                    continue;
-                if (info.effect == ProductEffect.Equipment &&
+                if (info.type == ProductType.Equipment &&
                     Player.Player.Instance.playerMining.tools.Any(t => t.name == info.productID.ToString()))
                     continue;
-                if (info.effect == ProductEffect.Item && 
-                    Player.Player.Instance.playerItem.OwnedMushes.
+                if (info.type == ProductType.Item && 
+                    Player.Player.Instance.playerItem.OwnedItems.
                         Any(t => t.Key.ToString() == info.productID.ToString()))
                     continue;
                 
