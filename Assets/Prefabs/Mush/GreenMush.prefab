@@ -141,13 +141,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: 0
   hp: 5
-  mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
-  mushId: 2
+  mushDatabase: {fileID: 11400000, guid: 50284e30729077045a0ad974cb52275b, type: 2}
+  mushId: 0
+  explosionEffect: {fileID: 6808623425202001514, guid: 0a7e8c9272cb05042b951dc6f7d2d7c7, type: 3}
+  rarity: 0
   dropInterval: 1
   pieceMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   goldSprite: {fileID: 21300000, guid: 99af61578a2317c449e29344b2b17479, type: 3}
-  explosionEffect: {fileID: 6808623425202001514, guid: 0a7e8c9272cb05042b951dc6f7d2d7c7, type: 3}
-  rarity: 0
+  dropDamage: 1
+  maxDropDistance: 1
+  minDropDistance: 0
 --- !u!1001 &7166832344877518667
 PrefabInstance:
   m_ObjectHideFlags: 0

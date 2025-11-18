@@ -7,7 +7,7 @@ namespace Mush
 {
     public class MushGoldPiece : ObtainableObject
     {
-        public ItemInfo mushInfo;
+        public MushInfo mushInfo;
 
         protected override void Obtain()
         {

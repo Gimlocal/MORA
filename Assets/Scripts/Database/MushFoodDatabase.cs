@@ -18,7 +18,7 @@ namespace Database
     [System.Serializable]
     public class MushIngredient
     {
-        public ItemId mushId;
+        public MushId mushId;
         public int amount;
     }
 

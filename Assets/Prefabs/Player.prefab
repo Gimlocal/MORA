@@ -227,7 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efceefa6875a56438d4942f179116c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mushDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  mushDatabase: {fileID: 11400000, guid: 50284e30729077045a0ad974cb52275b, type: 2}
+  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
   lantern: {fileID: 9089863985605714732}
   gold: 0
   suitLevel: 0

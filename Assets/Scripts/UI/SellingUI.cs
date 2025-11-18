@@ -7,21 +7,22 @@ using Object;
 using Sound;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class SellingUI : ItemUI
+    public class SellingUI : InventoryUI
     {
+        [SerializeField] private MushDatabase mushDatabase;
+        
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
         public TextMeshProUGUI goldAmount;
 
-        private Dictionary<ItemId, int> _ownedItems;
-        private List<ItemId> _itemKeys = new();
+        private Dictionary<MushId, int> _ownedItems;
+        private List<MushId> _itemKeys = new();
         private Player.Player _player;
-        
-        [SerializeField] private ItemDatabase itemDatabase;
 
         private void Start()
         {
@@ -30,7 +31,7 @@ namespace UI
 
         private void OnEnable()
         {
-            Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
+            Player.Player.Instance.playerItem.OnMushChanged += RefreshInventory;
 
             UpdateGoldAmount();
             LoadItemsFromPlayer();
@@ -39,7 +40,7 @@ namespace UI
 
         private void OnDisable()
         {
-            Player.Player.Instance.playerItem.OnItemChanged -= RefreshInventory;
+            Player.Player.Instance.playerItem.OnMushChanged -= RefreshInventory;
         }
         
         private void RefreshInventory()
@@ -55,12 +56,12 @@ namespace UI
             {
                 if (_itemKeys.Count <= 0) return;
                 if (_ownedItems[_itemKeys[SelectedIndex]] == 0) return;
-                _player.playerItem.gold += itemDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
-                if (_itemKeys[SelectedIndex] == ItemId.Lantern)
-                {
-                    Player.Player.Instance.playerItem.hasLantern = false;
-                }
-                _player.playerItem.UseItem(_itemKeys[SelectedIndex]);
+                _player.playerItem.gold += mushDatabase.GetItemById(_itemKeys[SelectedIndex]).value;
+                // if (_itemKeys[SelectedIndex] == ItemId.Lantern)
+                // {
+                //     Player.Player.Instance.playerItem.hasLantern = false;
+                // }
+                _player.playerItem.UseMush(_itemKeys[SelectedIndex]);
                 SoundManager.Instance.Play(AudioCategory.UI, "Success");
                 RefreshInventory();
             }
@@ -73,7 +74,7 @@ namespace UI
 
         private void LoadItemsFromPlayer()
         {
-            _ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+            _ownedItems = Player.Player.Instance.playerItem.OwnedMushes;
         }
 
         private void DisplayItemList()
@@ -90,11 +91,10 @@ namespace UI
                 if (_ownedItems[id] == 0) continue;
                 _itemKeys.Add(id);
                 GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                ItemInfo mushInfo = itemDatabase.GetItemById(id);
+                MushInfo mushInfo = mushDatabase.GetItemById(id);
                 buttonObj.GetComponentsInChildren<Image>().FirstOrDefault(img => img.gameObject != buttonObj)!.sprite = mushInfo.sprite;
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = mushInfo.isMush ? 
-                    $"{mushInfo.itemName}  x{_ownedItems[id]}\n판매가격 : {mushInfo.value}" :
-                    $"{mushInfo.itemName}  \n판매가격 : {mushInfo.value}";
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = 
+                    $"{mushInfo.mushName}  x{_ownedItems[id]}\n가공 : {mushInfo.value}";
 
                 int capturedIndex = index;
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>

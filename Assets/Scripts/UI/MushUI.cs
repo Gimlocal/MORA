@@ -1,25 +1,29 @@
 using System;
 using System.Collections.Generic;
 using Database;
+using Mush;
+using Object;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class ItemUI : InventoryUI
+    public class MushUI : InventoryUI
     {
-        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private MushDatabase mushDatabase;
+        
+        public GameObject mushButtonPrefab;
+        public Transform mushListParent;
+        public Image mushImage;
+        public TextMeshProUGUI mushNameText;
+        public TextMeshProUGUI mushDescriptionText;
+        public TextMeshProUGUI goldAmount;
 
-        public GameObject itemButtonPrefab;
-        public Transform itemListParent;
-        public Image itemImage;
-        public TextMeshProUGUI itemName;
-        public TextMeshProUGUI itemDescription;
-
-        private Dictionary<ItemId, int> _ownedItems;
-        private List<ItemId> _itemKeys = new();
-        private const int UIIndex = 1;
+        private Dictionary<MushId, int> _ownedMushes;
+        private List<MushId> _mushKeys = new();
+        private const int UIIndex = 0;
         private UIBase[] _uiBases;
         
         private void Start()
@@ -29,13 +33,13 @@ namespace UI
 
         private void OnEnable()
         {
-            Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
+            Player.Player.Instance.playerItem.OnMushChanged += RefreshInventory;
             RefreshInventory();
         }
 
         private void OnDisable()
         {
-            Player.Player.Instance.playerItem.OnItemChanged -= RefreshInventory;
+            Player.Player.Instance.playerItem.OnMushChanged -= RefreshInventory;
         }
         
         private void RefreshInventory()
@@ -43,6 +47,7 @@ namespace UI
             LoadItemsFromPlayer();
             DisplayItemList();
             UpdateItemInfoUI();
+            UpdateGoldAmount();
         }
 
         protected override void Act()
@@ -79,26 +84,31 @@ namespace UI
 
         private void LoadItemsFromPlayer()
         {
-            _ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+            _ownedMushes = Player.Player.Instance.playerItem.OwnedMushes;
+        }
+        
+        private void UpdateGoldAmount()
+        {
+            goldAmount.text = Player.Player.Instance.playerItem.gold.ToString();
         }
 
         private void DisplayItemList()
         {
-            foreach (Transform child in itemListParent)
+            foreach (Transform child in mushListParent)
                 Destroy(child.gameObject);
             
             ItemButtons.Clear();
-            _itemKeys.Clear();
+            _mushKeys.Clear();
 
             int index = 0;
-            foreach (var id in _ownedItems.Keys)
+            foreach (var id in _ownedMushes.Keys)
             {
-                if (_ownedItems[id] == 0) continue;
+                if (_ownedMushes[id] == 0) continue;
                 
-                _itemKeys.Add(id); // 키 저장
-                GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                var itemData = itemDatabase.GetItemById(id);
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{itemDatabase.GetItemById(id).itemName}";
+                _mushKeys.Add(id); // 키 저장
+                GameObject buttonObj = Instantiate(mushButtonPrefab, mushListParent);
+                var itemData = mushDatabase.GetItemById(id);
+                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = $"{mushDatabase.GetItemById(id).mushName}  x{_ownedMushes[id]}";
 
                 int capturedIndex = index; // 캡처한 인덱스
                 buttonObj.GetComponent<Button>().onClick.AddListener(() =>
@@ -119,32 +129,32 @@ namespace UI
         protected override void MoveSelection(int dir)
         {
             SelectedIndex += dir;
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _mushKeys.Count - 1);
             HighlightSelectedItem();
             UpdateItemInfoUI();
         }
 
         private void UpdateItemInfoUI()
         {
-            if (_itemKeys.Count == 0)
+            if (_mushKeys.Count == 0)
             {
-                itemImage.sprite = null;
-                itemImage.gameObject.SetActive(false);
-                itemName.text = "";
-                itemDescription.text = "";
+                mushImage.sprite = null;
+                mushImage.gameObject.SetActive(false);
+                mushNameText.text = "";
+                mushDescriptionText.text = "";
                 return;
             }
             
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
+            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _mushKeys.Count - 1);
             HighlightSelectedItem();
 
-            ItemId id = _itemKeys[SelectedIndex];
-            var itemData = itemDatabase.GetItemById(id);
+            MushId id = _mushKeys[SelectedIndex];
+            var itemData = mushDatabase.GetItemById(id);
 
-            itemImage.gameObject.SetActive(true);
-            itemImage.sprite = itemData.sprite;
-            itemName.text = itemData.itemName;
-            itemDescription.text = itemData.description;
+            mushImage.gameObject.SetActive(true);
+            mushImage.sprite = itemData.sprite;
+            mushNameText.text = itemData.mushName;
+            mushDescriptionText.text = itemData.description;
         }
     }
 }

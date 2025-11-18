@@ -1,39 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Database
 {
-    [System.Serializable]
-    public class ItemInfo
-    {
-        [FormerlySerializedAs("mushId")] 
-        public ItemId itemId;
-        public bool isMush;
-        public string itemName;
-        public int value;
-        [TextArea] public string description;
-        public Sprite sprite;
-    }
-
     public enum ItemId
     {
         PlanetInfo,
-        WorkInfo,
-        GreenMush,
-        BlueMush,
-        RedMush,
-        LightBlueMush,
-        WhiteMush,
-        GoldMush,
-        MetalMush,
-        BombMush,
         Lantern,
+        Record1,
     }
 
-    [CreateAssetMenu(fileName = "Item Database", menuName = "Item Database")]
+    [System.Serializable]
+    public class ItemInfo
+    {
+        public ItemId itemId;
+        public string itemName;
+        [TextArea] public string description;
+        public Sprite sprite;
+    }
+    
+    [CreateAssetMenu(fileName = "ItemDatabase", menuName = "ItemDatabase")]
     public class ItemDatabase : ScriptableObject
     {
-        [FormerlySerializedAs("pieces")] 
         public ItemInfo[] items;
 
         public ItemInfo GetItemById(ItemId id)
@@ -41,7 +29,9 @@ namespace Database
             foreach (var item in items)
             {
                 if (item.itemId == id)
+                {
                     return item;
+                }
             }
             return null;
         }

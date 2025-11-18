@@ -6,7 +6,7 @@ namespace Mush
 {
     public class MushPiece : ObtainableObject
     {
-        public ItemInfo mushInfo;
+        public MushInfo mushInfo;
 
         protected override bool ObtainCondition()
         {
@@ -16,7 +16,7 @@ namespace Mush
 
         protected override void Obtain()
         {
-            Player.Player.Instance.playerItem.AddItem(mushInfo.itemId);
+            Player.Player.Instance.playerItem.AddMush(mushInfo.mushId);
             Player.Player.Instance.playerStat.Corrupt(mushInfo.value);
         }
     }

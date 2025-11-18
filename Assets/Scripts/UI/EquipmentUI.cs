@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class EquipmentUI : ItemUI
+    public class EquipmentUI : InventoryUI
     {
         public GameObject itemButtonPrefab;
         public Transform itemListParent;
@@ -20,7 +20,7 @@ namespace UI
         public TextMeshProUGUI itemDescriptionText;
 
         private List<Tools> _ownedTools;
-        private const int UIIndex = 1;
+        private const int UIIndex = 2;
         private UIBase[] _uiBases;
 
         private void Start()

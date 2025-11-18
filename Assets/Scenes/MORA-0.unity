@@ -562,10 +562,10 @@ MonoBehaviour:
   topLayer: 1
   canvasOrPanel: {fileID: 782997350}
   scrollRect: {fileID: 729801024}
+  mushDatabase: {fileID: 0}
   itemButtonPrefab: {fileID: 4485764140468248591, guid: b82c96c3a3be2e3418826e3ab0fdaf77, type: 3}
   itemListParent: {fileID: 647717377}
   goldAmount: {fileID: 854742506}
-  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
 --- !u!1 &178378475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,9 +1314,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2315353257164241910, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315353257164241910, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439331662554807553, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439331662554807553, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2439331662554807553, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3601572669151547030, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393081410586499994, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393081410586499994, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5765189495177921604, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_Pivot.x
@@ -1396,6 +1424,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5765189495177921604, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979273008320844837, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979273008320844837, guid: d870056d2fbb7df458a94df34dc292f9, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6166,7 +6202,7 @@ MonoBehaviour:
   canvasOrPanel: {fileID: 630525563}
   scrollRect: {fileID: 1075511642}
   productDatabase: {fileID: 11400000, guid: 6cd914a52a696964396ca56abfa1eb07, type: 2}
-  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  mushDatabase: {fileID: 11400000, guid: 50284e30729077045a0ad974cb52275b, type: 2}
   itemButtonPrefab: {fileID: 5832680988436288368, guid: 6777fc545ee04b64a90037e2f12438b7, type: 3}
   itemListParent: {fileID: 649041502}
   goldAmount: {fileID: 187087551}
@@ -9271,7 +9307,7 @@ MonoBehaviour:
   canvasOrPanel: {fileID: 2057564380}
   scrollRect: {fileID: 178378477}
   mushFoodDatabase: {fileID: 11400000, guid: 000b4170b5ee225459c9961b64dcb0fe, type: 2}
-  itemDatabase: {fileID: 11400000, guid: 775736a261164034989675ff487dde66, type: 2}
+  mushDatabase: {fileID: 11400000, guid: 50284e30729077045a0ad974cb52275b, type: 2}
   itemButtonPrefab: {fileID: 8238329443096128256, guid: 13de29f3a5e62b74e8f32ed8121bb10a, type: 3}
   itemListParent: {fileID: 841027098}
   itemImage: {fileID: 1523658011}

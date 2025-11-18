@@ -17,7 +17,7 @@ namespace System
             PlayerStat playerStat = Player.Player.Instance.playerStat;
             PlayerMovement playerMovement = Player.Player.Instance.playerMovement;
             
-            foreach (var item in playerItem.OwnedItems)
+            foreach (var item in playerItem.OwnedMushes)
             {
                 ItemData itemData = new ItemData
                 {
@@ -67,10 +67,10 @@ namespace System
             PlayerStat playerStat = Player.Player.Instance.playerStat;
             PlayerMovement playerMovement = Player.Player.Instance.playerMovement;
             
-            playerItem.OwnedItems.Clear();
+            playerItem.OwnedMushes.Clear();
             foreach (var item in data.ownedItems)
             {
-                playerItem.OwnedItems[(ItemId)Enum.Parse(typeof(ItemId), item.itemId)] = item.amount;
+                playerItem.OwnedMushes[(MushId)Enum.Parse(typeof(MushId), item.itemId)] = item.amount;
             }
             playerMining.tools.Clear();
             foreach (var tool in data.tools)

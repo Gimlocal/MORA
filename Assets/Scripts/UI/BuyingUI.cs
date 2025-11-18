@@ -6,14 +6,16 @@ using Object;
 using Sound;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class BuyingUI : ItemUI
+    public class BuyingUI : InventoryUI
     {
         [SerializeField] private ProductDatabase productDatabase;
-        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private MushDatabase mushDatabase;
+        
         [SerializeField] private GameObject itemButtonPrefab;
         [SerializeField] private Transform itemListParent;
         [SerializeField] private TextMeshProUGUI goldAmount;
@@ -57,7 +59,7 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var productInfo = productDatabase.GetProductById(_productIDs[SelectedIndex]);
-                Dictionary<ItemId, int> ownedItems =  _playerItem.OwnedItems;
+                Dictionary<MushId, int> ownedItems =  _playerItem.OwnedMushes;
                 
                 if (productInfo.productID == ProductID.Spacesuit)
                 {
@@ -67,7 +69,7 @@ namespace UI
                         _playerItem.UseGold(productInfo.price * (_playerItem.suitLevel + 1));
                         foreach (var ingredient in productInfo.ingredients)
                         {
-                            _playerItem.UseItem(ingredient.mushId, ingredient.amount);
+                            _playerItem.UseMush(ingredient.mushId, ingredient.amount);
                         }
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
@@ -84,7 +86,7 @@ namespace UI
                         _playerItem.UseGold(productInfo.price);
                         foreach (var ingredient in productInfo.ingredients)
                         {
-                            _playerItem.UseItem(ingredient.mushId, ingredient.amount);
+                            _playerItem.UseMush(ingredient.mushId, ingredient.amount);
                         }
                         productDatabase.GetEffect(productInfo.productID);
                         SoundManager.Instance.Play(AudioCategory.UI, "Success");
@@ -100,7 +102,7 @@ namespace UI
             }
         }
 
-        private bool CheckIngredients(ProductData data, Dictionary<ItemId, int> ownedItems, int price = 0)
+        private bool CheckIngredients(ProductData data, Dictionary<MushId, int> ownedItems, int price = 0)
         {
             bool flag = true;
             
@@ -108,7 +110,7 @@ namespace UI
             foreach (var ingredient in data.ingredients)
             {
                 if (!ownedItems.ContainsKey(ingredient.mushId) ||
-                    !_playerItem.HasItem(ingredient.mushId, ingredient.amount))
+                    !_playerItem.HasMush(ingredient.mushId, ingredient.amount))
                 {
                     flag = false;
                 }
@@ -153,7 +155,7 @@ namespace UI
                     Player.Player.Instance.playerMining.tools.Any(t => t.name == info.productID.ToString()))
                     continue;
                 if (info.effect == ProductEffect.Item && 
-                    Player.Player.Instance.playerItem.OwnedItems.
+                    Player.Player.Instance.playerItem.OwnedMushes.
                         Any(t => t.Key.ToString() == info.productID.ToString()))
                     continue;
                 
@@ -201,7 +203,7 @@ namespace UI
                 for (int i = 0; i < itemData.ingredients.Count; i++)
                 {
                     itemNameText.text += 
-                        $"{itemDatabase.GetItemById(itemData.ingredients[i].mushId).itemName}x{itemData.ingredients[i].amount}";
+                        $"{mushDatabase.GetItemById(itemData.ingredients[i].mushId).mushName}x{itemData.ingredients[i].amount}";
                     if (i % 3 == 2)
                     {
                         itemNameText.text += "\n";
@@ -225,7 +227,7 @@ namespace UI
                 for (int i = 0; i < itemData.ingredients.Count; i++)
                 {
                     itemNameText.text += 
-                        $"{itemDatabase.GetItemById(itemData.ingredients[i].mushId).itemName}x{itemData.ingredients[i].amount}";
+                        $"{mushDatabase.GetItemById(itemData.ingredients[i].mushId).mushName}x{itemData.ingredients[i].amount}";
                     if (i % 3 == 2)
                     {
                         itemNameText.text += "\n";

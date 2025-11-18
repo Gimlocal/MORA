@@ -5,14 +5,16 @@ using Object;
 using Sound;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class CookingUI : ItemUI
+    public class CookingUI : InventoryUI
     {
         [SerializeField] private MushFoodDatabase mushFoodDatabase;
-        [SerializeField] private ItemDatabase itemDatabase;
+        [SerializeField] private MushDatabase mushDatabase;
+        
         [SerializeField] private GameObject itemButtonPrefab;
         [SerializeField] private Transform itemListParent;
         [SerializeField] private Image itemImage;
@@ -33,7 +35,7 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Dictionary<ItemId, int> ownedItems = Player.Player.Instance.playerItem.OwnedItems;
+                Dictionary<MushId, int> ownedItems = Player.Player.Instance.playerItem.OwnedMushes;
                 var foodInfo = _mushFoodInfo[SelectedIndex];
                 bool canCook = true;
                 foreach (var info in foodInfo.ingredients)
@@ -48,7 +50,7 @@ namespace UI
                 {
                     foreach (var info in foodInfo.ingredients)
                     {
-                        Player.Player.Instance.playerItem.UseItem(info.mushId, info.amount);
+                        Player.Player.Instance.playerItem.UseMush(info.mushId, info.amount);
                     }
                     mushFoodDatabase.EatMushFood(foodInfo.mushFoodId);
                     SoundManager.Instance.Play(AudioCategory.UI, "Success");
@@ -107,7 +109,7 @@ namespace UI
             itemIngredientsText.text = "";
             foreach (var text in itemData.ingredients)
             {
-                itemIngredientsText.text += itemDatabase.GetItemById(text.mushId).itemName;
+                itemIngredientsText.text += mushDatabase.GetItemById(text.mushId).mushName;
                 itemIngredientsText.text += $" x{text.amount}\n";
             }
             itemDescriptionText.text = itemData.description;

@@ -1,162 +1,72 @@
-using System;
 using System.Collections.Generic;
-using Database;
-using Mush;
-using Object;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class InventoryUI : ItemUI
+    public abstract class InventoryUI : UIBase
     {
-        public GameObject itemButtonPrefab;
-        public Transform itemListParent;
-        public Image itemImage;
-        public TextMeshProUGUI itemNameText;
-        public TextMeshProUGUI itemDescriptionText;
-        public TextMeshProUGUI goldAmount;
-
-        private Dictionary<ItemId, int> _ownedItems;
-        private List<ItemId> _itemKeys = new();
-        private const int UIIndex = 0;
-        private UIBase[] _uiBases;
+        protected List<GameObject> ItemButtons = new();
+        protected int SelectedIndex = 0;
+        [SerializeField] private ScrollRect scrollRect;
         
-        [SerializeField] private ItemDatabase itemDatabase;
-        
-        private void Start()
+        private void Update()
         {
-            _uiBases = GetComponentInParent<InventoryManager>().uIBases;
+            if (top)
+            {
+                ManageMoveSelection();
+                Act();
+            }
         }
 
-        private void OnEnable()
+        protected abstract void Act();
+        
+        protected virtual void ManageMoveSelection()
         {
-            Player.Player.Instance.playerItem.OnItemChanged += RefreshInventory;
-            RefreshInventory();
-        }
-
-        private void OnDisable()
-        {
-            Player.Player.Instance.playerItem.OnItemChanged -= RefreshInventory;
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                MoveSelection(1);
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+                MoveSelection(-1);
         }
         
-        private void RefreshInventory()
+        protected abstract void MoveSelection(int direction);
+        
+        protected void HighlightSelectedItem()
         {
-            LoadItemsFromPlayer();
-            DisplayItemList();
-            UpdateItemInfoUI();
-            UpdateGoldAmount();
+            for (int i = 0; i < ItemButtons.Count; i++)
+            {
+                var image = ItemButtons[i].GetComponent<Image>();
+                image.color = (i == SelectedIndex) ? Color.gray : Color.white;
+            }
+            ScrollToSelected();
         }
-
-        protected override void Act()
+        
+        private void ScrollToSelected()
         {
+            if (SelectedIndex < 0 || SelectedIndex >= ItemButtons.Count) return;
+
+            var selected = ItemButtons[SelectedIndex].GetComponent<RectTransform>();
+            var viewport = scrollRect.viewport;
+            var content = scrollRect.content;
             
-        }
-        
-        protected override void ManageMoveSelection()
-        {
-            base.ManageMoveSelection();
-
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                int idx = Mod(UIIndex - 1, _uiBases.Length);
-                GameManager.UIManager.RegisterUI(_uiBases[idx]);
-                GameManager.UIManager.UnRegisterUI(this);
-                _uiBases[idx].gameObject.SetActive(true);
-                gameObject.SetActive(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                int idx = Mod(UIIndex + 1, _uiBases.Length);
-                GameManager.UIManager.RegisterUI(_uiBases[idx]);
-                GameManager.UIManager.UnRegisterUI(this);
-                _uiBases[idx].gameObject.SetActive(true);
-                gameObject.SetActive(false);
-            }
-        }
-        
-        private int Mod(int a, int b)
-        {
-            return  (a % b + b) % b;
-        }
-
-        private void LoadItemsFromPlayer()
-        {
-            _ownedItems = Player.Player.Instance.playerItem.OwnedItems;
-        }
-        
-        private void UpdateGoldAmount()
-        {
-            goldAmount.text = Player.Player.Instance.playerItem.gold.ToString();
-        }
-
-        private void DisplayItemList()
-        {
-            foreach (Transform child in itemListParent)
-                Destroy(child.gameObject);
+            float itemHeight = selected.rect.height;
+            float contentHeight = content.rect.height;
+            float viewportHeight = viewport.rect.height;
             
-            ItemButtons.Clear();
-            _itemKeys.Clear();
-
-            int index = 0;
-            foreach (var id in _ownedItems.Keys)
-            {
-                if (_ownedItems[id] == 0) continue;
-                
-                _itemKeys.Add(id); // 키 저장
-                GameObject buttonObj = Instantiate(itemButtonPrefab, itemListParent);
-                var itemData = itemDatabase.GetItemById(id);
-                buttonObj.GetComponentInChildren<TextMeshProUGUI>().text = itemData.isMush ? 
-                    $"{itemDatabase.GetItemById(id).itemName}  x{_ownedItems[id]}" :
-                    $"{itemDatabase.GetItemById(id).itemName}";
-
-                int capturedIndex = index; // 캡처한 인덱스
-                buttonObj.GetComponent<Button>().onClick.AddListener(() =>
-                {
-                    SelectedIndex = capturedIndex;
-                    HighlightSelectedItem();
-                    UpdateItemInfoUI();
-                });
-
-                index++;
-                ItemButtons.Add(buttonObj);
-            }
-
-
-            HighlightSelectedItem();
-        }
-
-        protected override void MoveSelection(int dir)
-        {
-            SelectedIndex += dir;
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
-            HighlightSelectedItem();
-            UpdateItemInfoUI();
-        }
-
-        private void UpdateItemInfoUI()
-        {
-            if (_itemKeys.Count == 0)
-            {
-                itemImage.sprite = null;
-                itemImage.gameObject.SetActive(false);
-                itemNameText.text = "";
-                itemDescriptionText.text = "";
-                return;
-            }
+            float step = itemHeight / (contentHeight - viewportHeight);
             
-            SelectedIndex = Mathf.Clamp(SelectedIndex, 0, _itemKeys.Count - 1);
-            HighlightSelectedItem();
+            Vector3 itemWorldPos = selected.position;
+            Vector3 itemLocalPos = viewport.InverseTransformPoint(itemWorldPos);
+            
+            if (itemLocalPos.y >= viewport.rect.height * 0.5f)
+            {
+                scrollRect.verticalScrollbar.value = Mathf.Clamp01(scrollRect.verticalScrollbar.value + step);
+            }
+            else if (itemLocalPos.y <= -viewport.rect.height * 0.5f)
+            {
+                scrollRect.verticalScrollbar.value = Mathf.Clamp01(scrollRect.verticalScrollbar.value - step);
+            }
 
-            ItemId id = _itemKeys[SelectedIndex];
-            var itemData = itemDatabase.GetItemById(id);
-
-            itemImage.gameObject.SetActive(true);
-            itemImage.sprite = itemData.sprite;
-            itemNameText.text = itemData.itemName;
-            itemDescriptionText.text = itemData.description;
         }
     }
 }

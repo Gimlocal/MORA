@@ -9,101 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f4d18f10aae564198d1837e6a3f9f9, type: 3}
+  m_Script: {fileID: 11500000, guid: d823073a21cf8fe439a310940b27fe6f, type: 3}
   m_Name: Item Database
   m_EditorClassIdentifier: 
   items:
   - itemId: 0
-    isMush: 0
     itemName: "\uD589\uC131 \uC815\uBCF4"
-    value: 0
-    description: "MushrOom Resource Asteroid. \uD1B5\uCE6D MORA. \n\uC774 \uD589\uC131\uC5D0\uB294
-      \uBBF8\uC9C0\uC758 \uAD11\uBB3C\uB4E4\uC774 \uBD84\uD3EC\uD574 \uC788\uB2E4.
-      \uC678\uD615\uC774 \uBC84\uC12F\uC744 \uB2EE\uC558\uACE0 \uAC00\uACF5\uC744
-      \uAC00\uB2A5\uD574 \uC774 \uC774\uB984\uC774 \uBD99\uC5C8\uB2E4. \uAD11\uBB3C\uC740
-      \uC778\uAC04\uC5D0\uAC8C \uD574\uB85C\uC6B4 \uB3C5\uC131\uC744 \uD488\uACE0
-      \uC788\uC5B4 \uCDE8\uAE09\uC5D0 \uC8FC\uC758\uD574\uC57C\uD55C\uB2E4."
+    description: "MushrOom Resource Asteroid. \uD1B5\uCE6D MORA.\n\uC774 \uD589\uC131\uC5D0\uB294
+      \uAE30\uC6D0\uC744 \uC54C \uC218 \uC5C6\uB294 \uBBF8\uC9C0\uC758 \uAD11\uBB3C\uB4E4\uC774
+      \uBD84\uD3EC\uD574 \uC788\uB2E4.\n\uC678\uD615\uC774 \uBC84\uC12F\uC744 \uB2EE\uC558\uACE0
+      \uAC00\uACF5\uC744 \uAC00\uB2A5\uD574 \uC774 \uC774\uB984\uC774 \uBD99\uC5C8\uB2E4."
     sprite: {fileID: 21300000, guid: 60dbf6a31ffde4645b0ff2a518c88795, type: 3}
   - itemId: 1
-    isMush: 0
-    itemName: "\uC2E0\uC785\uC0AC\uC6D0 \uC5C5\uBB34 \uC218\uCE59"
-    value: 0
-    description: "1. \uD0D0\uC0AC\uC5D0\uC11C \uC5BB\uC740 \uAD11\uBB3C\uC740 \uD314\uAC70\uB098
-      \uAC00\uACF5\uD560 \uC218 \uC788\uB2E4.\n2. \uD0D0\uC0AC\uB97C \uC9C4\uD589\uD558\uBA74
-      \uBAB8\uC5D0 \uC624\uC5FC\uC774 \uCD95\uC801\uB418\uBBC0\uB85C \uAE30\uC9C0\uC758
-      \uC138\uCC99\uAE30\uACC4\uB97C \uC8FC\uAE30\uC801\uC73C\uB85C \uC0AC\uC6A9\uD55C\uB2E4.\n3.
-      \uB2F9\uC2E0\uC758 \uBAA9\uD45C\uB294 \uADC0\uD658 \uC218\uC2E0\uAE30\uB97C
-      \uB9CC\uB4E4\uC5B4 \uBCF8\uC0AC\uC5D0 \uBCF5\uADC0\uD558\uB294 \uAC83 \uC774\uB2E4."
-    sprite: {fileID: 21300000, guid: 60dbf6a31ffde4645b0ff2a518c88795, type: 3}
-  - itemId: 2
-    isMush: 1
-    itemName: "\uCD08\uB85D \uBC84\uC12F"
-    value: 1
-    description: "\uD480 \uD5A5\uAE30\uAC00 \uB098\uB294 \uCD08\uB85D\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uB2E4\uC591\uD55C
-      \uC601\uC591\uBD84\uC774 \uD48D\uBD80\uD558\uB2E4."
-    sprite: {fileID: 21300000, guid: a15501f0e3f737b479b028c016150db8, type: 3}
-  - itemId: 3
-    isMush: 1
-    itemName: "\uD30C\uB780 \uBC84\uC12F"
-    value: 3
-    description: "\uD638\uC218\uAC00 \uB2F4\uAE34 \uAC83 \uAC19\uC740 \uD478\uB978\uBE5B
-      \uBC84\uC12F\uC774\uB2E4.\n\uC0C1\uC628\uC5D0 \uB450\uBA74 \uC561\uCCB4 \uC0C1\uD0DC\uAC00
-      \uB41C\uB2E4."
-    sprite: {fileID: 21300000, guid: 8edb69ed8dc505a46b207f6ddcce0f57, type: 3}
-  - itemId: 4
-    isMush: 1
-    itemName: "\uBE68\uAC04 \uBC84\uC12F"
-    value: 2
-    description: "\uC0DD\uBB3C\uC758 \uD53C\uB97C \uB2F4\uC740 \uAC83 \uAC19\uC740
-      \uBD89\uC740\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uBD88\uC5D0 \uC775\uD788\uBA74
-      \uAC08\uC0C9\uBE5B\uC774 \uB3C8\uB2E4."
-    sprite: {fileID: 21300000, guid: d6d58a707ea662544a465f746ee75d5e, type: 3}
-  - itemId: 5
-    isMush: 1
-    itemName: "\uC5F0\uD558\uB298 \uBC84\uC12F"
-    value: 4
-    description: "\uBC14\uB2E4\uC758 \uD5A5\uAE30\uAC00 \uB098\uB294 \uC5F0\uD558\uB298\uBE5B
-      \uBC84\uC12F\uC774\uB2E4.\n\uC798\uAC8C \uBD80\uC234 \uC74C\uC2DD\uC5D0 \uB123\uC73C\uBA74
-      \uC74C\uC2DD\uC774 \uB9DB\uC788\uC5B4\uC9C8 \uAC83 \uAC19\uB2E4."
-    sprite: {fileID: 21300000, guid: f862a750c0a12ad46b343504fcbce8c2, type: 3}
-  - itemId: 6
-    isMush: 1
-    itemName: "\uD770\uC0C9 \uBC84\uC12F"
-    value: 3
-    description: "\uACE0\uC18C\uD55C \uD5A5\uAE30\uAC00 \uB098\uB294 \uD770\uC0C9
-      \uBC84\uC12F\uC774\uB2E4.\n\uBD88\uC5D0 \uC775\uD788\uBA74 \uD3ED\uC2E0\uD3ED\uC2E0\uD574\uC9C4\uB2E4.\n"
-    sprite: {fileID: 21300000, guid: 6bb481fd9d5e0604d85cb5f889f20592, type: 3}
-  - itemId: 7
-    isMush: 1
-    itemName: "\uD669\uAE08 \uBC84\uC12F"
-    value: 5
-    description: "\uB9CC\uC9C0\uBA74 \uAE30\uB984\uC774 \uBB3B\uC5B4\uB098\uC624\uB294
-      \uD669\uAE08\uBE5B \uBC84\uC12F\uC774\uB2E4.\n\uC5F4\uC744 \uAC00\uD558\uBA74
-      \uC561\uCCB4 \uC0C1\uD0DC\uAC00 \uB41C\uB2E4."
-    sprite: {fileID: 21300000, guid: 5d5ec530666fb1144a6ebc85a77a6636, type: 3}
-  - itemId: 8
-    isMush: 1
-    itemName: "\uAC15\uCCA0 \uBC84\uC12F"
-    value: 2
-    description: "\uAC15\uCCA0\uC758 \uB2E8\uB2E8\uD568\uACFC \uBC84\uC12F\uC758
-      \uB9D0\uB791\uD568\uC744 \uB3D9\uC2DC\uC5D0 \uAC00\uC9C0\uACE0 \uC788\uC5B4
-      \uD615\uD0DC\uB97C \uC790\uC720\uB86D\uAC8C \uB9CC\uB4E4 \uC218 \uC788\uB2E4.
-      \n\uC7A5\uBE44 \uC678\uD615 \uC81C\uC791\uC5D0 \uC6A9\uC774\uD558\uB2E4."
-    sprite: {fileID: 21300000, guid: 26089578be7aeac469cae94b6f330823, type: 3}
-  - itemId: 9
-    isMush: 1
-    itemName: "\uD3ED\uBC1C \uBC84\uC12F"
-    value: 4
-    description: "\uC8FC\uBCC0\uC758 \uAD11\uBB3C\uC744 \uB04C\uC5B4\uB4E4\uC5EC
-      \uD06C\uAE30\uB97C \uD0A4\uC6B0\uACE0 \uC77C\uC815 \uD06C\uAE30 \uC774\uC0C1
-      \uCEE4\uC9C0\uBA74 \uD3ED\uBC1C\uD558\uB294 \uC131\uC9C8\uC774 \uC788\uB2E4.\n\uAC00\uBCBC\uC6B4
-      \uC7A5\uBE44\uC758 \uC5F0\uB8CC\uB85C \uC0AC\uC6A9\uB41C\uB2E4."
-    sprite: {fileID: 21300000, guid: 89b8c5eadcf4b7340b05948c23928698, type: 3}
-  - itemId: 10
-    isMush: 0
     itemName: "\uB79C\uD134"
-    value: 20
     description: "\uC5B4\uB450\uC6B4 \uACF3\uC5D0\uC11C \uC791\uC5C5\uD560 \uB54C
-      \uD544\uC218\uC801\uC778 \uBB3C\uAC74\uC774\uB2E4.\n\uCCAD\uB85D\uC0C9\uC758
-      \uBE5B\uC744 \uBFDC\uC5B4\uB0B8\uB2E4."
+      \uD544\uC218\uC801\uC778 \uBB3C\uAC74\uC774\uB2E4.\n\uCCAD\uB85D\uC0C9 \uBE5B\uC744
+      \uB0B4\uBFDC\uB294\uB2E4."
     sprite: {fileID: 4621605279368468551, guid: 222a4fd811ac8f8439040d3858684d0c, type: 3}
+  - itemId: 2
+    itemName: "\uC77C\uC9C01"
+    description: ...
+    sprite: {fileID: 21300000, guid: 60dbf6a31ffde4645b0ff2a518c88795, type: 3}

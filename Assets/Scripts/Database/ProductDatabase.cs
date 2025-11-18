@@ -59,7 +59,7 @@ namespace Database
                         AddTool(Player.Player.Instance.gameObject.transform.Find(id.ToString()).GetComponent<Tools>());
                     break;
                 case ProductEffect.Item:
-                    Player.Player.Instance.playerItem.AddItem((ItemId)Enum.Parse(typeof(ItemId), id.ToString()));
+                    Player.Player.Instance.playerItem.AddMush((MushId)Enum.Parse(typeof(MushId), id.ToString()));
                     Player.Player.Instance.playerItem.hasLantern = true;
                     break;
             }

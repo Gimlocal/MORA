@@ -15,8 +15,8 @@ namespace Mush
     public class Mush : BreakableObject
     {
         [Header("Mush Setting")]
-        [SerializeField] private ItemDatabase mushDatabase;
-        [SerializeField] private ItemId mushId;
+        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private MushId mushId;
         [SerializeField] private GameObject explosionEffect;
         public MushRarity rarity;
         

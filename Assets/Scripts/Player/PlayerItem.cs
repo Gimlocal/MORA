@@ -12,21 +12,32 @@ namespace Player
 {
     public class PlayerItem : MonoBehaviour
     {
-        [SerializeField] private ItemDatabase mushDatabase;
+        [SerializeField] private MushDatabase mushDatabase;
+        [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private GameObject lantern;
+        public Dictionary<MushId, int> OwnedMushes = new();
         public Dictionary<ItemId, int> OwnedItems = new();
         public int gold = 0;
         public int suitLevel = 0;
         public bool canGoHome;
         public bool hasLantern;
-        public event System.Action OnItemChanged;
-        public event System.Action OnGoldChanged;
+        public event Action OnMushChanged;
+        public event Action OnItemChanged; 
+        public event Action OnGoldChanged;
 
         private void Start()
         {
-            AddItem(ItemId.PlanetInfo);
-            AddItem(ItemId.WorkInfo);
             SceneManager.sceneLoaded += OnSceneLoaded;
+            AddItem(ItemId.PlanetInfo);
+        }
+
+        public void AddMush(MushId id)
+        {
+            if (!OwnedMushes.TryAdd(id, 1))
+            {
+                OwnedMushes[id]++;
+            }
+            OnMushChanged?.Invoke();
         }
 
         public void AddItem(ItemId id)
@@ -38,15 +49,36 @@ namespace Player
             OnItemChanged?.Invoke();
         }
 
-        private List<ItemInfo> GetAllItemsInfo()
+        public List<MushInfo> GetAllMushesInfo()
         {
-            List<ItemInfo> mushInfos = new();
-            foreach (var id in OwnedItems.Keys)
+            List<MushInfo> mushInfos = new();
+            foreach (var id in OwnedMushes.Keys)
             {
                 var info = mushDatabase.GetItemById(id);
                 mushInfos.Add(info);
             }
-            return  mushInfos;
+            return mushInfos;
+        }
+
+        public List<ItemInfo> GetAllItemInfos()
+        {
+            List<ItemInfo> itemInfos = new();
+            foreach (var id in OwnedItems.Keys)
+            {
+                var info = itemDatabase.GetItemById(id);
+                itemInfos.Add(info);
+            }
+            return itemInfos;
+        }
+
+        public bool HasMush(MushId id)
+        {
+            return OwnedMushes.ContainsKey(id);
+        }
+
+        public bool HasMush(MushId id, int amount)
+        {
+            return OwnedMushes.ContainsKey(id) && OwnedMushes[id] >= amount;
         }
 
         public bool HasItem(ItemId id)
@@ -59,13 +91,21 @@ namespace Player
             return OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount;
         }
 
+        public void UseMush(MushId id, int amount = 1)
+        {
+            if (OwnedMushes.ContainsKey(id) && OwnedMushes[id] >= amount)
+            {
+                OwnedMushes[id] -= amount;
+            }
+            OnMushChanged?.Invoke();
+        }
+
         public void UseItem(ItemId id, int amount = 1)
         {
             if (OwnedItems.ContainsKey(id) && OwnedItems[id] >= amount)
             {
                 OwnedItems[id] -= amount;
             }
-
             OnItemChanged?.Invoke();
         }
 
@@ -85,10 +125,10 @@ namespace Player
         {
             if (SceneDatabase.GetSceneType(scene.name) == SceneType.Underground)
             {
-                if (OwnedItems.Any(t => t.Key == ItemId.Lantern))
-                {
-                    lantern.SetActive(true);
-                }
+                // if (OwnedItems.Any(t => t.Key == MushId.Lantern))
+                // {
+                //     lantern.SetActive(true);
+                // }
             }
             else if (SceneDatabase.GetSceneType(scene.name) == SceneType.Normal)
             {
