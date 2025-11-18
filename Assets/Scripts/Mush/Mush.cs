@@ -14,14 +14,19 @@ namespace Mush
 {
     public class Mush : BreakableObject
     {
+        [Header("Mush Setting")]
         [SerializeField] private ItemDatabase mushDatabase;
         [SerializeField] private ItemId mushId;
+        [SerializeField] private GameObject explosionEffect;
+        public MushRarity rarity;
+        
+        [Header("Drop Setting")]
         [SerializeField] private float dropInterval;
         [SerializeField] private Material pieceMaterial;
         [SerializeField] private Sprite goldSprite;
-        [SerializeField] private GameObject explosionEffect;
-        
-        public MushRarity rarity;
+        [SerializeField] private float dropDamage = 1;
+        [SerializeField] private float maxDropDistance = 1;
+        [SerializeField] private float minDropDistance;
         
         private float _hitCount;
         private float _maxHp;
@@ -36,10 +41,15 @@ namespace Mush
         {
             if (hp > 0)
             {
+                SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
+
+                if (power < dropDamage)
+                {
+                    return;
+                }
+                
                 Split();
                 Flick();
-                
-                SoundManager.Instance.Play(AudioCategory.ToolHit, tool.hitAudioKey);
                 
                 float prevHitCount = _hitCount;
                 _hitCount += power;
@@ -69,8 +79,7 @@ namespace Mush
 
         private void DropPiece()
         {
-            Vector2 randomDir = Random.insideUnitCircle;
-            Vector3 dropPos = transform.position + (Vector3)randomDir;
+            Vector3 dropPos = transform.position + DropPosition();
             
             GameObject dropPiece = new GameObject("Piece");
             dropPiece.transform.position = transform.position;
@@ -94,8 +103,7 @@ namespace Mush
 
         private void DropGoldPiece()
         {
-            Vector2 randomDir = Random.insideUnitCircle;
-            Vector3 dropPos = transform.position + (Vector3)randomDir;
+            Vector3 dropPos = transform.position + DropPosition();
             Vector3 midDropPos = (transform.position + dropPos * 2) / 3;
             
             GameObject dropGoldPiece = new GameObject("GoldPiece");
@@ -119,6 +127,16 @@ namespace Mush
             seq.Append(dropGoldPiece.transform.DOJump(midDropPos, 0.15f, 1, 0.15f));
             seq.Append(dropGoldPiece.transform.DOJump(dropPos, 0.4f, 1, 0.4f));
             seq.OnComplete(() => { dropGoldPiece.GetComponent<Collider2D>().enabled = true;});
+        }
+
+        private Vector3 DropPosition()
+        {
+            float x = Random.value < 0.5f ? Random.Range(-maxDropDistance, -minDropDistance) 
+                : Random.Range(minDropDistance, maxDropDistance);
+            float y = Random.value < 0.5f ? Random.Range(-maxDropDistance, -minDropDistance) 
+                : Random.Range(minDropDistance, maxDropDistance);
+
+            return new Vector3(x, y, 0);
         }
 
         private void OnDead()
