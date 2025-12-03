@@ -25,7 +25,10 @@ namespace Stage
             {
                 SetPlayerPosition(other.transform);
                 _cameraChange.ChangeCamera();
-                _particle?.Play();
+                if (_particle != null)
+                {
+                    _particle?.Play();
+                }
                 if (!setPlayer)
                 {
                     setPlayer = true;
@@ -37,7 +40,10 @@ namespace Stage
         {
             if (other.CompareTag("Player"))
             {
-                _particle?.Stop();
+                if (_particle != null)
+                {
+                    _particle?.Stop();
+                }
             }
         }
 
