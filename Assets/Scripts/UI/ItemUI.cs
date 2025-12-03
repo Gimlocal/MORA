@@ -47,7 +47,15 @@ namespace UI
 
         protected override void Act()
         {
-            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var info = itemDatabase.GetItemById(_itemKeys[SelectedIndex]);
+                itemDatabase.UseItem(info.itemId);
+                if (info.oneTime)
+                {
+                    _ownedItems[info.itemId]--;
+                }
+            }
         }
         
         protected override void ManageMoveSelection()
