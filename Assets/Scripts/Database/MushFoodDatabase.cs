@@ -32,7 +32,7 @@ namespace Database
     public enum MushFoodEffect
     {
         IncreaseSpeed,
-        IncreaseCapacity,
+        IncreaseMaxCorruption,
         IncreasePower,
     }
     
@@ -40,6 +40,17 @@ namespace Database
     public class MushFoodDatabase : ScriptableObject
     {
         public MushFoodInfo[] mushFoodInfo;
+        private Dictionary<MushFoodEffect, Action> _mushFoodEffects;
+
+        private void OnEnable()
+        {
+            _mushFoodEffects = new Dictionary<MushFoodEffect, Action>
+            {
+                { MushFoodEffect.IncreaseSpeed, IncreaseSpeed },
+                { MushFoodEffect.IncreaseMaxCorruption, IncreaseMaxCorruption },
+                { MushFoodEffect.IncreasePower, IncreasePower },
+            };
+        }
 
         public MushFoodInfo GetMushFoodInfo(MushFoodId id)
         {
@@ -53,19 +64,23 @@ namespace Database
 
         public void EatMushFood(MushFoodId id)
         {
-            switch (GetMushFoodInfo(id).mushFoodEffect)
-            {
-                case MushFoodEffect.IncreaseSpeed:
-                    Player.Player.Instance.playerStat.moveSpeed =
-                        Math.Clamp(Player.Player.Instance.playerStat.moveSpeed + 0.3f, 3, 6);
-                    break;
-                case MushFoodEffect.IncreaseCapacity:
-                    Player.Player.Instance.playerStat.maxCorruption += 20f;
-                    break;
-                case MushFoodEffect.IncreasePower:
-                    Player.Player.Instance.playerStat.power += 0.5f;
-                    break;
-            }
+            _mushFoodEffects[GetMushFoodInfo(id).mushFoodEffect]?.Invoke();
+        }
+
+        private void IncreaseSpeed()
+        {
+            Player.Player.Instance.playerStat.moveSpeed =
+                Math.Clamp(Player.Player.Instance.playerStat.moveSpeed + 0.3f, 3, 6);
+        }
+
+        private void IncreaseMaxCorruption()
+        {
+            Player.Player.Instance.playerStat.maxCorruption += 20f;
+        }
+
+        private void IncreasePower()
+        {
+            Player.Player.Instance.playerStat.power += 0.5f;
         }
     }
 }
