@@ -70,7 +70,7 @@ namespace Player
 
         public void Corrupt(float value)
         {
-            corruption += value;
+            corruption = Mathf.Clamp(corruption + value, 0, maxCorruption);
             OnCorruptionChanged?.Invoke();
             CheckCorruptionState();
         }
@@ -180,8 +180,8 @@ namespace Player
         private void DeadSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             corruption = 0;
-            DataManager.SetData(_playerData);
             OnCorruptionChanged?.Invoke();
+            CheckCorruptionState();
             Player.Instance.playerSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
             _colorAdjustments.saturation.value = 0;
             DOTween.To(
@@ -192,6 +192,7 @@ namespace Player
             ).From(-10f).SetEase(Ease.InSine)
             .OnComplete(() =>
             {
+                DataManager.SetData(_playerData);
                 Player.Instance.playerMovement.canMove = true;
             });
             SceneManager.sceneLoaded -= DeadSceneLoaded;

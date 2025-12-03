@@ -37,6 +37,7 @@ namespace System
             playerData.canGoHome = playerItem.canGoHome;
 
             playerData.moveSpeed = playerStat.moveSpeed;
+            playerData.axeSpeed = playerStat.axeSpeed;
             playerData.maxCorruption = playerStat.maxCorruption;
             playerData.power = playerStat.power;
 
@@ -87,6 +88,7 @@ namespace System
             playerItem.canGoHome = data.canGoHome;
             
             playerStat.moveSpeed = data.moveSpeed;
+            playerStat.axeSpeed = data.axeSpeed;
             playerStat.maxCorruption = data.maxCorruption;
             playerStat.power = data.power;
             

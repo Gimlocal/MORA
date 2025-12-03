@@ -15,7 +15,8 @@ namespace Database
         public bool hasLantern;
         
         public float moveSpeed = 3;
-        public float maxCorruption = 20;
+        public float axeSpeed = 0.25f;
+        public float maxCorruption = 100;
         public float power = 1;
 
         public string sceneName = "MORA-0";
