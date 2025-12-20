@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Sound;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Database
 {
@@ -13,12 +14,16 @@ namespace Database
         Record1,
         Spacesuit,
         HomeTicket,
+        DisposableCleanser,
+        DisposableReturner,
     }
 
     public enum ItemEffect
     {
         None,
         Lantern,
+        Cleanse,
+        Return,
     }
 
     [System.Serializable]
@@ -44,6 +49,8 @@ namespace Database
             {
                 { ItemEffect.None, () => { } },
                 { ItemEffect.Lantern, UseLantern },
+                { ItemEffect.Cleanse, UseCleanser },
+                { ItemEffect.Return, UseReturner },
             };
         }
         
@@ -65,11 +72,30 @@ namespace Database
             _itemEffects[item.effect]?.Invoke();
         }
 
+        #region ItemEffects
         private void UseLantern()
         {
             GameObject lantern = Player.Player.Instance.transform.Find("Lantern").gameObject;
             lantern.SetActive(!lantern.activeSelf);
             SoundManager.Instance.Play(AudioCategory.UI, "Success");
         }
+
+        private void UseCleanser()
+        {
+            Player.Player.Instance.playerStat.Cleanse();
+        }
+
+        private void UseReturner()
+        {
+            SceneManager.sceneLoaded += SetPosition;
+            SceneManager.LoadScene("MORA-0");
+        }
+
+        private void SetPosition(Scene scene, LoadSceneMode mode)
+        {
+            Player.Player.Instance.transform.position = new Vector3(-19.7f, 3.42f, 0);
+            SceneManager.sceneLoaded -= SetPosition;
+        }
+        #endregion
     }
 }

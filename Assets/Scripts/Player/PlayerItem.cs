@@ -29,6 +29,7 @@ namespace Player
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
             AddItem(ItemId.PlanetInfo);
+            AddItem(ItemId.Lantern);
         }
 
         public void AddMush(MushId id)
