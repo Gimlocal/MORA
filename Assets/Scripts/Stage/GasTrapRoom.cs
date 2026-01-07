@@ -34,8 +34,8 @@ namespace Stage
             if (other.CompareTag("Player"))
             {
                 _stat.isInGasTrap = true;
-                BlurEffect();
-                _stat.ApplyPenalty();
+                // BlurEffect();
+                // _stat.ApplyPenalty();
                 _gasTrapCoroutine = StartCoroutine(GasTrapCoroutine());
             }
         }
@@ -45,8 +45,8 @@ namespace Stage
             if (other.CompareTag("Player"))
             {
                 _stat.isInGasTrap = false;
-                RemoveEffect();
-                _stat.CheckCorruptionState();
+                // RemoveEffect();
+                // _stat.CheckCorruptionState();
                 StopCoroutine(_gasTrapCoroutine);
             }
         }

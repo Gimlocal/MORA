@@ -2049,7 +2049,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -2221,8 +2221,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.72126025, g: 0.85660374, b: 0.6965966, a: 0.007843138}
-      maxColor: {r: 0.6622641, g: 1, b: 0.7471163, a: 0.007843138}
+      minColor: {r: 0.72126025, g: 0.85660374, b: 0.6965966, a: 0.003921569}
+      maxColor: {r: 0.6622641, g: 1, b: 0.7471163, a: 0.003921569}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3494,8 +3494,8 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -0.3
-      minScalar: 0.3
+      scalar: -0.5
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6866,6 +6866,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 920507741101462363}
   - {fileID: 1708379250291824966}
   - {fileID: 9024350472629306512}
   - {fileID: 520471445421052306}
@@ -6882,7 +6883,6 @@ Transform:
   - {fileID: 2380398520013488328}
   - {fileID: 1023517456084420350}
   - {fileID: 2144183221620854009}
-  - {fileID: 920507741101462363}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &955157911843114972
@@ -6961,7 +6961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageDelay: 1
-  damage: 1
+  damage: 3
 --- !u!114 &-8847300515094232694
 MonoBehaviour:
   m_ObjectHideFlags: 0
