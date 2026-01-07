@@ -1956,7 +1956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2151236149535637542, guid: daa2c696d39579b4693fb8b164315a5b, type: 3}
       propertyPath: maxDropDistance
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2151236149535637542, guid: daa2c696d39579b4693fb8b164315a5b, type: 3}
       propertyPath: minDropDistance
