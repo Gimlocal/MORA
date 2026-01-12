@@ -8,6 +8,8 @@ namespace Stage
     public class RoomSetting : MonoBehaviour
     {
         public bool setPlayer = true;
+        public bool hasRoomLight = true;
+        
         private ParticleSystem _particle;
         private CameraChange _cameraChange;
         private MiniMapController _minimapController;
@@ -24,11 +26,15 @@ namespace Stage
             if (other.CompareTag("Player"))
             {
                 SetPlayerPosition(other.transform);
+                Player.Player.Instance.playerItem.UseDefaultLantern(!hasRoomLight);
+                
                 _cameraChange.ChangeCamera();
+                
                 if (_particle != null)
                 {
                     _particle?.Play();
                 }
+                
                 if (!setPlayer)
                 {
                     setPlayer = true;

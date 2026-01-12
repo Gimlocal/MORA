@@ -101,3 +101,11 @@ MonoBehaviour:
     uniquePerStage: 1
     roomType: 3
     roomPrefab: {fileID: 5558476489041337602, guid: 2e17f0a4dc192fd48bedc03f5f481182, type: 3}
+  - id: 11
+    stage: 1
+    roomName: Maze
+    weight: 50
+    allowedDoors: -1
+    uniquePerStage: 1
+    roomType: 4
+    roomPrefab: {fileID: 5558476489041337602, guid: f67e346899d954b41a2487f0b158e9f2, type: 3}
