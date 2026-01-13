@@ -6929,7 +6929,6 @@ GameObject:
   - component: {fileID: 955157911843114972}
   - component: {fileID: 1008282453164436157}
   - component: {fileID: 1915559116512851971}
-  - component: {fileID: -8847300515094232694}
   m_Layer: 0
   m_Name: TrapRoom2
   m_TagString: Untagged
@@ -7045,21 +7044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a98d1f68940b74bbe8b833e515c2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setPlayer: 1
+  hasRoomLight: 1
   damageDelay: 1
   damage: 3
---- !u!114 &-8847300515094232694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5558476489041337602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4608b4888f3a4f45878bd55b2a74977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setPlayer: 1
 --- !u!1 &8933677380320538059
 GameObject:
   m_ObjectHideFlags: 0
