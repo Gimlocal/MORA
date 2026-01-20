@@ -35,6 +35,11 @@ namespace Cam
             }
         }
 
+        public void CameraShake()
+        {
+            cinemachineCamera.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+        }
+
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;

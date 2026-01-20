@@ -102,7 +102,7 @@ namespace Stage
             _playerSprite.enabled = false;
             yield return new WaitForSeconds(0.1f);
             
-            // todo : Effect & Sound
+            CameraManager.Instance.CameraShake();
 
             _player.playerStat.Corrupt(corruptAmount);
             _player.transform.localRotation = Quaternion.identity;
