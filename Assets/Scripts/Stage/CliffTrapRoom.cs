@@ -1,4 +1,5 @@
 using System.Collections;
+using Cam;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Serialization;
@@ -11,33 +12,32 @@ namespace Stage
         [Header("Ground Setting")]
         [SerializeField] private Tilemap groundTilemap;
         
-        [Header("Falling Value")]
+        [Header("Trap Value")]
         [SerializeField] private float fallingDuration;
         [SerializeField] private float fallingSpeed;
         [SerializeField] private float fallingAmountY;
         [SerializeField] private float fallingAngle;
-
-        private bool _isInRoom;
+        [SerializeField] private float corruptAmount;
+        
         private bool _isFalling;
         private Player.Player _player;
         private SpriteRenderer _playerSprite;
+        private Collider2D _playerCollider;
         private Vector3 _safePos;
         private int _groundOrder;
-
-        private float _corruptAmount;
-
+        
         private void Start()
         {
             _player = Player.Player.Instance;
             _playerSprite = _player.playerSprite.GetComponent<SpriteRenderer>();
+            _playerCollider = _player.GetComponent<Collider2D>();
             _safePos = _player.transform.position;
             _groundOrder = groundTilemap.GetComponent<TilemapRenderer>().sortingOrder;
-            _corruptAmount = 30f;
         }
         
         private void Update()
         {
-            if (!_isInRoom || _isFalling) return;
+            if (!IsInRoom || _isFalling) return;
 
             Vector3 playerPos = _player.transform.position;
             
@@ -56,17 +56,14 @@ namespace Stage
             base.OnTriggerEnter2D(other);
             if (other.CompareTag("Player"))
             {
-                _isInRoom = true;
+                Player.Player.Instance.playerItem.UseDefaultLantern(true);
             }
         }
 
-        protected override void OnTriggerExit2D(Collider2D other)
+        protected override void OnPlayerLeftRoom()
         {
-            base.OnTriggerExit2D(other);
-            if (other.CompareTag("Player"))
-            {
-                _isInRoom = false;
-            }
+            base.OnPlayerLeftRoom();
+            Player.Player.Instance.playerItem.UseDefaultLantern(false);
         }
         
         private bool CheckOnGround(Vector3 pos)
@@ -86,6 +83,7 @@ namespace Stage
             _isFalling = true;
             _player.playerMovement.canMove = false;
             _player.playerMining.canMine = false;
+            _playerCollider.enabled = false;
 
             _playerSprite.sortingOrder = _groundOrder - 1;
             float playerDirection = _playerSprite.flipX ? 1 : -1;
@@ -106,7 +104,7 @@ namespace Stage
             
             // todo : Effect & Sound
 
-            _player.playerStat.Corrupt(_corruptAmount);
+            _player.playerStat.Corrupt(corruptAmount);
             _player.transform.localRotation = Quaternion.identity;
             _player.transform.localScale = new Vector3(0.3f, 0.3f, 1f);
             _playerSprite.sortingOrder =  _groundOrder + 1;
@@ -117,7 +115,8 @@ namespace Stage
             yield return new WaitForSeconds(0.1f);
             
             _player.playerMining.canMine = true;
-            _player.playerMovement.canMove = true;            
+            _player.playerMovement.canMove = true; 
+            _playerCollider.enabled = true;
             _isFalling = false;
         }
     }

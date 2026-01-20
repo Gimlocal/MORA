@@ -1851,6 +1851,7 @@ MonoBehaviour:
   fallingSpeed: 0
   fallingAmountY: 1.5
   fallingAngle: 15
+  corruptAmount: 30
 --- !u!1 &7668163433592493454
 GameObject:
   m_ObjectHideFlags: 0

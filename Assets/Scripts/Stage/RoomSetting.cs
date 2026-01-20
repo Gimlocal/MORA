@@ -7,8 +7,11 @@ namespace Stage
 {
     public class RoomSetting : MonoBehaviour
     {
+        public static RoomSetting CurrentRoom { get; private set; }
+        
         public bool setPlayer = true;
-        public bool hasRoomLight = true;
+        
+        protected bool IsInRoom;
         
         private ParticleSystem _particle;
         private CameraChange _cameraChange;
@@ -25,31 +28,40 @@ namespace Stage
         {
             if (other.CompareTag("Player"))
             {
+                if (IsInRoom)
+                {
+                    return;
+                }
+                IsInRoom = true;
+                
+                if (CurrentRoom != null && CurrentRoom != this)
+                {
+                    CurrentRoom.OnPlayerLeftRoom();
+                }
+                CurrentRoom = this;
+                
                 SetPlayerPosition(other.transform);
-                Player.Player.Instance.playerItem.UseDefaultLantern(!hasRoomLight);
                 
                 _cameraChange.ChangeCamera();
-                
-                if (_particle != null)
-                {
-                    _particle?.Play();
-                }
                 
                 if (!setPlayer)
                 {
                     setPlayer = true;
                 }
-            }
-        }
-
-        protected virtual void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
+                
                 if (_particle != null)
                 {
-                    _particle?.Stop();
+                    _particle?.Play();
                 }
+            }
+        }
+        
+        protected virtual void OnPlayerLeftRoom()
+        {
+            IsInRoom = false;
+            if (_particle != null)
+            {
+                _particle.Stop();
             }
         }
 

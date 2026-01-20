@@ -41,16 +41,13 @@ namespace Stage
             }
         }
 
-        protected override void OnTriggerExit2D(Collider2D other)
+        protected override void OnPlayerLeftRoom()
         {
-            base.OnTriggerExit2D(other);
-            if (other.CompareTag("Player"))
-            {
-                _stat.isInGasTrap = false;
-                // RemoveEffect();
-                // _stat.CheckCorruptionState();
-                StopCoroutine(_gasTrapCoroutine);
-            }
+            base.OnPlayerLeftRoom();
+            _stat.isInGasTrap = false;
+            // RemoveEffect();
+            // _stat.CheckCorruptionState();
+            StopCoroutine(_gasTrapCoroutine);
         }
 
         private IEnumerator GasTrapCoroutine()
