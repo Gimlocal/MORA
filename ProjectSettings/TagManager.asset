@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tool
   - Mush
+  - Planeta
   layers:
   - Default
   - TransparentFX

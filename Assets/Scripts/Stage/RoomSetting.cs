@@ -7,7 +7,12 @@ namespace Stage
 {
     public class RoomSetting : MonoBehaviour
     {
+        public static RoomSetting CurrentRoom { get; private set; }
+        
         public bool setPlayer = true;
+        
+        protected bool IsInRoom;
+        
         private ParticleSystem _particle;
         private CameraChange _cameraChange;
         private MiniMapController _minimapController;
@@ -19,31 +24,44 @@ namespace Stage
             _minimapController = FindAnyObjectByType<MiniMapController>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                SetPlayerPosition(other.transform);
-                _cameraChange.ChangeCamera();
-                if (_particle != null)
+                if (IsInRoom)
                 {
-                    _particle?.Play();
+                    return;
                 }
+                IsInRoom = true;
+                
+                if (CurrentRoom != null && CurrentRoom != this)
+                {
+                    CurrentRoom.OnPlayerLeftRoom();
+                }
+                CurrentRoom = this;
+                
+                SetPlayerPosition(other.transform);
+                
+                _cameraChange.ChangeCamera();
+                
                 if (!setPlayer)
                 {
                     setPlayer = true;
                 }
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
+                
                 if (_particle != null)
                 {
-                    _particle?.Stop();
+                    _particle?.Play();
                 }
+            }
+        }
+        
+        protected virtual void OnPlayerLeftRoom()
+        {
+            IsInRoom = false;
+            if (_particle != null)
+            {
+                _particle.Stop();
             }
         }
 

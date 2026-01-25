@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Stage
 {
-    public class GasTrapRoom : MonoBehaviour
+    public class GasTrapRoom : RoomSetting
     {
         [SerializeField] private float damageDelay;
         [SerializeField] private float damage;
@@ -29,8 +29,9 @@ namespace Stage
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
+            base.OnTriggerEnter2D(other);
             if (other.CompareTag("Player"))
             {
                 _stat.isInGasTrap = true;
@@ -40,15 +41,13 @@ namespace Stage
             }
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        protected override void OnPlayerLeftRoom()
         {
-            if (other.CompareTag("Player"))
-            {
-                _stat.isInGasTrap = false;
-                // RemoveEffect();
-                // _stat.CheckCorruptionState();
-                StopCoroutine(_gasTrapCoroutine);
-            }
+            base.OnPlayerLeftRoom();
+            _stat.isInGasTrap = false;
+            // RemoveEffect();
+            // _stat.CheckCorruptionState();
+            StopCoroutine(_gasTrapCoroutine);
         }
 
         private IEnumerator GasTrapCoroutine()

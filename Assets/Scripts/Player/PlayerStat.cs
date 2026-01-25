@@ -183,6 +183,7 @@ namespace Player
             OnCorruptionChanged?.Invoke();
             CheckCorruptionState();
             Player.Instance.playerSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+            Player.Instance.playerItem.UseDefaultLantern(false);
             _colorAdjustments.saturation.value = 0;
             DOTween.To(
                 () => _colorAdjustments.postExposure.value,

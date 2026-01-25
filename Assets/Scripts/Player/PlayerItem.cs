@@ -15,6 +15,7 @@ namespace Player
         [SerializeField] private MushDatabase mushDatabase;
         [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private GameObject lantern;
+        [SerializeField] private GameObject defaultLantern;
         public Dictionary<MushId, int> OwnedMushes = new();
         public Dictionary<ItemId, int> OwnedItems = new();
         public int gold = 0;
@@ -135,6 +136,11 @@ namespace Player
             {
                 lantern.SetActive(false);
             }
+        }
+
+        public void UseDefaultLantern(bool on)
+        {
+            defaultLantern.SetActive(on);
         }
         
         private void OnDestroy()
