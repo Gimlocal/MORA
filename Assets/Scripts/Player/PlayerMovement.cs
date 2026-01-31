@@ -28,7 +28,6 @@ namespace Player
 
         private void FixedUpdate()
         {
-            SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
             if (!canMove) return;
             Move();
             FacingDirection();
@@ -45,7 +44,8 @@ namespace Player
 
             _playerAnim.SetBool(IsWalking, _movement != Vector2.zero);
             _movement.Normalize();
-
+            SoundManager.Instance.PlayWalk(_movement != Vector2.zero);
+            
             Vector2 velocity = _playerRb.linearVelocity;
             velocity = Vector2.Lerp(velocity, _movement * Player.Instance.playerStat.moveSpeed, Player.Instance.playerStat.moveAcceleration * Time.fixedDeltaTime);
             _playerRb.linearVelocity = velocity;
