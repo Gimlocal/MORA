@@ -97,7 +97,7 @@ namespace Mush
             MushPiece mushPiece = dropPiece.AddComponent<MushPiece>();
             mushPiece.mushInfo = mushDatabase.GetItemById(mushId);
             
-            float jumpPower = (dropPos - transform.position).magnitude;
+            float jumpPower = (dropPos - transform.position).magnitude / 2f;
             
             dropPiece.transform.DOJump(dropPos, jumpPower, 1, 0.5f).
                 OnComplete(() => { dropPiece.GetComponent<Collider2D>().enabled = true;});
@@ -125,7 +125,7 @@ namespace Mush
             MushGoldPiece mushGoldPiece = dropGoldPiece.AddComponent<MushGoldPiece>();
             mushGoldPiece.mushInfo = mushDatabase.GetItemById(mushId);
             
-            float jumpPower = (dropPos - transform.position).magnitude;
+            float jumpPower = (dropPos - transform.position).magnitude / 2f;
             
             Sequence seq = DOTween.Sequence();
             seq.Append(dropGoldPiece.transform.DOJump(midDropPos, jumpPower / 2, 1, 0.15f));
