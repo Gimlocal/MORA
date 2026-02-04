@@ -40,3 +40,6 @@ MonoBehaviour:
   - portalID: 8
     targetScene: MORA-F1
     targetPos: {x: 0, y: 0}
+  - portalID: 9
+    targetScene: MORA-0
+    targetPos: {x: 5.7, y: 1.4}
