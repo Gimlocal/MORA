@@ -16,6 +16,7 @@ namespace Database
         HomeTicket,
         DisposableCleanser,
         DisposableReturner,
+        Scanner,
     }
 
     public enum ItemEffect

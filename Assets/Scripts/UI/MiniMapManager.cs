@@ -23,10 +23,13 @@ namespace UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Tab)
-                && SceneDatabase.GetSceneType(SceneManager.GetActiveScene().name) == SceneType.Underground)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                FadeCanvas(!_isActive);
+                if (SceneDatabase.GetSceneType(SceneManager.GetActiveScene().name) == SceneType.Underground
+                    && Player.Player.Instance.playerItem.HasItem(ItemId.Scanner))
+                {
+                    FadeCanvas(!_isActive);
+                }
             }
         }
 

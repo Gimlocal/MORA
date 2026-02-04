@@ -58,3 +58,11 @@ MonoBehaviour:
     oneTime: 1
     effect: 2
     sprite: {fileID: 21300018, guid: 2164a1816f29acf45ad76327ffa671c7, type: 3}
+  - itemId: 7
+    itemName: "\uC2A4\uCE90\uB108"
+    description: "\uC8FC\uBCC0\uC758 \uC7A5\uC18C\uC5D0 \uB300\uD55C \uC815\uBCF4\uB97C
+      \uBCF4\uC5EC\uC8FC\uB294 \uC7A5\uCE58\uC774\uB2E4.\nTab\uD0A4\uB97C \uB20C\uB7EC
+      \uC2A4\uCE94\uD560 \uC218 \uC788\uB2E4."
+    oneTime: 0
+    effect: 0
+    sprite: {fileID: 21300000, guid: f818b71b3300492c8d6b45218ff3680f, type: 3}
