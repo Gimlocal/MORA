@@ -55,6 +55,7 @@ namespace Player
         {
             _playerAnim.SetBool(IsWalking, false);
             _movement = Vector2.zero;
+            SoundManager.Instance.PlayWalk(false);
             _playerRb.linearVelocity = Vector2.zero;
         }
 
